@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\guilh\Área de Trabalho\UnB\4º semestre\Orientacao a Objetos - Fabiana\Miniprojeto\MIniProjetoOO\.metadata\.plugins\org.eclipse.jdt.core
