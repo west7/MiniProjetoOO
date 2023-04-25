@@ -30,14 +30,14 @@ public class ControleDeVaga {
 	}
 	
 	public ArrayList<Vaga> BuscarPorEmpresa(String nomeEmpresa){
-		ArrayList<Vaga> vagasFiltradas = new ArrayList<>();
+		ArrayList<Vaga> vagasFiltradasEmpresa = new ArrayList<>();
 		for(Vaga v : vagas) {
 			Empresa empresa = v.getEmpresa();
 			if (empresa != null && empresa.getNome().equals(nomeEmpresa)) {
-				vagasFiltradas.add(v);
+				vagasFiltradasEmpresa.add(v);
 			}
 		}
-		return vagasFiltradas;
+		return vagasFiltradasEmpresa;
 	}
 	
 	public ArrayList<Vaga> OrdenarPeloSalario(){
