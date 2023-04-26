@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import entities.Empresa;
-import entities.Vaga;
 import entities.enums.VagaStatus;
+import entities.modelo.Empresa;
+import entities.modelo.Vaga;
 
 public class ControleDeVaga {
 
@@ -19,14 +19,6 @@ public class ControleDeVaga {
 
 	public void setStatus(VagaStatus status) {
 		this.status = status;
-	}
-
-	public void addVaga(Vaga vaga) {
-		this.vagas.add(vaga);
-	}
-	
-	public void removeVaga(Vaga vaga) {
-		this.vagas.remove(vaga);
 	}
 	
 	public ArrayList<Vaga> BuscarPorEmpresa(String nomeEmpresa){
