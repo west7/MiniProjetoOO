@@ -7,18 +7,17 @@ public class Empresa extends Entity{
 	private String cnpj;
 	private String setor;
 	private String contato;
-	//private ArrayList<Vaga> vagas;
 	private ArrayList<Candidato> candidatos;
 	
 	
 	
-	public Empresa(String nome, String endereco, long id, ArrayList<Vaga> vagas) {
-		super(nome, endereco, id, vagas);
+	public Empresa(String nome, String endereco, long id) {
+		super(nome, endereco, id);
 	}
 
 
-	public Empresa(String nome, String endereco, long id,ArrayList<Vaga> vagas, String cnpj, String setor, String contato) {
-		super(nome, endereco, id, vagas);
+	public Empresa(String nome, String endereco, long id, String cnpj, String setor, String contato) {
+		super(nome, endereco, id);
 		this.cnpj = cnpj;
 		this.setor = setor;
 		this.contato = contato;

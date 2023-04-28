@@ -16,15 +16,17 @@ public abstract class Entity {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.id = id;
+		vagas = new ArrayList<Vaga>();
 	}
 
+	/*
 	public Entity(String nome, String endereco, long id, ArrayList<Vaga> vagas) {
 		super();
 		this.nome = nome;
 		this.endereco = endereco;
 		this.id = id;
 		this.vagas = vagas;
-	}
+	}*/
 
 	public String getNome() {
 		return nome;
