@@ -6,7 +6,7 @@ public class Empresa extends Entity{
 	
 	private String cnpj;
 	private String setor;
-	private String contato;
+	//private String contato;
 	private ArrayList<Candidato> candidatos;
 	
 	
@@ -16,11 +16,11 @@ public class Empresa extends Entity{
 	}
 
 
-	public Empresa(String nome, String endereco, long id, String cnpj, String setor, String contato) {
+	public Empresa(String nome, String endereco, long id, String cnpj, String setor) {
 		super(nome, endereco, id);
 		this.cnpj = cnpj;
 		this.setor = setor;
-		this.contato = contato;
+		//this.contato = contato;
 	}
 
 
@@ -40,14 +40,14 @@ public class Empresa extends Entity{
 		this.setor = setor;
 	}
 
-	public String getContato() {
+	/*public String getContato() {
 		return contato;
 	}
 
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
-	
+	*/
 	
 	
 	public ArrayList<Vaga> getVagas() {
@@ -75,6 +75,10 @@ public class Empresa extends Entity{
 			ArrayList<Candidato> candidato = v.getCandidatos();
 			System.out.println(candidato);
 		}
+	}
+	
+	public String toString() {
+		return String.format("Nome: %s, Endereço: %s, ID: %d, CNPJ: %s, Setor: %s", getNome(), getEndereco(), getId(), getCnpj(), getSetor());
 	}
 	
 	

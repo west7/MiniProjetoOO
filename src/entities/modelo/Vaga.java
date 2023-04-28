@@ -21,6 +21,7 @@ public class Vaga {
 		this.salario = salario;
 		this.requisitos = requisitos;
 		this.empresa = empresa;
+		this.candidatos = new ArrayList<Candidato>();
 	}
 	
 	public String getFuncao() {
@@ -70,6 +71,11 @@ public class Vaga {
 	
 	public void removeCandidato(Candidato candidato) {
 		this.candidatos.add(candidato);
+	}
+	
+	public String toString() {
+		return String.format("Função: %s, Requisitos: %s, Empresa: %s, Salario: %.2f", getFuncao(), getRequisitos(), empresa.getNome(), getSalario());
+				
 	}
 
 	

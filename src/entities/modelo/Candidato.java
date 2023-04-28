@@ -18,7 +18,7 @@ public class Candidato extends Entity {
 	}
 	
 	public String toString() {
-		return String.format("Nome: %s", getNome()); 
+		return String.format("Nome: %s, Endereço: %S, ID: %d, Email: %s", getNome(), getEndereco(), getId(), getEmail()); 
 	}
 	
 }

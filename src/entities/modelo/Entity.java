@@ -16,7 +16,7 @@ public abstract class Entity {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.id = id;
-		vagas = new ArrayList<Vaga>();
+		this.vagas = new ArrayList<Vaga>();
 	}
 
 	/*
