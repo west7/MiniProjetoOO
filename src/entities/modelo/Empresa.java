@@ -35,18 +35,19 @@ public class Empresa extends Personalidade{
 	}
 	
 	public Vaga abrirVaga(String funcao, Double salario, String requisitos, Empresa empresa) {
-		Vaga v = new Vaga(funcao, salario, requisitos, empresa);
-		vagas.add(v);
-		return v;
+		Vaga vaga = new Vaga(funcao, salario, requisitos, this);
+		vagas.add(vaga);
+		return vaga;
 	}
 	
 	public void excluirVaga(Vaga vaga) {
-		for(Vaga v: vagas) {
-			if(v == vaga) {
-				vagas.remove(v);
+		vagas.remove(vaga);
+			for(Candidato candidato: vaga.getCandidatos()) {
+				if(candidato.getVagas().contains(vaga)) {
+					candidato.getVagas().remove(vaga);
+				}
 			}
 		}
-	}
 	
 	public void verVagas() {
 		for(Vaga v: vagas) {

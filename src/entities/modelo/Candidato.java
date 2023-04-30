@@ -19,18 +19,23 @@ public class Candidato extends Personalidade{
 	
 	public void inscrever(Vaga vaga) {
 		vagas.add(vaga);
+		vaga.adicionarCandidato(this);
 	}
 	
 	public void desinscrever(Vaga vaga) {
-		for(Vaga v: vagas) {
-			if(v == vaga) {}
-			vagas.remove(v);
-		}
+		vagas.remove(vaga);
+		vaga.removerCandidato(this);
 	}
 	
+	
 	public void verInscricoes() {
-		for(Vaga v: vagas) {
-			System.out.println(v);
+		if(vagas.isEmpty()) {
+			System.out.println("Você não está inscrito em nenhuma vaga.");
+		}else {
+			System.out.println("Vagas Inscritas: ");
+			for(Vaga v: vagas) {
+				System.out.println(v);
+			}
 		}
 	}
 	
