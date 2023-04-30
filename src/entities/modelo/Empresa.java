@@ -3,7 +3,6 @@ package entities.modelo;
 
 public class Empresa extends Personalidade{
 	
-	private String cnpj;
 	private String setor;
 
 	public Empresa(String nome, String endereco, long id) {
@@ -11,19 +10,9 @@ public class Empresa extends Personalidade{
 	}
 
 
-	public Empresa(String nome, String endereco, long id, String cnpj, String setor) {
+	public Empresa(String nome, String endereco, long id, String setor) {
 		super(nome, endereco, id);
-		this.cnpj = cnpj;
 		this.setor = setor;
-	}
-
-
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
 	}
 
 	public String getSetor() {
@@ -56,6 +45,6 @@ public class Empresa extends Personalidade{
 	}
 
 	public String toString() {
-		return String.format("Nome: %s, Endereço: %s, ID: %d, CNPJ: %s, Setor: %s", getNome(), getEndereco(), getId(), getCnpj(), getSetor());
+		return String.format("Nome: %s, Endereço: %s, ID: %d, Setor: %s", getNome(), getEndereco(), getId(), getSetor());
 	}
 }
