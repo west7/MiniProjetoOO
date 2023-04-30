@@ -1,6 +1,5 @@
 package entities.modelo;
 
-import java.util.ArrayList;
 
 public class Vaga {
 
@@ -8,20 +7,13 @@ public class Vaga {
 	private Double salario;
 	private String requisitos;
 	private Empresa empresa;
-	private ArrayList<Candidato> candidatos;
 	
-	public Vaga(ArrayList<Candidato> candidatos) {
-		this.candidatos = candidatos;
-	}
-	
-
 	public Vaga(String funcao, Double salario, String requisitos, Empresa empresa) {
 		super();
 		this.funcao = funcao;
 		this.salario = salario;
 		this.requisitos = requisitos;
 		this.empresa = empresa;
-		this.candidatos = new ArrayList<Candidato>();
 	}
 	
 	public String getFuncao() {
@@ -55,24 +47,7 @@ public class Vaga {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
-	
-	
-	public ArrayList<Candidato> getCandidatos() {
-		return candidatos;
-	}
 
-	public void setCandidatos(ArrayList<Candidato> candidatos) {
-		this.candidatos = candidatos;
-	}
-
-	public void addCandidato(Candidato candidato) {
-		this.candidatos.add(candidato);
-	}
-	
-	public void removeCandidato(Candidato candidato) {
-		this.candidatos.add(candidato);
-	}
-	
 	public String toString() {
 		return String.format("Função: %s, Requisitos: %s, Empresa: %s, Salario: %.2f", getFuncao(), getRequisitos(), empresa.getNome(), getSalario());
 				

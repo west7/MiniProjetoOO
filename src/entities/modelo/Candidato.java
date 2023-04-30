@@ -1,6 +1,6 @@
 package entities.modelo;
 
-public class Candidato extends Entity {
+public class Candidato extends Personalidade{
 	
 	private String email;
 
@@ -15,6 +15,23 @@ public class Candidato extends Entity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public void inscrever(Vaga vaga) {
+		vagas.add(vaga);
+	}
+	
+	public void desinscrever(Vaga vaga) {
+		for(Vaga v: vagas) {
+			if(v == vaga) {}
+			vagas.remove(v);
+		}
+	}
+	
+	public void verInscricoes() {
+		for(Vaga v: vagas) {
+			System.out.println(v);
+		}
 	}
 	
 	public String toString() {

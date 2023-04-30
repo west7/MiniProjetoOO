@@ -2,16 +2,14 @@ package entities.modelo;
 
 import java.util.ArrayList;
 
-public abstract class Entity {
+public abstract class Personalidade{
 	
-	private String nome;
-	private String endereco;
-	private long id;
+	protected String nome;
+	protected String endereco;
+	protected long id;
 	protected ArrayList<Vaga> vagas;
 	
-	
-	
-	public Entity(String nome, String endereco, long id) {
+	public Personalidade(String nome, String endereco, long id) {
 		super();
 		this.nome = nome;
 		this.endereco = endereco;
@@ -52,11 +50,14 @@ public abstract class Entity {
 		this.id = id;
 	}
 
-	public void addVaga(Vaga vaga) {
-		this.vagas.add(vaga);
+	public ArrayList<Vaga> getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(ArrayList<Vaga> vagas) {
+		this.vagas = vagas;
 	}
 	
-	public void removeVaga(Vaga vaga) {
-		this.vagas.remove(vaga);
-	}
+	
 }
+

@@ -1,16 +1,11 @@
 package entities.modelo;
 
-import java.util.ArrayList;
 
-public class Empresa extends Entity{
+public class Empresa extends Personalidade{
 	
 	private String cnpj;
 	private String setor;
-	//private String contato;
-	private ArrayList<Candidato> candidatos;
-	
-	
-	
+
 	public Empresa(String nome, String endereco, long id) {
 		super(nome, endereco, id);
 	}
@@ -20,7 +15,6 @@ public class Empresa extends Entity{
 		super(nome, endereco, id);
 		this.cnpj = cnpj;
 		this.setor = setor;
-		//this.contato = contato;
 	}
 
 
@@ -39,48 +33,28 @@ public class Empresa extends Entity{
 	public void setSetor(String setor) {
 		this.setor = setor;
 	}
-
-	/*public String getContato() {
-		return contato;
-	}
-
-	public void setContato(String contato) {
-		this.contato = contato;
-	}
-	*/
 	
+	public Vaga abrirVaga(String funcao, Double salario, String requisitos, Empresa empresa) {
+		Vaga v = new Vaga(funcao, salario, requisitos, empresa);
+		vagas.add(v);
+		return v;
+	}
 	
-	public ArrayList<Vaga> getVagas() {
-		return vagas;
-	}
-
-
-	public void setVagas(ArrayList<Vaga> vagas) {
-		this.vagas = vagas;
-	}
-
-
-	public ArrayList<Candidato> getCandidatos() {
-		return candidatos;
-	}
-
-
-	public void setCandidatos(ArrayList<Candidato> candidatos) {
-		this.candidatos = candidatos;
-	}
-
-
-	public void showCandidatos() {
+	public void excluirVaga(Vaga vaga) {
 		for(Vaga v: vagas) {
-			ArrayList<Candidato> candidato = v.getCandidatos();
-			System.out.println(candidato);
+			if(v == vaga) {
+				vagas.remove(v);
+			}
 		}
 	}
 	
+	public void verVagas() {
+		for(Vaga v: vagas) {
+			System.out.println(v);
+		}
+	}
+
 	public String toString() {
 		return String.format("Nome: %s, Endereço: %s, ID: %d, CNPJ: %s, Setor: %s", getNome(), getEndereco(), getId(), getCnpj(), getSetor());
 	}
-	
-	
-
 }
