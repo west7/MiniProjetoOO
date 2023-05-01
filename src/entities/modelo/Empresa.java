@@ -14,7 +14,11 @@ public class Empresa extends Pessoa{
 		super(nome, endereco, id);
 	}
 
+<<<<<<< HEAD
 	//Sobrecarga
+=======
+
+>>>>>>> 09fdb0fc2f1034f8cf33d6ce1359e3e4fbb0f1b0
 	public Empresa(String nome, String endereco, long id, String setor) {
 		super(nome, endereco, id);
 		this.setor = setor;
