@@ -11,7 +11,6 @@ public class Vaga {
 	private ArrayList<Candidato> candidatos;
 	
 	
-	
 	public Vaga(String funcao, Double salario, String requisitos, Empresa empresa) {
 		super();
 		this.funcao = funcao;
@@ -21,6 +20,18 @@ public class Vaga {
 		this.candidatos = new ArrayList<>();
 	}
 	
+	
+	
+	public Vaga(String funcao, Double salario, String requisitos) {
+		super();
+		this.funcao = funcao;
+		this.salario = salario;
+		this.requisitos = requisitos;
+		this.candidatos = new ArrayList<>();
+	}
+
+
+
 	public String getFuncao() {
 		return funcao;
 	}
@@ -70,9 +81,6 @@ public class Vaga {
 	}
 
 	public String toString() {
-		return String.format("Função: %s, Requisitos: %s, Empresa: %s, Salario: %.2f", getFuncao(), getRequisitos(), empresa.getNome(), getSalario());
-				
+		return String.format("Função: %s, Requisitos: %s, Empresa: %s, Salario: $%.2f", getFuncao(), getRequisitos(), empresa.getNome(), getSalario());	
 	}
-
-	
 }

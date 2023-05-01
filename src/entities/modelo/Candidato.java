@@ -1,9 +1,15 @@
 package entities.modelo;
 
-public class Candidato extends Personalidade{
+public class Candidato extends Pessoa{
 	
 	private String email;
+	
+	
+	public Candidato() {
+		super();
+	}
 
+	//Sobrecarga
 	public Candidato(String nome, String endereco, long id, String email) {
 		super(nome, endereco, id);
 		this.email = email;

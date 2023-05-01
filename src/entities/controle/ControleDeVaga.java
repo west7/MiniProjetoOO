@@ -4,22 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import entities.enums.VagaStatus;
 import entities.modelo.Empresa;
 import entities.modelo.Vaga;
 
 public class ControleDeVaga {
 
-	private VagaStatus status;
 	private ArrayList<Vaga> vagas;
-	
-	public VagaStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(VagaStatus status) {
-		this.status = status;
-	}
 	
 	public ArrayList<Vaga> BuscarPorEmpresa(String nomeEmpresa){
 		ArrayList<Vaga> vagasFiltradasEmpresa = new ArrayList<>();

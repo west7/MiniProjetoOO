@@ -1,29 +1,23 @@
 package entities.modelo;
 
 
-public class Empresa extends Personalidade{
+public class Empresa extends Pessoa{
 	
-	private String cnpj;
 	private String setor;
+	
+	
+	public Empresa() {
+		super();
+	}
 
 	public Empresa(String nome, String endereco, long id) {
 		super(nome, endereco, id);
 	}
 
-
-	public Empresa(String nome, String endereco, long id, String cnpj, String setor) {
+	//Sobrecarga
+	public Empresa(String nome, String endereco, long id, String setor) {
 		super(nome, endereco, id);
-		this.cnpj = cnpj;
 		this.setor = setor;
-	}
-
-
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
 	}
 
 	public String getSetor() {
@@ -34,7 +28,7 @@ public class Empresa extends Personalidade{
 		this.setor = setor;
 	}
 	
-	public Vaga abrirVaga(String funcao, Double salario, String requisitos, Empresa empresa) {
+	public Vaga abrirVaga(String funcao, Double salario, String requisitos) {
 		Vaga vaga = new Vaga(funcao, salario, requisitos, this);
 		vagas.add(vaga);
 		return vaga;
@@ -50,12 +44,17 @@ public class Empresa extends Personalidade{
 		}
 	
 	public void verVagas() {
-		for(Vaga v: vagas) {
-			System.out.println(v);
+		if(vagas.isEmpty()) {
+			System.out.println("A Empresa não possui nenhuma vaga aberta.");
+		}else {
+			System.out.println("Vagas Abertas: ");
+			for(Vaga v: vagas) {
+				System.out.println(v);
+			}
 		}
 	}
 
 	public String toString() {
-		return String.format("Nome: %s, Endereço: %s, ID: %d, CNPJ: %s, Setor: %s", getNome(), getEndereco(), getId(), getCnpj(), getSetor());
+		return String.format("Nome: %s, Endereço: %s, ID: %d, Setor: %s", getNome(), getEndereco(), getId(), getSetor());
 	}
 }
