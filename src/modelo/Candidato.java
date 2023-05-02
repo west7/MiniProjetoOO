@@ -1,4 +1,4 @@
-package entities.modelo;
+package modelo;
 
 public class Candidato extends Pessoa{
 	

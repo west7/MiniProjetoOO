@@ -1,8 +1,8 @@
 package teste;
 
-import entities.modelo.Candidato;
-import entities.modelo.Empresa;
-import entities.modelo.Vaga;
+import modelo.Candidato;
+import modelo.Empresa;
+import modelo.Vaga;
 
 public class teste {
 

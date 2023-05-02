@@ -1,11 +1,11 @@
-package entities.controle;
+package controle;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import entities.modelo.Empresa;
-import entities.modelo.Vaga;
+import modelo.Empresa;
+import modelo.Vaga;
 
 public class ControleDeVaga {
 
