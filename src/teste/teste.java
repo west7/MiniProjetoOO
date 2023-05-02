@@ -23,7 +23,11 @@ public class teste {
 		System.out.println("Todas as vagas de e1 a partir do método verVagas():");
 		e1.verVagas();
 		System.out.println();
-		
+		//Editando vaga a partir do editarVagas()
+		e1.editarVaga(v4, null, null, "Curso superior");
+		System.out.println();
+		e2.verVagas();
+		System.out.println();
 		//Inscrevendo c1 nas vagas v1 e v2
 		c1.inscrever(v1);
 		c1.inscrever(v3);

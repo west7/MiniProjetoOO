@@ -14,11 +14,6 @@ public class Empresa extends Pessoa{
 		super(nome, endereco, id);
 	}
 
-<<<<<<< HEAD
-	//Sobrecarga
-=======
-
->>>>>>> 09fdb0fc2f1034f8cf33d6ce1359e3e4fbb0f1b0
 	public Empresa(String nome, String endereco, long id, String setor) {
 		super(nome, endereco, id);
 		this.setor = setor;
@@ -46,6 +41,20 @@ public class Empresa extends Pessoa{
 				}
 			}
 		}
+	
+	public void editarVaga(Vaga vaga, String novaFuncao, Double novoSalario, String novosRequisitos){
+		if (vagas.contains(vaga)) {
+			String funcao = novaFuncao != null ? novaFuncao : vaga.getFuncao();
+			Double salario = novoSalario != null ? novoSalario : vaga.getSalario();
+			String requisitos = novosRequisitos != null ? novosRequisitos : vaga.getRequisitos();
+			vaga.setFuncao(funcao);
+			vaga.setSalario(salario);
+			vaga.setRequisitos(requisitos);
+			System.out.println("Vaga editada com sucesso!");
+		}else {
+			System.out.println("Vaga não encontrada.");
+		}
+	}
 	
 	public void verVagas() {
 		if(vagas.isEmpty()) {
