@@ -40,6 +40,7 @@ public class Empresa extends Pessoa{
 					candidato.getVagas().remove(vaga);
 				}
 			}
+		vaga.getCandidatos().clear();
 		}
 	
 	public void editarVaga(Vaga vaga, String novaFuncao, Double novoSalario, String novosRequisitos){

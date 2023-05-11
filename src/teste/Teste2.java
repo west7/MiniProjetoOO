@@ -1,14 +1,14 @@
 package teste;
 
-import entities.modelo.Candidato;
-import entities.modelo.Empresa;
-import entities.modelo.Vaga;
+import modelo.Candidato;
+import modelo.Empresa;
+import modelo.Vaga;
 
 public class Teste2 {
 
 	public static void main(String[] args) {
 		Empresa empresa1 = new Empresa("Google","EUA",1234);
-		Vaga vaga1 = empresa1.abrirVaga("Java Developer",2000.0,"ingles", empresa1);
+		Vaga vaga1 = empresa1.abrirVaga("Java Developer",2000.0,"ingles");
 		System.out.println(vaga1.getSalario());
 		Candidato candidato1 = new Candidato("Lucas", "Brasil", 4321, "lucas@gmail");
 		candidato1.inscrever(vaga1);

@@ -42,6 +42,7 @@ public class teste {
 		System.out.println("Após excluir a vaga v1 e se desinscrever da vaga v3, c1 não está mais inscrito em nenhuma delas.");
 		c1.verInscricoes();
 		System.out.println();
+		System.out.println(v1.getCandidatos());
 		
 	}
 
