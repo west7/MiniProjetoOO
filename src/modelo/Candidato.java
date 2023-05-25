@@ -65,4 +65,15 @@ public class Candidato extends Usuario{
 		return vagas_buscadas;
 	}
 	
+	public ArrayList<Vaga> buscarVaga(String nomeEmpresa){
+		ArrayList<Vaga> vagasFiltradasEmpresa = new ArrayList<>();
+		for(Vaga v : vagas) {
+			Empresa empresa = v.getEmpresa();
+			if (empresa != null && empresa.getNome().equals(nomeEmpresa)) {
+				vagasFiltradasEmpresa.add(v);
+			}
+		}
+		return vagasFiltradasEmpresa;
+	}
+	
 }
