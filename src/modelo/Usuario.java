@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
-public abstract class Pessoa{
+public abstract class Usuario{
 	
 	protected String nome;
 	protected String endereco;
@@ -10,10 +10,10 @@ public abstract class Pessoa{
 	protected ArrayList<Vaga> vagas;
 	
 	
-	public Pessoa() {
+	public Usuario() {
 	}
 	
-	public Pessoa(String nome, String endereco, long id) {
+	public Usuario(String nome, String endereco, long id) {
 		super();
 		this.nome = nome;
 		this.endereco = endereco;

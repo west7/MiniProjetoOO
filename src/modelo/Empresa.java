@@ -1,7 +1,7 @@
 package modelo;
 
 
-public class Empresa extends Pessoa{
+public class Empresa extends Usuario{
 	
 	private String setor;
 	
