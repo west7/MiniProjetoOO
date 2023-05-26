@@ -49,9 +49,9 @@ public class Candidato extends Usuario{
 		}
 	}
 	
-	public ArrayList<Vaga> buscarVaga(String funcao, ArrayList<Vaga> vagas_geral) {
+	public ArrayList<Vaga> buscarVagaporFuncao(String funcao, ArrayList<Vaga> vagas_geral) {
 		String args[] = funcao.toLowerCase().split(" ");
-		ArrayList<Vaga> vagas_buscadas = new ArrayList<>();
+		ArrayList<Vaga> VagasFiltradasFuncao = new ArrayList<>();
 		int qtd_args = args.length;
 		for (Vaga vaga : vagas_geral) {
 			boolean contem_todos_args = true;
@@ -59,18 +59,26 @@ public class Candidato extends Usuario{
 				contem_todos_args = contem_todos_args && vaga.getFuncao().toLowerCase().contains(args[i]);
 			}
 			if (contem_todos_args == true) {
-				vagas_buscadas.add(vaga);
+				VagasFiltradasFuncao.add(vaga);
 			}
 		}
-		return vagas_buscadas;
+		return VagasFiltradasFuncao;
 	}
 	
-	public ArrayList<Vaga> buscarVaga(String nomeEmpresa){
+	public ArrayList<Vaga> buscarVagaporEmpresa(String nomeEmpresa, ArrayList<Vaga> vagas_geral){
+		String args[] = nomeEmpresa.toLowerCase().split(" ");
 		ArrayList<Vaga> vagasFiltradasEmpresa = new ArrayList<>();
-		for(Vaga v : vagas) {
+		int qtd_args = args.length;
+		for(Vaga v : vagas_geral) {
 			Empresa empresa = v.getEmpresa();
-			if (empresa != null && empresa.getNome().equals(nomeEmpresa)) {
-				vagasFiltradasEmpresa.add(v);
+			boolean contem_todos_args = true;
+			for (int i=0; i < qtd_args; i++) {
+				if (empresa != null) {
+					contem_todos_args = contem_todos_args && empresa.getNome().toLowerCase().contains(args[i]);
+				}				
+			}
+			if (contem_todos_args == true) {
+				vagasFiltradasEmpresa.add(v);				
 			}
 		}
 		return vagasFiltradasEmpresa;
