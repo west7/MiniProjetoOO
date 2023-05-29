@@ -3,7 +3,10 @@ import java.util.ArrayList;
 
 public class Candidato extends Usuario{
 	
-	private String email;
+	private String habilidades;
+	private String formacao;
+	private String cargo;
+	
 	
 	
 	public Candidato() {
@@ -11,19 +14,35 @@ public class Candidato extends Usuario{
 	}
 
 	//Sobrecarga
-	public Candidato(String nome, String endereco, long id, String email) {
-		super(nome, endereco, id);
-		this.email = email;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public Candidato(String nome, String endereco, long id, String email, String cargo) {
+		super(nome, endereco, id, email);
+		this.cargo = cargo;
 	}
 	
+	public String getHabilidades() {
+		return habilidades;
+	}
+
+	public void setHabilidades(String habilidades) {
+		this.habilidades = habilidades;
+	}
+
+	public String getFormacao() {
+		return formacao;
+	}
+
+	public void setFormacao(String formacao) {
+		this.formacao = formacao;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
 	public String toString() {
 		return String.format("Nome: %s, Endereço: %S, ID: %d, Email: %s", getNome(), getEndereco(), getId(), getEmail()); 
 	}
@@ -49,7 +68,7 @@ public class Candidato extends Usuario{
 		}
 	}
 	
-	public ArrayList<Vaga> buscarVagaporFuncao(String funcao, ArrayList<Vaga> vagas_geral) {
+	public ArrayList<Vaga> buscarVagaPorFuncao(String funcao, ArrayList<Vaga> vagas_geral) {
 		String args[] = funcao.toLowerCase().split(" ");
 		ArrayList<Vaga> VagasFiltradasFuncao = new ArrayList<>();
 		int qtd_args = args.length;
@@ -65,7 +84,7 @@ public class Candidato extends Usuario{
 		return VagasFiltradasFuncao;
 	}
 	
-	public ArrayList<Vaga> buscarVagaporEmpresa(String nomeEmpresa, ArrayList<Vaga> vagas_geral){
+	public ArrayList<Vaga> buscarVagaPorEmpresa(String nomeEmpresa, ArrayList<Vaga> vagas_geral){
 		String args[] = nomeEmpresa.toLowerCase().split(" ");
 		ArrayList<Vaga> vagasFiltradasEmpresa = new ArrayList<>();
 		int qtd_args = args.length;
