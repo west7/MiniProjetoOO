@@ -3,30 +3,55 @@ package modelo;
 
 public class Empresa extends Usuario{
 	
-	private String setor;
+	private String setor_atuacao;
+	private String resumo_sobre_empresa;
+	private String missao;
 	
 	
 	public Empresa() {
 		super();
 	}
 
-	public Empresa(String nome, String endereco, long id) {
-		super(nome, endereco, id);
+	public Empresa(String nome, String endereco, long id, String email) {
+		super(nome, endereco, id, email);
 	}
 
-	public Empresa(String nome, String endereco, long id, String setor) {
-		super(nome, endereco, id);
-		this.setor = setor;
+	public Empresa(String nome, String endereco, long id, String email, String setor_atuacao,
+			String resumo_sobre_empresa, String missao) {
+		super(nome, endereco, id, email);
+		this.setor_atuacao = setor_atuacao;
+		this.resumo_sobre_empresa = resumo_sobre_empresa;
+		this.missao = missao;
 	}
 
-	public String getSetor() {
-		return setor;
+	public String getSetorAtuacao() {
+		return setor_atuacao;
 	}
 
-	public void setSetor(String setor) {
-		this.setor = setor;
+	public void setSetorAtuacao(String setor_atuacao) {
+		this.setor_atuacao = setor_atuacao;
+	}
+
+	public String getResumoSobreEmpresa() {
+		return resumo_sobre_empresa;
+	}
+
+	public void setResumoSobreEmpresa(String resumo_sobre_empresa) {
+		this.resumo_sobre_empresa = resumo_sobre_empresa;
+	}
+
+	public String getMissao() {
+		return missao;
+	}
+
+	public void setMissao(String missao) {
+		this.missao = missao;
 	}
 	
+	public String toString() {
+		return String.format("Nome: %s, Endereço: %s, ID: %d, Setor de Atuacao: %s", getNome(), getEndereco(), getId(), getSetorAtuacao());
+	}
+
 	public Vaga abrirVaga(String funcao, Double salario, String requisitos) {
 		Vaga vaga = new Vaga(funcao, salario, requisitos, this);
 		vagas.add(vaga);
@@ -68,7 +93,4 @@ public class Empresa extends Usuario{
 		}
 	}
 
-	public String toString() {
-		return String.format("Nome: %s, Endereço: %s, ID: %d, Setor: %s", getNome(), getEndereco(), getId(), getSetor());
-	}
 }
