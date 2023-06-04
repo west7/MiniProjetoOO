@@ -11,12 +11,14 @@ public class Candidato extends Usuario{
 	
 	public Candidato() {
 		super();
+		Dados.adicionarCandidato(this);
 	}
 
 	//Sobrecarga
 	public Candidato(String nome, String endereco, long id, String email, String cargo) {
 		super(nome, endereco, id, email);
 		this.cargo = cargo;
+		Dados.adicionarCandidato(this);
 	}
 	
 	public String getHabilidades() {
@@ -57,22 +59,24 @@ public class Candidato extends Usuario{
 		vaga.removerCandidato(this);
 	}
 	
-	public void verInscricoes() {
+	public String verInscricoes() {
+		String inscricoes = "";
 		if(vagas.isEmpty()) {
-			System.out.println("Você não está inscrito em nenhuma vaga.");
+			inscricoes += "Você não está inscrito em nenhuma vaga.";
 		}else {
-			System.out.println("Vagas Inscritas: ");
+			inscricoes += "Vagas inscritas: \n";
 			for(Vaga v: vagas) {
-				System.out.println(v);
+				inscricoes += v + "\n";
 			}
 		}
+		return inscricoes;
 	}
 	
-	public ArrayList<Vaga> buscarVagaPorFuncao(String funcao, ArrayList<Vaga> vagas_geral) {
+	public ArrayList<Vaga> buscarVagaPorFuncao(String funcao) {
 		String args[] = funcao.toLowerCase().split(" ");
 		ArrayList<Vaga> VagasFiltradasFuncao = new ArrayList<>();
 		int qtd_args = args.length;
-		for (Vaga vaga : vagas_geral) {
+		for (Vaga vaga : Dados.getVagas()) {
 			boolean contem_todos_args = true;
 			for (int i = 0; i < qtd_args; i++) {
 				contem_todos_args = contem_todos_args && vaga.getFuncao().toLowerCase().contains(args[i]);
@@ -84,11 +88,11 @@ public class Candidato extends Usuario{
 		return VagasFiltradasFuncao;
 	}
 	
-	public ArrayList<Vaga> buscarVagaPorEmpresa(String nomeEmpresa, ArrayList<Vaga> vagas_geral){
+	public ArrayList<Vaga> buscarVagaPorEmpresa(String nomeEmpresa){
 		String args[] = nomeEmpresa.toLowerCase().split(" ");
 		ArrayList<Vaga> vagasFiltradasEmpresa = new ArrayList<>();
 		int qtd_args = args.length;
-		for(Vaga v : vagas_geral) {
+		for(Vaga v : Dados.getVagas()) {
 			Empresa empresa = v.getEmpresa();
 			boolean contem_todos_args = true;
 			for (int i=0; i < qtd_args; i++) {

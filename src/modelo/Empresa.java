@@ -1,6 +1,5 @@
 package modelo;
 
-
 public class Empresa extends Usuario{
 	
 	private String setor_atuacao;
@@ -10,10 +9,12 @@ public class Empresa extends Usuario{
 	
 	public Empresa() {
 		super();
+		Dados.adicionarEmpresa(this);
 	}
 
 	public Empresa(String nome, String endereco, long id, String email) {
 		super(nome, endereco, id, email);
+		Dados.adicionarEmpresa(this);
 	}
 
 	public Empresa(String nome, String endereco, long id, String email, String setor_atuacao,
@@ -22,6 +23,7 @@ public class Empresa extends Usuario{
 		this.setor_atuacao = setor_atuacao;
 		this.resumo_sobre_empresa = resumo_sobre_empresa;
 		this.missao = missao;
+		Dados.adicionarEmpresa(this);
 	}
 
 	public String getSetorAtuacao() {
@@ -66,6 +68,7 @@ public class Empresa extends Usuario{
 				}
 			}
 		vaga.getCandidatos().clear();
+		Dados.removerVaga(vaga);
 		}
 	
 	public void editarVaga(Vaga vaga, String novaFuncao, Double novoSalario, String novosRequisitos){
@@ -76,21 +79,23 @@ public class Empresa extends Usuario{
 			vaga.setFuncao(funcao);
 			vaga.setSalario(salario);
 			vaga.setRequisitos(requisitos);
-			System.out.println("Vaga editada com sucesso!");
+			//System.out.println("Vaga editada com sucesso!");
 		}else {
-			System.out.println("Vaga não encontrada.");
+			//System.out.println("Vaga não encontrada.");
 		}
 	}
 	
-	public void verVagas() {
+	public String verVagas() {
+		String verVagas = "";
 		if(vagas.isEmpty()) {
-			System.out.println("A Empresa não possui nenhuma vaga aberta.");
+			verVagas = verVagas + "A Empresa não possui nenhuma vaga aberta.";
 		}else {
-			System.out.println("Vagas Abertas: ");
+			//System.out.println("Vagas Abertas: ");
 			for(Vaga v: vagas) {
-				System.out.println(v);
+				verVagas = verVagas + v + "\n";
 			}
 		}
+		return verVagas;
 	}
 
 }

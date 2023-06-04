@@ -18,6 +18,7 @@ public class Vaga {
 		this.requisitos = requisitos;
 		this.empresa = empresa;
 		this.candidatos = new ArrayList<>();
+		Dados.adicionarVaga(this);
 	}
 	
 	
@@ -28,6 +29,7 @@ public class Vaga {
 		this.salario = salario;
 		this.requisitos = requisitos;
 		this.candidatos = new ArrayList<>();
+		Dados.adicionarVaga(this);
 	}
 
 

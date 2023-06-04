@@ -4,58 +4,59 @@ import java.util.ArrayList;
 
 public class Dados {
 
-	private ArrayList<Empresa> empresas;
-	private ArrayList<Candidato> candidatos;
-	private ArrayList<Vaga> vagas;
+	private static ArrayList<Empresa> empresas = new ArrayList<>();
+	private static ArrayList<Candidato> candidatos = new ArrayList<>();
+	private static ArrayList<Vaga> vagas = new ArrayList<>();
 	
-	public ArrayList<Empresa> getEmpresas() {
+	public static ArrayList<Empresa> getEmpresas() {
 		return empresas;
 	}
-	
+	/*
 	public void setEmpresas(ArrayList<Empresa> empresas) {
 		this.empresas = empresas;
-	}
+	}*/
 	
-	public ArrayList<Candidato> getCandidatos() {
+	public static ArrayList<Candidato> getCandidatos() {
 		return candidatos;
 	}
-	
+	/*
 	public void setCandidatos(ArrayList<Candidato> candidatos) {
 		this.candidatos = candidatos;
-	}
+	}*/
 	
-	public ArrayList<Vaga> getVagas() {
+	public static ArrayList<Vaga> getVagas() {
 		return vagas;
 	}
+	/*
 	public void setVagas(ArrayList<Vaga> vagas) {
 		this.vagas = vagas;
 	}
-	
-	public void adicionarEmpresa(Empresa empresa) {
-		this.empresas.add(empresa);
+	*/
+	public static void adicionarEmpresa(Empresa empresa) {
+		empresas.add(empresa);
 	}
 	
-	public void removerEmpresa(Empresa empresa) {
-		this.empresas.remove(empresa);
+	public static void removerEmpresa(Empresa empresa) {
+		empresas.remove(empresa);
 	}
 	
-	public void adicionarCandidato(Candidato candidato) {
-		this.candidatos.add(candidato);
+	public static void adicionarCandidato(Candidato candidato) {
+		candidatos.add(candidato);
 	}
 	
-	public void removerCandidato(Candidato candidato) {
-		this.candidatos.remove(candidato);
+	public static void removerCandidato(Candidato candidato) {
+		candidatos.remove(candidato);
 	}
 	
-	public void adicionarVaga(Vaga vaga) {
-		this.vagas.add(vaga);
+	public static void adicionarVaga(Vaga vaga) {
+		vagas.add(vaga);
 	}
 	
-	public void removerVaga(Vaga vaga) {
-		this.vagas.remove(vaga);
+	public static void removerVaga(Vaga vaga) {
+		vagas.remove(vaga);
 	}
 	
-	public Vaga listagemVagas() {
+	public static Vaga listagemVagas() {
 		for(Vaga v : vagas) {
 			return v;
 		}
