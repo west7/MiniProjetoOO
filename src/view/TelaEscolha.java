@@ -8,15 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import modelo.Candidato;
-import modelo.Empresa;
-
-public class TelaEscolha implements ActionListener{
+public class TelaEscolha extends JFrame implements ActionListener{
 	
 	public JButton botaoCandidato, botaoEmpresa;
 
 	public TelaEscolha() {
-		JFrame jFrame = new JFrame("Tela Escolha");
+		JFrame jFrame = new JFrame();
 		jFrame.getContentPane().setBackground(Color.lightGray);
 		jFrame.setTitle("Escolha de Usuário");
 		jFrame.setVisible(true);
@@ -28,7 +25,6 @@ public class TelaEscolha implements ActionListener{
 		JButton botaoCandidato = new JButton("Candidato");
 		botaoCandidato.setBounds(250, 200, 200, 70);
 		botaoCandidato.setFont(new Font("Arial", Font.BOLD, 20));
-		
 		jFrame.add(botaoCandidato);
 		
 		JButton botaoEmpresa = new JButton("Empresa");
@@ -47,11 +43,12 @@ public class TelaEscolha implements ActionListener{
 		this.botaoCandidato = botaoCandidato;
 		this.botaoEmpresa = botaoEmpresa;
 		}	
-	
-	
+		
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoCandidato) {
-			System.out.println("candidato");			
+			TelaLoginCandidato lg = new TelaLoginCandidato();
+			lg.setVisible(true);
+			this.dispose();
 		}else if(e.getSource() == botaoEmpresa) {
 			System.out.println("empresa");	
 		}
