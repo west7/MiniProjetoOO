@@ -10,10 +10,13 @@ import javax.swing.JLabel;
 
 public class TelaEscolha extends JFrame implements ActionListener{
 	
-	public JButton botaoCandidato, botaoEmpresa;
+	//public JButton botaoCandidato, botaoEmpresa;
+	JFrame jFrame = new JFrame();
+	JButton botaoCandidato = new JButton("Candidato");
+	JButton botaoEmpresa = new JButton("Empresa");
+	JLabel label = new JLabel("ESCOLHA: ");
 
 	public TelaEscolha() {
-		JFrame jFrame = new JFrame();
 		jFrame.getContentPane().setBackground(Color.lightGray);
 		jFrame.setTitle("Escolha de Usuário");
 		jFrame.setVisible(true);
@@ -22,17 +25,14 @@ public class TelaEscolha extends JFrame implements ActionListener{
 		jFrame.setLocationRelativeTo(null);
 		jFrame.setLayout(null);
 	
-		JButton botaoCandidato = new JButton("Candidato");
 		botaoCandidato.setBounds(250, 200, 200, 70);
 		botaoCandidato.setFont(new Font("Arial", Font.BOLD, 20));
 		jFrame.add(botaoCandidato);
 		
-		JButton botaoEmpresa = new JButton("Empresa");
 		botaoEmpresa.setBounds(550, 200, 200, 70);
 		botaoEmpresa.setFont(new Font("Arial", Font.BOLD, 20));
 		jFrame.add(botaoEmpresa);
 		
-		JLabel label = new JLabel("ESCOLHA: ");
 		label.setBounds(450, 100, 200, 70);
 		label.setFont(new Font("Arial", Font.BOLD, 20));
 		label.setForeground(Color.black);
@@ -40,17 +40,38 @@ public class TelaEscolha extends JFrame implements ActionListener{
 		
 		botaoCandidato.addActionListener(this);
 		botaoEmpresa.addActionListener(this);
-		this.botaoCandidato = botaoCandidato;
-		this.botaoEmpresa = botaoEmpresa;
+		
+		botaoCandidato.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new TelaLoginCandidato();
+					jFrame.dispose();
+				}
+			});
+		
+		botaoEmpresa.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaLoginEmpresa();
+				jFrame.dispose();
+			}
+		});
 		}	
 		
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoCandidato) {
-			TelaLoginCandidato lg = new TelaLoginCandidato();
-			lg.setVisible(true);
-			this.dispose();
+			//new TelaLoginCandidato();
+			//c.setVisible(true);
+			//setVisible(false);
+			//dispose();
 		}else if(e.getSource() == botaoEmpresa) {
-			System.out.println("empresa");	
+			//TelaLoginEmpresa emp = new TelaLoginEmpresa();
+			//emp.setVisible(true);
+			//setVisible(false);
+			//dispose();
 		}
 	}
 }
