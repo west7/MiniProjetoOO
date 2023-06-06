@@ -1,6 +1,6 @@
 package teste;
 
-import view.TelaEscolha;
+import view.*;
 
 public class Teste2 {
 
@@ -8,6 +8,7 @@ public class Teste2 {
 	
 		TelaEscolha tela = new TelaEscolha();
 		//TelaLoginCandidato tela = new TelaLoginCandidato();
+		//CadastroVaga tela = new CadastroVaga();
 		
 		
 	}
