@@ -8,10 +8,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class CadastroVaga extends JFrame implements ActionListener {
 	
 	JFrame tela = new JFrame();
+	//JLabel func = new JLabel("Função"); 
 	JTextField funcao = new JTextField("Funcao");
 	JTextField salario = new JTextField("Salario");
 	JTextField requisitos = new JTextField("Requisitos");
@@ -20,26 +22,26 @@ public class CadastroVaga extends JFrame implements ActionListener {
 	
 	public CadastroVaga() {
 		tela.getContentPane().setBackground(Color.lightGray);
-		tela.setSize(1000, 1000);
+		tela.setSize(525, 350);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tela.setTitle("Login do Usuário");
+		tela.setTitle("Cadastrar vaga");
 		tela.setLocationRelativeTo(null);
 		tela.setLayout(null);
 		
-		funcao.setBounds(200, 100, 600, 30);
+		funcao.setBounds(50, 50, 400, 30);
 		tela.add(funcao);
 		
-		salario.setBounds(200, 150, 600, 30);
+		salario.setBounds(50, 100, 400, 30);
 		tela.add(salario);
 		
-		requisitos.setBounds(200, 200, 600, 30);
+		requisitos.setBounds(50, 150, 400, 30);
 		tela.add(requisitos);
 		
 		
-		botaoCadastrar.setBounds(700, 250, 100, 50);
+		botaoCadastrar.setBounds(350, 200, 100, 50);
 		tela.add(botaoCadastrar);
 		
-		botaoVoltar.setBounds(200, 250, 100, 50);
+		botaoVoltar.setBounds(50, 200, 100, 50);
 		tela.add(botaoVoltar);
 
 		tela.setVisible(true);
