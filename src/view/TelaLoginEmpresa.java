@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class TelaLoginEmpresa extends JFrame implements ActionListener{
@@ -13,14 +14,20 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 	//public JTextField nome, email, endereco, setor, resumo, missao;
 	//public JButton botaoSalvar, botaoVoltar;
 	JFrame tela = new JFrame();
-	JTextField nome = new JTextField("Nome");
-	JTextField email = new JTextField("Email");
-	JTextField endereco = new JTextField("Endereço");
-	JTextField setor = new JTextField("Setor de Atuação");
-	JTextField resumo = new JTextField("Resumo");
-	JTextField missao = new JTextField("Missão");
+	JTextField nomeBox = new JTextField("");
+	JTextField emailBox = new JTextField("");
+	JTextField enderecoBox = new JTextField("");
+	JTextField setorBox = new JTextField("");
+	JTextField resumoBox = new JTextField("");
+	JTextField missaoBox = new JTextField("");
 	JButton botaoSalvar = new JButton("Salvar");
 	JButton botaoVoltar = new JButton("Voltar");
+	JLabel nomeLabel = new JLabel("Nome: ");
+	JLabel emailLabel = new JLabel("Email: ");
+	JLabel enderecoLabel = new JLabel("Endereço: ");
+	JLabel setorLabel = new JLabel("Setor: ");
+	JLabel resumoLabel = new JLabel("Resumo: ");
+	JLabel missaoLabel = new JLabel("Missão: ");
 	
 	public TelaLoginEmpresa() {
 		
@@ -31,23 +38,35 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 		tela.setLocationRelativeTo(null);
 		tela.setLayout(null);
 		
-		nome.setBounds(200, 100, 600, 30);
-		tela.add(nome);
+		nomeLabel.setBounds(200, 75, 100, 30);
+		nomeBox.setBounds(200, 100, 600, 30);
+		tela.add(nomeBox);
+		tela.add(nomeLabel);
 		
-		email.setBounds(200, 150, 600, 30);
-		tela.add(email);
+		emailLabel.setBounds(200, 125, 100, 30);
+		emailBox.setBounds(200, 150, 600, 30);
+		tela.add(emailBox);
+		tela.add(emailLabel);
 		
-		endereco.setBounds(200, 200, 600, 30);
-		tela.add(endereco);
-		
-		setor.setBounds(200, 250, 600, 30);
-		tela.add(setor);
+		enderecoLabel.setBounds(200, 175, 100, 30);
+		enderecoBox.setBounds(200, 200, 600, 30);
+		tela.add(enderecoBox);
+		tela.add(enderecoLabel);
 
-		resumo.setBounds(200, 300, 600, 30);
-		tela.add(resumo);
+		setorLabel.setBounds(200, 225, 100, 30);
+		setorBox.setBounds(200, 250, 600, 30);
+		tela.add(setorBox);
+		tela.add(setorLabel);
 
-		missao.setBounds(200, 350, 600, 30);
-		tela.add(missao);
+		resumoLabel.setBounds(200, 275, 100, 30);
+		resumoBox.setBounds(200, 300, 600, 30);
+		tela.add(resumoBox);
+		tela.add(resumoLabel);
+
+		missaoLabel.setBounds(200, 325, 100, 30);
+		missaoBox.setBounds(200, 350, 600, 30);
+		tela.add(missaoBox);
+		tela.add(missaoLabel);
 		
 		botaoSalvar.setBounds(700, 600, 100, 50);
 		tela.add(botaoSalvar);
@@ -71,12 +90,12 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoSalvar) {
-			String n = nome.getText();
-			String end = endereco.getText();
-			String eml = email.getText();
-			String s = setor.getText();
-			String r = resumo.getText();
-			String m = missao.getText();
+			String n = nomeBox.getText();
+			String end = enderecoBox.getText();
+			String eml = emailBox.getText();
+			String s = setorBox.getText();
+			String r = resumoBox.getText();
+			String m = missaoBox.getText();
 		}else if(e.getSource() == botaoSalvar) {
 			TelaEscolha tela = new TelaEscolha();
 			tela.setVisible(true);
