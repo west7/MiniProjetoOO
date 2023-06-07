@@ -1,5 +1,5 @@
 package view;
-import modelo.*;
+//import modelo.*;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -7,16 +7,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class CadastroVaga extends JFrame implements ActionListener {
 	
 	JFrame tela = new JFrame();
-	//JLabel func = new JLabel("Função"); 
-	JTextField funcao = new JTextField("Funcao");
-	JTextField salario = new JTextField("Salario");
-	JTextField requisitos = new JTextField("Requisitos");
+	JLabel funcaoLabel = new JLabel("Função: "); 
+	JTextField funcaoBox = new JTextField();
+	JLabel salarioLabel = new JLabel("Salario: ");
+	JTextField salarioBox = new JTextField();
+	JLabel requisitosLabel = new JLabel("Requisitos: ");
+	JTextField requisitosBox = new JTextField();
 	JButton botaoCadastrar = new JButton("Cadastrar");
 	JButton botaoVoltar = new JButton("Voltar");
 	
@@ -28,14 +30,20 @@ public class CadastroVaga extends JFrame implements ActionListener {
 		tela.setLocationRelativeTo(null);
 		tela.setLayout(null);
 		
-		funcao.setBounds(50, 50, 400, 30);
-		tela.add(funcao);
+		funcaoLabel.setBounds(50,30,100,20);
+		funcaoBox.setBounds(50, 50, 400, 30);
+		tela.add(funcaoLabel);
+		tela.add(funcaoBox);
 		
-		salario.setBounds(50, 100, 400, 30);
-		tela.add(salario);
+		salarioLabel.setBounds(50,80,100,20);
+		salarioBox.setBounds(50, 100, 400, 30);
+		tela.add(salarioLabel);
+		tela.add(salarioBox);
 		
-		requisitos.setBounds(50, 150, 400, 30);
-		tela.add(requisitos);
+		requisitosLabel.setBounds(50,130,100,20);
+		requisitosBox.setBounds(50, 150, 400, 30);
+		tela.add(requisitosLabel);
+		tela.add(requisitosBox);
 		
 		
 		botaoCadastrar.setBounds(350, 200, 100, 50);
@@ -59,10 +67,10 @@ public class CadastroVaga extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoCadastrar) {
-			String fun = funcao.getText();
-			String salStr = salario.getText();
+			String fun = funcaoBox.getText();
+			String salStr = salarioBox.getText();
 			double sal = Double.parseDouble(salStr);
-			String req = requisitos.getText();
+			String req = requisitosBox.getText();
 			//Vaga = new Vaga(fun, sal, req);
 		}
 		
