@@ -1,5 +1,4 @@
 package view;
-//import modelo.*;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -9,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import controle.ControleEmpresa;
 
 public class TelaCadastroVaga extends JFrame implements ActionListener {
 	
@@ -21,8 +21,11 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 	private JTextField requisitosBox = new JTextField();
 	private JButton botaoCadastrar = new JButton("Cadastrar");
 	private JButton botaoVoltar = new JButton("Voltar");
+	private ControleEmpresa controle;
 	
-	public TelaCadastroVaga() {
+	public TelaCadastroVaga(ControleEmpresa c) {
+		controle = c;
+		
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(525, 350);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,10 +67,12 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 			String salStr = salarioBox.getText();
 			double sal = Double.parseDouble(salStr);
 			String req = requisitosBox.getText();
+			controle.abrirVaga(fun, sal, req);
+			tela.dispose();
 			//Vaga = new Vaga(fun, sal, req);
 		}
 		else if (e.getSource() == botaoVoltar) {
-			
+			tela.dispose();
 		}
 		
 	}

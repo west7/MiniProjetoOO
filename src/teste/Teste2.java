@@ -2,6 +2,7 @@ package teste;
 
 import view.*;
 import modelo.*;
+import controle.*;
 
 public class Teste2 {
 
@@ -12,7 +13,9 @@ public class Teste2 {
 		//TelaCadastroVaga tela = new TelaCadastroVaga();
 		//TelaVaga tela =  new TelaVaga();
 		//Empresa empresa = new Empresa("Amazon", "Brasil", 0001, "amazon@gmail");
-		//TelaEmpresa tela = new TelaEmpresa(empresa);
+		//ControleEmpresa controle = new ControleEmpresa();
+		//controle.criarEmpresa("Amazon", "EUA", 0123, "amazon@", "ecommerce", "resumo", "missao");
+		//TelaEmpresa tela = new TelaEmpresa(controle);
 		
 	}
 }

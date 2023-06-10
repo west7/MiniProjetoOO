@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.Empresa;
+import controle.ControleEmpresa;
 
 public class TelaLoginEmpresa extends JFrame implements ActionListener{
 
@@ -30,8 +31,11 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 	private JLabel setorLabel = new JLabel("Setor: ");
 	private JLabel resumoLabel = new JLabel("Resumo: ");
 	private JLabel missaoLabel = new JLabel("Missão: ");
+	private ControleEmpresa controle;
 	
 	public TelaLoginEmpresa() {
+		
+		controle = new ControleEmpresa();
 		
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(1000, 1000);
@@ -106,8 +110,9 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 					resumo.isEmpty() || missao.isEmpty()) {
 				mensagemDadosInvalidos();
 			} else {
-				Empresa empresa = new Empresa(nome, endereco, 0001, email, setor, resumo, missao);				
-				new TelaEmpresa(empresa);
+				controle.criarEmpresa(nome, endereco, 0001, email, setor, resumo, missao);
+				//Empresa empresa = new Empresa(nome, endereco, 0001, email, setor, resumo, missao);				
+				new TelaEmpresa(controle);
 				tela.dispose();
 			}
 				

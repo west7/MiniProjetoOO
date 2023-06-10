@@ -17,8 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import modelo.Empresa;
+import controle.ControleEmpresa;
 
-public class TelaEmpresa extends JFrame implements ListSelectionListener {
+public class TelaEmpresa extends JFrame implements ListSelectionListener, ActionListener {
 	
 	private JFrame tela = new JFrame();
 	private JLabel nome = new JLabel("Nome: ");
@@ -26,14 +27,17 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener {
 	private JLabel id = new JLabel("ID: ");
 	private JLabel email = new JLabel("Email: ");
 	private JLabel setorAtuacao = new JLabel("Setor de atuacao: ");
-	private JList<String> vagas;
+	private JList<Object> vagas;
 	private JScrollPane scrollPane; 
 	private JPanel vagaPanel = new JPanel();
 	private JButton criar = new JButton("Criar");
+	private JButton atualizar = new JButton("Atualizar");
 	private JButton editar = new JButton("Editar");
 	private JButton excluir = new JButton("Excluir");
+	private ControleEmpresa controle;
 	
-	public TelaEmpresa(Empresa empresa) {
+	public TelaEmpresa(ControleEmpresa c) {
+		controle = c;
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(1000, 1000);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,24 +46,24 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener {
 		tela.setLayout(null);
 		
 		nome.setBounds(50, 50, 200, 20);
-		nome.setText("Nome: " + empresa.getNome());
+		nome.setText("Nome: " + controle.nomeEmpresa());
 		tela.add(nome);
 		
 		endereco.setBounds(50, 70, 200, 20);
-		endereco.setText("Endereco: " + empresa.getEndereco());
+		endereco.setText("Endereco: " + controle.enderecoEmpresa());
 		tela.add(endereco);
 		
 		id.setBounds(50,90,200,20);
-		id.setText("ID: " + empresa.getId());
+		id.setText("ID: " + controle.idEmpresa());
 		tela.add(id);
 		
 		email.setBounds(50,110,200,20);
-		email.setText("Email: " + empresa.getEmail());
+		email.setText("Email: " + controle.emailEmpresa());
 		tela.add(email);
 		
 		setorAtuacao.setBounds(50,130,200,20);
-		setorAtuacao.setText(empresa.getSetorAtuacao() == null ? 
-				 "Setor de Atuacao: Não informado" : "Setor de Atuacao: " + empresa.getSetorAtuacao());
+		setorAtuacao.setText(controle.setorEmpresa() == null ? 
+				 "Setor de Atuacao: Não informado" : "Setor de Atuacao: " + controle.setorEmpresa());
 		tela.add(setorAtuacao);
 		
 		vagaPanel.setBounds(600, 10, 300, 600);
@@ -68,18 +72,25 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener {
 		tela.add(vagaPanel);
 		
 		//criar.setBounds(620, 580,80,20);
-		criar.setBounds(20,580,80,20);
+		criar.setBounds(50,580,80,20);
+		atualizar.setBounds(130,580,100,20);
 		editar.setBounds(100,580,80,20);
 		excluir.setBounds(180,580,80,20);
-		//excluir.setBounds(780,610,80,20);
-		vagaPanel.add(criar);
+		tela.add(criar);
+		tela.add(atualizar);
 		vagaPanel.add(editar);
 		vagaPanel.add(excluir);
+		criar.addActionListener(this);
+		atualizar.addActionListener(this);
+		editar.addActionListener(this);
+		excluir.addActionListener(this);
+		//excluir.setBounds(780,610,80,20);
+		//vagaPanel.add(criar);
 		
-		String teste[] = {"Vaga1", "Vaga2", "Vaga3", "Vaga4", "Vaga5", "Vaga6", "Vaga7", "Vaga8", "Vaga9", "Vaga10",
-				"Vaga11",};
+		/*String teste[] = {"Vaga1", "Vaga2", "Vaga3", "Vaga4", "Vaga5", "Vaga6", "Vaga7", "Vaga8", "Vaga9", "Vaga10",
+				"Vaga11",};*/
 		
-		vagas = new JList<String>(teste);
+		vagas = new JList<Object>(controle.funcoesVagas());
 		//vagas.setBounds(50, 200, 100, 100);
 		vagas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
 		scrollPane = new JScrollPane(vagas);  
@@ -95,6 +106,16 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener {
 	
 	public void valueChanged(ListSelectionEvent le) {  
 		 
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == criar) {
+			new TelaCadastroVaga(controle);
+			
+		}
+		if (e.getSource() == atualizar) {
+			vagas.setListData(controle.funcoesVagas());
+			vagas.updateUI();
+		}
 	}
 
 }
