@@ -9,13 +9,13 @@ import javax.swing.JPanel;
 
 public class TelaVaga extends JFrame {
 
-	JFrame tela = new JFrame("Descrição da vaga");
-	JLabel vagaLabel = new JLabel ("Cargo da Vaga");
-	JLabel nomeEmpresaLabel = new JLabel ("Nome da empresa");
-	JLabel localLabel = new JLabel ("Local da vaga");
-	JLabel salarioLabel = new JLabel("Salario da Vaga");
-	JLabel requisitosLabel = new JLabel ("Requisitos da Vaga");
-	JPanel vagaPanel = new JPanel();
+	private JFrame tela = new JFrame("Descrição da vaga");
+	private JLabel vagaLabel = new JLabel ("Cargo da Vaga");
+	private JLabel nomeEmpresaLabel = new JLabel ("Nome da empresa");
+	private JLabel localLabel = new JLabel ("Local da vaga");
+	private JLabel salarioLabel = new JLabel("Salario da Vaga");
+	private JLabel requisitosLabel = new JLabel ("Requisitos da Vaga");
+	private JPanel vagaPanel = new JPanel();
 	
 	public TelaVaga() {
 

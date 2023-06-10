@@ -1,6 +1,7 @@
 package teste;
 
 import modelo.Candidato;
+import modelo.Dados;
 import modelo.Empresa;
 import modelo.Vaga;
 
@@ -46,6 +47,9 @@ public class teste {
 		
 		System.out.println("Buscando pela vaga de desenvolvedor");
 		System.out.println(c1.buscarVagaPorFuncao("Desenvolvedor"));
+		
+		System.out.println("Listagem de todas as vagas: ");
+		System.out.println(Dados.getVagas());
 		
 	}
 

@@ -28,7 +28,7 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener {
 	private JLabel setorAtuacao = new JLabel("Setor de atuacao: ");
 	private JList<String> vagas;
 	private JScrollPane scrollPane; 
-	JPanel vagaPanel = new JPanel();
+	private JPanel vagaPanel = new JPanel();
 	private JButton criar = new JButton("Criar");
 	private JButton editar = new JButton("Editar");
 	private JButton excluir = new JButton("Excluir");

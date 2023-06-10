@@ -7,27 +7,29 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import modelo.Empresa;
 
 public class TelaLoginEmpresa extends JFrame implements ActionListener{
 
 	//public JTextField nome, email, endereco, setor, resumo, missao;
 	//public JButton botaoSalvar, botaoVoltar;
-	JFrame tela = new JFrame();
-	JTextField nomeBox = new JTextField("");
-	JTextField emailBox = new JTextField("");
-	JTextField enderecoBox = new JTextField("");
-	JTextField setorBox = new JTextField("");
-	JTextField resumoBox = new JTextField("");
-	JTextField missaoBox = new JTextField("");
-	JButton botaoSalvar = new JButton("Salvar");
-	JButton botaoVoltar = new JButton("Voltar");
-	JLabel nomeLabel = new JLabel("Nome: ");
-	JLabel emailLabel = new JLabel("Email: ");
-	JLabel enderecoLabel = new JLabel("Endereço: ");
-	JLabel setorLabel = new JLabel("Setor: ");
-	JLabel resumoLabel = new JLabel("Resumo: ");
-	JLabel missaoLabel = new JLabel("Missão: ");
+	private JFrame tela = new JFrame();
+	private JTextField nomeBox = new JTextField("");
+	private JTextField emailBox = new JTextField("");
+	private JTextField enderecoBox = new JTextField("");
+	private JTextField setorBox = new JTextField("");
+	private JTextField resumoBox = new JTextField("");
+	private JTextField missaoBox = new JTextField("");
+	private JButton botaoSalvar = new JButton("Salvar");
+	private JButton botaoVoltar = new JButton("Voltar");
+	private JLabel nomeLabel = new JLabel("Nome: ");
+	private JLabel emailLabel = new JLabel("Email: ");
+	private JLabel enderecoLabel = new JLabel("Endereço: ");
+	private JLabel setorLabel = new JLabel("Setor: ");
+	private JLabel resumoLabel = new JLabel("Resumo: ");
+	private JLabel missaoLabel = new JLabel("Missão: ");
 	
 	public TelaLoginEmpresa() {
 		
@@ -76,31 +78,48 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 
 		tela.setVisible(true);
 		
-		botaoVoltar.addActionListener(new ActionListener() {
+		botaoSalvar.addActionListener(this);
+		botaoVoltar.addActionListener(this);
+		
+		/*botaoVoltar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new TelaEscolha();
 				tela.dispose();
 			}
-		});
+		});*/
 		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoSalvar) {
-			String n = nomeBox.getText();
-			String end = enderecoBox.getText();
-			String eml = emailBox.getText();
-			String s = setorBox.getText();
-			String r = resumoBox.getText();
-			String m = missaoBox.getText();
-		}else if(e.getSource() == botaoSalvar) {
-			TelaEscolha tela = new TelaEscolha();
-			tela.setVisible(true);
-			setVisible(false);
-			this.dispose();
+			String nome = nomeBox.getText();
+			String endereco = enderecoBox.getText();
+			String email = emailBox.getText();
+			String setor = setorBox.getText();
+			String resumo = resumoBox.getText();
+			String missao = missaoBox.getText();
+			
+			if (nome.isEmpty() || endereco.isEmpty() || email.isEmpty() || setor.isEmpty() || 
+					resumo.isEmpty() || missao.isEmpty()) {
+				mensagemDadosInvalidos();
+			} else {
+				Empresa empresa = new Empresa(nome, endereco, 0001, email, setor, resumo, missao);				
+				new TelaEmpresa(empresa);
+				tela.dispose();
+			}
+				
+		}else if(e.getSource() == botaoVoltar) {
+			new TelaEscolha();
+			tela.dispose();
 		}
 	}
+	
+	public void mensagemDadosInvalidos() {
+		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.INFORMATION_MESSAGE);
+		//janela.dispose();
+	}
+
 }

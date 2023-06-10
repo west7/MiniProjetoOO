@@ -10,19 +10,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class CadastroVaga extends JFrame implements ActionListener {
+public class TelaCadastroVaga extends JFrame implements ActionListener {
 	
-	JFrame tela = new JFrame();
-	JLabel funcaoLabel = new JLabel("Função: "); 
-	JTextField funcaoBox = new JTextField();
-	JLabel salarioLabel = new JLabel("Salario: ");
-	JTextField salarioBox = new JTextField();
-	JLabel requisitosLabel = new JLabel("Requisitos: ");
-	JTextField requisitosBox = new JTextField();
-	JButton botaoCadastrar = new JButton("Cadastrar");
-	JButton botaoVoltar = new JButton("Voltar");
+	private JFrame tela = new JFrame();
+	private JLabel funcaoLabel = new JLabel("Função: "); 
+	private JTextField funcaoBox = new JTextField();
+	private JLabel salarioLabel = new JLabel("Salario: ");
+	private JTextField salarioBox = new JTextField();
+	private JLabel requisitosLabel = new JLabel("Requisitos: ");
+	private JTextField requisitosBox = new JTextField();
+	private JButton botaoCadastrar = new JButton("Cadastrar");
+	private JButton botaoVoltar = new JButton("Voltar");
 	
-	public CadastroVaga() {
+	public TelaCadastroVaga() {
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(525, 350);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,15 +54,8 @@ public class CadastroVaga extends JFrame implements ActionListener {
 
 		tela.setVisible(true);
 		
-		
-		botaoVoltar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//new TelaEscolha();
-				//tela.dispose();
-			}
-		});
+		botaoCadastrar.addActionListener(this);
+		botaoVoltar.addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -72,6 +65,9 @@ public class CadastroVaga extends JFrame implements ActionListener {
 			double sal = Double.parseDouble(salStr);
 			String req = requisitosBox.getText();
 			//Vaga = new Vaga(fun, sal, req);
+		}
+		else if (e.getSource() == botaoVoltar) {
+			
 		}
 		
 	}

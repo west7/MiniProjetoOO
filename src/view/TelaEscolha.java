@@ -11,10 +11,10 @@ import javax.swing.JLabel;
 public class TelaEscolha extends JFrame implements ActionListener{
 	
 	//public JButton botaoCandidato, botaoEmpresa;
-	JFrame jFrame = new JFrame();
-	JButton botaoCandidato = new JButton("Candidato");
-	JButton botaoEmpresa = new JButton("Empresa");
-	JLabel label = new JLabel("ESCOLHA: ");
+	private JFrame jFrame = new JFrame();
+	private JButton botaoCandidato = new JButton("Candidato");
+	private JButton botaoEmpresa = new JButton("Empresa");
+	private JLabel label = new JLabel("ESCOLHA: ");
 
 	public TelaEscolha() {
 		jFrame.getContentPane().setBackground(Color.lightGray);
@@ -40,7 +40,7 @@ public class TelaEscolha extends JFrame implements ActionListener{
 		
 		botaoCandidato.addActionListener(this);
 		botaoEmpresa.addActionListener(this);
-		
+		/*
 		botaoCandidato.addActionListener(new ActionListener() {
 				
 				@Override
@@ -57,21 +57,16 @@ public class TelaEscolha extends JFrame implements ActionListener{
 				new TelaLoginEmpresa();
 				jFrame.dispose();
 			}
-		});
+		});*/
 		}	
-		
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoCandidato) {
-			//new TelaLoginCandidato();
-			//c.setVisible(true);
-			//setVisible(false);
-			//dispose();
+			new TelaLoginCandidato();
+			jFrame.dispose();
 		}else if(e.getSource() == botaoEmpresa) {
-			//TelaLoginEmpresa emp = new TelaLoginEmpresa();
-			//emp.setVisible(true);
-			//setVisible(false);
-			//dispose();
+			new TelaLoginEmpresa();
+			jFrame.dispose();
 		}
 	}
 }

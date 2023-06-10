@@ -13,21 +13,21 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 	
 	//public JTextField nome, email, endereco, habilidades, formacao, cargo;
 	//public JButton botaoSalvar, botaoVoltar;
-	JFrame tela = new JFrame();
-	JTextField nomeBox = new JTextField("");
-	JTextField emailBox = new JTextField("");
-	JTextField enderecoBox = new JTextField("");
-	JTextField habilidadesBox = new JTextField("");
-	JTextField formacaoBox = new JTextField("");
-	JTextField cargoBox = new JTextField("");
-	JButton botaoSalvar = new JButton("Salvar");
-	JButton botaoVoltar = new JButton("Voltar");
-	JLabel nomeLabel = new JLabel("Nome: ");
-	JLabel emailLabel = new JLabel("Email: ");
-	JLabel enderecoLabel = new JLabel("Endereço: ");
-	JLabel habilidadesLabel = new JLabel("Habilidades: ");
-	JLabel formacaoLabel = new JLabel("Formação: ");
-	JLabel cargoLabel = new JLabel("Cargo: ");
+	private JFrame tela = new JFrame();
+	private JTextField nomeBox = new JTextField("");
+	private JTextField emailBox = new JTextField("");
+	private JTextField enderecoBox = new JTextField("");
+	private JTextField habilidadesBox = new JTextField("");
+	private JTextField formacaoBox = new JTextField("");
+	private JTextField cargoBox = new JTextField("");
+	private JButton botaoSalvar = new JButton("Salvar");
+	private JButton botaoVoltar = new JButton("Voltar");
+	private JLabel nomeLabel = new JLabel("Nome: ");
+	private JLabel emailLabel = new JLabel("Email: ");
+	private JLabel enderecoLabel = new JLabel("Endereço: ");
+	private JLabel habilidadesLabel = new JLabel("Habilidades: ");
+	private JLabel formacaoLabel = new JLabel("Formação: ");
+	private JLabel cargoLabel = new JLabel("Cargo: ");
 
 
 	public TelaLoginCandidato() {
@@ -76,7 +76,10 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 
 		tela.setVisible(true);
 		
+		botaoSalvar.addActionListener(this);
+		botaoVoltar.addActionListener(this);
 		
+		/*
 		botaoVoltar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -84,7 +87,7 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 				new TelaEscolha();
 				tela.dispose();
 			}
-		});
+		});*/
 	}
 	
 	@Override
@@ -97,7 +100,8 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 			String h = habilidadesBox.getText();
 			String c = cargoBox.getText();
 		}else if(e.getSource() == botaoVoltar) {
-			//TelaEscolha tela = new TelaEscolha();
+			new TelaEscolha();
+			tela.dispose();
 			//tela.setVisible(true);
 			//this.dispose();
 		}
