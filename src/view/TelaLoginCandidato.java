@@ -7,7 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import controle.ControleCandidato;
 
 public class TelaLoginCandidato extends JFrame implements ActionListener{
 	
@@ -28,9 +31,13 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 	private JLabel habilidadesLabel = new JLabel("Habilidades: ");
 	private JLabel formacaoLabel = new JLabel("Formação: ");
 	private JLabel cargoLabel = new JLabel("Cargo: ");
+	private ControleCandidato controle;
 
 
 	public TelaLoginCandidato() {
+		
+		controle = new ControleCandidato();
+		
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(1000, 1000);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,18 +100,31 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoSalvar) {
-			String n = nomeBox.getText();
-			String end = enderecoBox.getText();
-			String eml = emailBox.getText();
-			String f = formacaoBox.getText();
-			String h = habilidadesBox.getText();
-			String c = cargoBox.getText();
+			String nome = nomeBox.getText();
+			String endereco = enderecoBox.getText();
+			String email = emailBox.getText();
+			String habilidades = habilidadesBox.getText();
+			String formacao = formacaoBox.getText();
+			String cargo = cargoBox.getText();
+			
+			if (nome.isEmpty() || endereco.isEmpty() || email.isEmpty() || habilidades.isEmpty() || 
+					formacao.isEmpty() || cargo.isEmpty()) {
+				mensagemDadosInvalidos();
+			} else {
+				controle.criarCandidato(nome, endereco, 0001, email, habilidades, formacao, cargo);
+				new TelaCandidato(controle);
+				tela.dispose();
+			}
+				
 		}else if(e.getSource() == botaoVoltar) {
 			new TelaEscolha();
 			tela.dispose();
-			//tela.setVisible(true);
-			//this.dispose();
 		}
-		
 	}
+	
+	public void mensagemDadosInvalidos() {
+		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.INFORMATION_MESSAGE);
+		//janela.dispose();
+	}
+
 }

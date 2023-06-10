@@ -2,6 +2,8 @@ package controle;
 import modelo.*;
 import java.util.ArrayList;
 
+import javax.swing.ListModel;
+
 public class ControleEmpresa {
 	private Empresa empresa;
 	
@@ -33,14 +35,17 @@ public class ControleEmpresa {
 	public long idEmpresa() {
 		return empresa.getId();
 	}
+	public ArrayList<Vaga> vagasEmpresa() {
+		return empresa.getVagas();
+	}
+	
 	public Object[] funcoesVagas() {
 		ArrayList<String> funcoes = new ArrayList<String>();
 		for (Vaga vaga : empresa.getVagas()) {
 			String a = vaga.getFuncao();
 			funcoes.add(a);
 		}
-		//String[] funcoes = func.toArray();
-		return funcoes.toArray();
+		return  funcoes.toArray();
 	}
 	
 	public void abrirVaga(String funcao, double salario, String requisitos) {

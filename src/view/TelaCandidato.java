@@ -4,98 +4,94 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListModel;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controle.ControleEmpresa;
+import controle.ControleCandidato;
 import modelo.Vaga;
 
-public class TelaEmpresa extends JFrame implements ListSelectionListener, ActionListener {
-	
+public class TelaCandidato extends JFrame implements ListSelectionListener, ActionListener {
+
 	private JFrame tela = new JFrame();
 	private JLabel nome = new JLabel("Nome: ");
 	private JLabel endereco = new JLabel("Endereco: ");
-	private JLabel id = new JLabel("ID: ");
+	//private JLabel id = new JLabel("ID: ");
 	private JLabel email = new JLabel("Email: ");
-	private JLabel setorAtuacao = new JLabel("Setor de atuacao: ");
-	private JList<Object> vagas;
+	private JLabel formacao = new JLabel("Formação: ");
+	private JList<Vaga> vagas;
 	private JScrollPane scrollPane; 
 	private JPanel vagaPanel = new JPanel();
 	private JButton criar = new JButton("Criar");
 	private JButton atualizar = new JButton("Atualizar");
-	private JButton editar = new JButton("Editar");
-	private JButton excluir = new JButton("Excluir");
-	private ControleEmpresa controle;
+	private JButton inscrever = new JButton("Inscrever");
+	private JButton desinscrever = new JButton("Desinscrever");
+	private JButton buscar = new JButton("Buscar");
+	private JTextField buscarField = new JTextField();
+	private ControleCandidato controle;
 	//private DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
 	private JLabel nomeVaga;
 	private JLabel reqVaga;
 	private JLabel salVaga;
 	private JLabel nomeEmpresa;
 	
-	public TelaEmpresa(ControleEmpresa c) {
+	public TelaCandidato(ControleCandidato c) {
+		
 		controle = c;
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(1000, 1000);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tela.setTitle("Empresa");
+		tela.setTitle("Candidato");
 		tela.setLocationRelativeTo(null);
 		tela.setLayout(null);
 		
 		nome.setBounds(50, 50, 200, 20);
-		nome.setText("Nome: " + controle.nomeEmpresa());
+		nome.setText("Nome: " + controle.nomeCandidato());
 		tela.add(nome);
 		
 		endereco.setBounds(50, 70, 200, 20);
-		endereco.setText("Endereco: " + controle.enderecoEmpresa());
+		endereco.setText("Endereco: " + controle.enderecoCandidato());
 		tela.add(endereco);
 		
-		id.setBounds(50,90,200,20);
-		id.setText("ID: " + controle.idEmpresa());
-		tela.add(id);
-		
 		email.setBounds(50,110,200,20);
-		email.setText("Email: " + controle.emailEmpresa());
+		email.setText("Email: " + controle.emailCandidato());
 		tela.add(email);
 		
-		setorAtuacao.setBounds(50,130,200,20);
-		setorAtuacao.setText(controle.setorEmpresa() == null ? 
-				 "Setor de Atuacao: Não informado" : "Setor de Atuacao: " + controle.setorEmpresa());
-		tela.add(setorAtuacao);
+		formacao.setBounds(50,130,200,20);
+		formacao.setText(controle.formacaoCandidato() == null ? 
+				 "Formação: Não informado" : "Formação: " + controle.formacaoCandidato());
+		tela.add(formacao);
 		
-		vagaPanel.setBounds(600, 10, 300, 600);
+		vagaPanel.setBounds(600, 200, 300, 400);
 		vagaPanel.setBackground(Color.white);
 		vagaPanel.setLayout(null);
 		tela.add(vagaPanel);
 		
-		//criar.setBounds(620, 580,80,20);
+		buscar.setBounds(600, 50, 80, 20);
+		buscarField.setBounds(700,50, 200, 20);
 		criar.setBounds(50,580,80,20);
 		atualizar.setBounds(130,580,100,20);
-		editar.setBounds(100,580,80,20);
-		excluir.setBounds(180,580,80,20);
+		inscrever.setBounds(40,380,120,20);
+		desinscrever.setBounds(160,380,120,20);
 		tela.add(criar);
 		tela.add(atualizar);
-		vagaPanel.add(editar);
-		vagaPanel.add(excluir);
+		tela.add(buscar);
+		tela.add(buscarField);
+		vagaPanel.add(inscrever);
+		vagaPanel.add(desinscrever);
 		criar.addActionListener(this);
 		atualizar.addActionListener(this);
-		editar.addActionListener(this);
-		excluir.addActionListener(this);
-		//excluir.setBounds(780,610,80,20);
-		//vagaPanel.add(criar);
+		inscrever.addActionListener(this);
+		desinscrever.addActionListener(this);
 		
-		/*String teste[] = {"Vaga1", "Vaga2", "Vaga3", "Vaga4", "Vaga5", "Vaga6", "Vaga7", "Vaga8", "Vaga9", "Vaga10",
-				"Vaga11",};*/
-		
-		vagas = new JList<Object>(controle.funcoesVagas());
+		vagas = new JList<Vaga>();
 		//vagas = new JList<Vaga>((ListModel<Vaga>) controle.vagasEmpresa());
 		//vagas.setBounds(50, 200, 100, 100);
 		vagas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
@@ -109,11 +105,9 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 		
 		tela.setVisible(true);
 		
-
-			
-	}
-	
 		
+		
+	}
 	
 	
 	public void valueChanged(ListSelectionEvent e) {  
@@ -136,13 +130,12 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == criar) {
-			new TelaCadastroVaga(controle);
+			//new TelaCadastroVaga(controle);
 			
 		}
 		if (e.getSource() == atualizar) {
-			vagas.setListData(controle.funcoesVagas());
-			vagas.updateUI();
+			//vagas.setListData(controle.funcoesVagas());
+			//vagas.updateUI();
 		}
 	}
-
 }

@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import modelo.Empresa;
 import controle.ControleEmpresa;
 
 public class TelaLoginEmpresa extends JFrame implements ActionListener{

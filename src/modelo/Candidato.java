@@ -14,6 +14,16 @@ public class Candidato extends Usuario{
 		Dados.adicionarCandidato(this);
 	}
 
+	public Candidato(String nome, String endereco, long id, String email, String habilidades, String formacao,
+			String cargo) {
+		super(nome, endereco, id, email);
+		this.habilidades = habilidades;
+		this.formacao = formacao;
+		this.cargo = cargo;
+		Dados.adicionarCandidato(this);
+
+	}
+
 	//Sobrecarga
 	public Candidato(String nome, String endereco, long id, String email, String cargo) {
 		super(nome, endereco, id, email);
