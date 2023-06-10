@@ -1,8 +1,10 @@
 package controle;
-import modelo.*;
 import java.util.ArrayList;
 
-import javax.swing.ListModel;
+import javax.swing.DefaultListModel;
+
+import modelo.Empresa;
+import modelo.Vaga;
 
 public class ControleEmpresa {
 	private Empresa empresa;
@@ -37,6 +39,15 @@ public class ControleEmpresa {
 	}
 	public ArrayList<Vaga> vagasEmpresa() {
 		return empresa.getVagas();
+	}
+	
+	public DefaultListModel<Vaga> puxarVagas(){
+		ArrayList<Vaga> vagas = empresa.getVagas();
+		DefaultListModel <Vaga> vagaListModel = new DefaultListModel<>();
+		for(Vaga v : vagas) {
+			vagaListModel.addElement(v);
+		}
+		return vagaListModel;
 	}
 	
 	public Object[] funcoesVagas() {

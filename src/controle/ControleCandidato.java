@@ -1,6 +1,11 @@
 package controle;
 
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
+
 import modelo.Candidato;
+import modelo.Dados;
 import modelo.Vaga;
 
 public class ControleCandidato {
@@ -37,5 +42,14 @@ public class ControleCandidato {
 	}
 	public void desinscrever(Vaga vaga){
 		candidato.desinscrever(vaga);
+	}
+	
+	public DefaultListModel<Vaga> puxarVagas() {
+		ArrayList<Vaga> vagas = Dados.getVagas();
+		DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
+		for(Vaga v : vagas) {
+			vagaListModel.addElement(v);
+		}
+		return vagaListModel;
 	}
 }

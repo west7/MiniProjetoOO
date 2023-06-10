@@ -6,7 +6,7 @@ public class Dados {
 
 	private static ArrayList<Empresa> empresas = new ArrayList<>();
 	private static ArrayList<Candidato> candidatos = new ArrayList<>();
-	private static ArrayList<Vaga> vagas = new ArrayList<>();
+	private static  ArrayList<Vaga> vagas = new ArrayList<>();
 	
 	public static ArrayList<Empresa> getEmpresas() {
 		return empresas;

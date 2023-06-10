@@ -27,7 +27,7 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	private JLabel id = new JLabel("ID: ");
 	private JLabel email = new JLabel("Email: ");
 	private JLabel setorAtuacao = new JLabel("Setor de atuacao: ");
-	private JList<Object> vagas;
+	private JList<Vaga> vagas;
 	private JScrollPane scrollPane; 
 	private JPanel vagaPanel = new JPanel();
 	private JButton criar = new JButton("Criar");
@@ -95,7 +95,7 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 		/*String teste[] = {"Vaga1", "Vaga2", "Vaga3", "Vaga4", "Vaga5", "Vaga6", "Vaga7", "Vaga8", "Vaga9", "Vaga10",
 				"Vaga11",};*/
 		
-		vagas = new JList<Object>(controle.funcoesVagas());
+		vagas = new JList<Vaga>(controle.puxarVagas());
 		//vagas = new JList<Vaga>((ListModel<Vaga>) controle.vagasEmpresa());
 		//vagas.setBounds(50, 200, 100, 100);
 		vagas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
@@ -117,7 +117,7 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	
 	
 	public void valueChanged(ListSelectionEvent e) {  
-		/*if(!e.getValueIsAdjusting() && vagas.getSelectedIndex() != -1) {
+		if(!e.getValueIsAdjusting() && vagas.getSelectedIndex() != -1) {
 			String nomeVagaSelecionada = vagas.getSelectedValue().getFuncao();
 			String reqVagaSelecionada = vagas.getSelectedValue().getRequisitos();
 			Double salVagaSelecionada = vagas.getSelectedValue().getSalario();
@@ -131,7 +131,7 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 			vagaPanel.add(nomeVaga);
 			vagaPanel.revalidate();
 			vagaPanel.repaint();
-		}*/
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -140,7 +140,7 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 			
 		}
 		if (e.getSource() == atualizar) {
-			vagas.setListData(controle.funcoesVagas());
+			vagas.setListData( (Vaga[]) controle.funcoesVagas());
 			vagas.updateUI();
 		}
 	}

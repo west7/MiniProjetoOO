@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,10 +38,10 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	private JTextField buscarField = new JTextField();
 	private ControleCandidato controle;
 	//private DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
-	private JLabel nomeVaga;
-	private JLabel reqVaga;
-	private JLabel salVaga;
-	private JLabel nomeEmpresa;
+	//private JLabel nomeVaga;
+	//private JLabel reqVaga;
+	//private JLabel salVaga;
+	//private JLabel nomeEmpresa;
 	
 	public TelaCandidato(ControleCandidato c) {
 		
@@ -91,7 +92,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		inscrever.addActionListener(this);
 		desinscrever.addActionListener(this);
 		
-		vagas = new JList<Vaga>();
+		vagas = new JList<Vaga>(controle.puxarVagas());
 		//vagas = new JList<Vaga>((ListModel<Vaga>) controle.vagasEmpresa());
 		//vagas.setBounds(50, 200, 100, 100);
 		vagas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
