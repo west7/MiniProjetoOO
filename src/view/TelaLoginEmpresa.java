@@ -39,7 +39,7 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(1000, 1000);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tela.setTitle("Login do Usuário");
+		tela.setTitle("Login da Empresa");
 		tela.setLocationRelativeTo(null);
 		tela.setLayout(null);
 		

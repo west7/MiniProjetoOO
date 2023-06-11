@@ -96,6 +96,8 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 				"Vaga11",};*/
 		
 		vagas = new JList<Vaga>(controle.puxarVagas());
+		vagas.setFixedCellHeight(20);
+		
 		//vagas = new JList<Vaga>((ListModel<Vaga>) controle.vagasEmpresa());
 		//vagas.setBounds(50, 200, 100, 100);
 		vagas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
@@ -118,17 +120,31 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	
 	public void valueChanged(ListSelectionEvent e) {  
 		if(!e.getValueIsAdjusting() && vagas.getSelectedIndex() != -1) {
-			String nomeVagaSelecionada = vagas.getSelectedValue().getFuncao();
-			String reqVagaSelecionada = vagas.getSelectedValue().getRequisitos();
+			vagaPanel.removeAll();
+		    vagaPanel.revalidate();
+		    vagaPanel.repaint();
+		    
+			editar.setBounds(100,580,80,20);
+			excluir.setBounds(180,580,80,20);
+			vagaPanel.add(editar);
+			vagaPanel.add(excluir);
+			
+			String nomeVagaSelecionada = "Funcao: " + vagas.getSelectedValue().getFuncao();
+			String reqVagaSelecionada = "Requisitos: " + vagas.getSelectedValue().getRequisitos();
 			Double salVagaSelecionada = vagas.getSelectedValue().getSalario();
-			String salStr = String.valueOf(salVagaSelecionada);
+			String salStr = "Salario: " + String.valueOf(salVagaSelecionada);
 			String nomeEmpresaVagaSelecionada = vagas.getSelectedValue().getEmpresa().getNome();
 			
 			nomeVaga =  new JLabel(nomeVagaSelecionada);
 			reqVaga = new JLabel(reqVagaSelecionada);
 			salVaga = new JLabel(salStr);
 			nomeEmpresa = new JLabel(nomeEmpresaVagaSelecionada);
+			nomeVaga.setBounds(20, 50, 200, 20);
+			salVaga.setBounds(20, 70, 200, 20);
+			reqVaga.setBounds(20,90,200,20);
 			vagaPanel.add(nomeVaga);
+			vagaPanel.add(salVaga);
+			vagaPanel.add(reqVaga);
 			vagaPanel.revalidate();
 			vagaPanel.repaint();
 		}
@@ -140,7 +156,8 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 			
 		}
 		if (e.getSource() == atualizar) {
-			vagas.setListData( (Vaga[]) controle.funcoesVagas());
+			//vagas.setListData( (Vaga[]) controle.funcoesVagas());
+			vagas.setListData(controle.puxarVagas());
 			vagas.updateUI();
 		}
 	}

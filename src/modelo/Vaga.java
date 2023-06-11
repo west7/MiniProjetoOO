@@ -83,6 +83,7 @@ public class Vaga {
 	}
 
 	public String toString() {
-		return String.format("Função: %s, Requisitos: %s, Empresa: %s, Salario: $%.2f", getFuncao(), getRequisitos(), empresa.getNome(), getSalario());	
+		//return String.format("Função: %s, Requisitos: %s, Empresa: %s, Salario: $%.2f", getFuncao(), getRequisitos(), empresa.getNome(), getSalario());
+		return getFuncao();
 	}
 }

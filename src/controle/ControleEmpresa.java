@@ -41,22 +41,33 @@ public class ControleEmpresa {
 		return empresa.getVagas();
 	}
 	
-	public DefaultListModel<Vaga> puxarVagas(){
+	public Vaga[] puxarVagas() {
+		ArrayList<Vaga> vagas = empresa.getVagas();
+		Vaga[] arrayVaga = new Vaga[vagas.size()];
+		for (int i = 0; i < vagas.size(); i++) {
+			arrayVaga[i] = vagas.get(i);
+		}
+		return arrayVaga;
+	}
+	
+	/*public DefaultListModel<Vaga> puxarVagas(){
 		ArrayList<Vaga> vagas = empresa.getVagas();
 		DefaultListModel <Vaga> vagaListModel = new DefaultListModel<>();
 		for(Vaga v : vagas) {
 			vagaListModel.addElement(v);
 		}
 		return vagaListModel;
-	}
+	}*/
 	
 	public Object[] funcoesVagas() {
-		ArrayList<String> funcoes = new ArrayList<String>();
+		//ArrayList<String> funcoes = new ArrayList<String>();
+		ArrayList<Vaga> funcoes = new ArrayList<Vaga>();
 		for (Vaga vaga : empresa.getVagas()) {
 			String a = vaga.getFuncao();
-			funcoes.add(a);
+			//funcoes.add(a);
+			funcoes.add(vaga);
 		}
-		return  funcoes.toArray();
+		return funcoes.toArray();
 	}
 	
 	public void abrirVaga(String funcao, double salario, String requisitos) {

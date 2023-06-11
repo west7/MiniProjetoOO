@@ -8,6 +8,14 @@ public class Dados {
 	private static ArrayList<Candidato> candidatos = new ArrayList<>();
 	private static  ArrayList<Vaga> vagas = new ArrayList<>();
 	
+	public static void preencherDados(){
+        Empresa e1 = new Empresa("Google", "EUA", 0003, "google@gmail", "Tecnologia", "Resumo", "Missao");
+		Empresa e2 = new Empresa("Facebook", "EUA", 0004, "facebook@gmail", "Internet", "Resumo", "Missao");
+		e1.abrirVaga("Analista de Sistemas", 2000.0, "Inglês");
+		e1.abrirVaga("Gerente de Projetos", 1500.0, "Alemão");
+		e2.abrirVaga("Desenvolvedor Senior Java", 5000.0, "20 anos de experiância");
+    }
+	
 	public static ArrayList<Empresa> getEmpresas() {
 		return empresas;
 	}
