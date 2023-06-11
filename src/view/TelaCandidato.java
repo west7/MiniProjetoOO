@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -42,6 +43,8 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	private JLabel reqVaga;
 	private JLabel salVaga;
 	private JLabel nomeEmpresa;
+	private JLabel inscricao = new JLabel("Inscrição concluída com sucesso!");
+	private JLabel desinscricao = new JLabel("Inscrição cancelada!");
 	
 	public TelaCandidato(ControleCandidato c) {
 		
@@ -153,19 +156,45 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 			if(campoBusca.isEmpty()) {
 				vagas.setListData(controle.puxarVagas());
 				vagas.updateUI();
-			} else if (!campoBusca.isEmpty()) {
-				vagas.setListData(controle.pesquisar(campoBusca));
-				vagas.updateUI();
+			}else if (!campoBusca.isEmpty()) {
+				if(controle.pesquisarFuncao(campoBusca).length > 0){
+					vagas.setListData(controle.pesquisarFuncao(campoBusca));
+					vagas.updateUI();
+				}else /*if(controle.pesquisarEmpresa(campoBusca) != null)*/ {
+					vagas.setListData(controle.pesquisarEmpresa(campoBusca));
+					vagas.updateUI();
+				}
 			}
+		}
+			
+		if (e.getSource() == inscrever) {
+			vagaPanel.remove(desinscricao);
+		    vagaPanel.revalidate();
+		    vagaPanel.repaint();
+			
+			Vaga vaga = vagas.getSelectedValue();
+			controle.inscrever(vaga);
+			
+			inscricao.setBounds(20, 260, 250, 40);
+			inscricao.setForeground(Color.green);
+			vagaPanel.add(inscricao);
+			vagaPanel.revalidate();
+			vagaPanel.repaint();
 			
 		}
-		if (e.getSource() == inscrever) {
-			//vagas.setListData(controle.funcoesVagas());
-			//vagas.updateUI();
-		}
 		if (e.getSource() == desinscrever) {
-			//vagas.setListData(controle.funcoesVagas());
-			//vagas.updateUI();
+			vagaPanel.remove(inscricao);
+		    vagaPanel.revalidate();
+		    vagaPanel.repaint();
+			
+			Vaga vaga = vagas.getSelectedValue();
+			controle.desinscrever(vaga);
+			
+			desinscricao.setBounds(20, 260, 250, 40);
+			desinscricao.setForeground(Color.red);
+			vagaPanel.add(desinscricao);
+			vagaPanel.revalidate();
+			vagaPanel.repaint();
 		}
 	}
 }

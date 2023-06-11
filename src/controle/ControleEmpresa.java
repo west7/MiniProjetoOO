@@ -74,4 +74,18 @@ public class ControleEmpresa {
 		empresa.abrirVaga(funcao, salario, requisitos);
 	}
 
+	public void excluirVaga(Vaga vaga) {
+		empresa.excluirVaga(vaga);
+	}
+	public boolean vagaExiste(Vaga vaga) {
+		if(empresa.getVagas().contains(vaga)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public void editarVaga(Vaga vaga, String novaFuncao, double novoSalario , String novosRequisitos) {
+		empresa.editarVaga(vaga,novaFuncao, novoSalario ,novosRequisitos);
+	}
+
 }

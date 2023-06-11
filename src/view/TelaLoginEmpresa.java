@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import controle.ControleDeVaga;
 import controle.ControleEmpresa;
 
 public class TelaLoginEmpresa extends JFrame implements ActionListener{
@@ -31,10 +33,12 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 	private JLabel resumoLabel = new JLabel("Resumo: ");
 	private JLabel missaoLabel = new JLabel("Missão: ");
 	private ControleEmpresa controle;
+	//private ControleDeVaga controleVaga;
 	
 	public TelaLoginEmpresa() {
 		
 		controle = new ControleEmpresa();
+		//controleVaga = new ControleDeVaga();
 		
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(1000, 1000);

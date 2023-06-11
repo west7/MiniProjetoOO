@@ -4,18 +4,17 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import controle.ControleDeVaga;
 import controle.ControleEmpresa;
 import modelo.Vaga;
 
@@ -35,6 +34,7 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	private JButton editar = new JButton("Editar");
 	private JButton excluir = new JButton("Excluir");
 	private ControleEmpresa controle;
+	private ControleDeVaga controleVaga;
 	//private DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
 	private JLabel nomeVaga;
 	private JLabel reqVaga;
@@ -43,6 +43,8 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	
 	public TelaEmpresa(ControleEmpresa c) {
 		controle = c;
+		controleVaga = new ControleDeVaga();
+		
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(1000, 1000);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -153,13 +155,33 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == criar) {
 			new TelaCadastroVaga(controle);
-			
 		}
 		if (e.getSource() == atualizar) {
 			//vagas.setListData( (Vaga[]) controle.funcoesVagas());
 			vagas.setListData(controle.puxarVagas());
 			vagas.updateUI();
 		}
+		if(e.getSource() == editar) {
+			controleVaga.setVaga(vagas.getSelectedValue());
+			new TelaCadastroVaga(controle, controleVaga);
+		}
+		if(e.getSource() == excluir) {
+			controle.excluirVaga(vagas.getSelectedValue());
+			vagas.setListData(controle.puxarVagas());
+			vagas.updateUI();
+			
+			vagaPanel.remove(nomeVaga);
+			vagaPanel.remove(salVaga);
+			vagaPanel.remove(reqVaga);
+			vagaPanel.revalidate();
+			vagaPanel.repaint();
+			
+			JLabel excluir = new JLabel("Vaga exlcuída com sucesso!");
+			excluir.setBounds(20, 250, 200, 40);
+			excluir.setForeground(Color.red);
+			vagaPanel.add(excluir);
+			vagaPanel.revalidate();
+			vagaPanel.repaint();
+		}
 	}
-
 }

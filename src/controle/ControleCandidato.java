@@ -62,7 +62,7 @@ public class ControleCandidato {
 		return arrayVagas;
 	}
 	
-	public Vaga[] pesquisar(String pesquisa) {
+	public Vaga[] pesquisarFuncao(String pesquisa) {
 		ArrayList<Vaga> busca = candidato.buscarVagaPorFuncao(pesquisa);
 		Vaga[] arrayBusca = new Vaga[busca.size()];
 		for (int i=0; i < busca.size(); i++) {
@@ -70,4 +70,18 @@ public class ControleCandidato {
 		}
 		return arrayBusca;
 	}
+	
+	public Vaga[] pesquisarEmpresa(String pesquisa) {
+		ArrayList<Vaga> busca = candidato.buscarVagaPorEmpresa(pesquisa);
+		Vaga[] arrayBusca = new Vaga[busca.size()];
+		for (int i=0; i < busca.size(); i++) {
+			arrayBusca[i] = busca.get(i);
+		}
+		return arrayBusca;
+	}
+
+	
+	
+	
+	
 }
