@@ -19,6 +19,18 @@ public class ControleCandidato {
 		return candidato;
 	}
 	
+	public Candidato editarCandidato(String nome, String endereco, long id, String email, String habilidades,
+			String formacao, String cargo) {
+		candidato.setNome(nome);
+		candidato.setEndereco(endereco);
+		candidato.setId(id);
+		candidato.setEmail(email);
+		candidato.setHabilidades(habilidades);
+		candidato.setFormacao(formacao);
+		candidato.setCargo(cargo);
+		return candidato;
+	}
+	
 	public String nomeCandidato() {
 		return candidato.getNome();
 	}
@@ -39,7 +51,9 @@ public class ControleCandidato {
 	}
 	
 	public void inscrever(Vaga vaga){
-		candidato.inscrever(vaga);
+		if (!candidato.getVagas().contains(vaga)) {
+			candidato.inscrever(vaga);			
+		}
 	}
 	public void desinscrever(Vaga vaga){
 		candidato.desinscrever(vaga);
@@ -78,6 +92,15 @@ public class ControleCandidato {
 			arrayBusca[i] = busca.get(i);
 		}
 		return arrayBusca;
+	}
+	
+	public Vaga[] inscricoesCandidato() {
+		ArrayList<Vaga> inscricoes = candidato.getVagas();
+		Vaga[] inscricoesArray = new Vaga[inscricoes.size()];
+		for (int i=0; i < inscricoes.size(); i++) {
+			inscricoesArray[i] = inscricoes.get(i);
+		}
+		return inscricoesArray;
 	}
 
 	

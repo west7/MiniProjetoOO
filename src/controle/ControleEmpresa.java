@@ -15,6 +15,17 @@ public class ControleEmpresa {
 		return empresa;
 		
 	}
+	public Empresa editarEmpresa(String nome, String endereco, long id, String email, String setor_atuacao,
+			String resumo_sobre_empresa, String missao) {
+		empresa.setNome(nome);
+		empresa.setEndereco(endereco);
+		empresa.setId(id);
+		empresa.setEmail(email);
+		empresa.setSetorAtuacao(setor_atuacao);
+		empresa.setResumoSobreEmpresa(resumo_sobre_empresa);
+		empresa.setMissao(missao);
+		return empresa;
+	}
 	
 	public String nomeEmpresa() {
 		return empresa.getNome();

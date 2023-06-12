@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -31,11 +32,13 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	private JList<Vaga> vagas;
 	private JScrollPane scrollPane; 
 	private JPanel vagaPanel = new JPanel();
-	//private JButton criar = new JButton("Criar");
-	//private JButton atualizar = new JButton("Atualizar");
+	private JButton todasVagas = new JButton("Vagas Disponiveis");
+	private JButton minhasInscricoes = new JButton("Minhas Inscricoes");
 	private JButton inscrever = new JButton("Inscrever");
 	private JButton desinscrever = new JButton("Desinscrever");
 	private JButton buscar = new JButton("Buscar");
+	private JButton editarCandidato = new JButton("Editar Dados");
+	private JButton pagInicial = new JButton("Pagina Inicial");
 	private JTextField buscarField = new JTextField();
 	private ControleCandidato controle;
 	//private DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
@@ -78,23 +81,29 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		vagaPanel.setLayout(null);
 		tela.add(vagaPanel);
 		
-		buscar.setBounds(600, 50, 80, 20);
-		buscarField.setBounds(700,50, 200, 20);
-		//criar.setBounds(50,580,80,20);
-		//atualizar.setBounds(130,580,100,20);
+		buscar.setBounds(800, 50, 80, 20);
+		buscarField.setBounds(600,50, 200, 20);
+		todasVagas.setBounds(50,580,150,20);
+		minhasInscricoes.setBounds(200,580,150,20);
 		inscrever.setBounds(40,380,120,20);
 		desinscrever.setBounds(160,380,120,20);
-		//tela.add(criar);
-		//tela.add(atualizar);
+		editarCandidato.setBounds(300, 50, 120, 20);
+		pagInicial.setBounds(50, 20, 120, 20);
+		tela.add(todasVagas);
+		tela.add(minhasInscricoes);
 		tela.add(buscar);
 		tela.add(buscarField);
+		tela.add(editarCandidato);
+		tela.add(pagInicial);
 		vagaPanel.add(inscrever);
 		vagaPanel.add(desinscrever);
-		//criar.addActionListener(this);
+		todasVagas.addActionListener(this);
 		buscar.addActionListener(this);
-		//atualizar.addActionListener(this);
+		minhasInscricoes.addActionListener(this);
 		inscrever.addActionListener(this);
 		desinscrever.addActionListener(this);
+		editarCandidato.addActionListener(this);
+		pagInicial.addActionListener(this);
 		
 		vagas = new JList<Vaga>(controle.puxarVagas());
 		vagas.setFixedCellHeight(20);
@@ -196,5 +205,27 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 			vagaPanel.revalidate();
 			vagaPanel.repaint();
 		}
+		
+		if (e.getSource() == todasVagas) {
+			vagas.setListData(controle.puxarVagas());
+			vagas.updateUI();
+		}
+		if (e.getSource() == minhasInscricoes) {
+			vagas.setListData(controle.inscricoesCandidato());
+			vagas.updateUI();
+		}
+		if (e.getSource() == editarCandidato) {
+			new TelaLoginCandidato(controle, true);
+		}
+		if (e.getSource() == pagInicial) {
+			new TelaEscolha();
+			tela.dispose();
+		}
+	}
+	public void mensagemInscricaoSucesso() {
+		JOptionPane.showMessageDialog(null, "Inscricao feita com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void mensagemInscricaoErro() {
+		JOptionPane.showMessageDialog(null, "Erro ao se inscrever", null, JOptionPane.INFORMATION_MESSAGE);
 	}
 }

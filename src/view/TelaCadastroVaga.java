@@ -72,7 +72,7 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(525, 350);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tela.setTitle("Cadastrar vaga");
+		tela.setTitle("Editar vaga");
 		tela.setLocationRelativeTo(null);
 		tela.setLayout(null);
 		

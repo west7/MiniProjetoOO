@@ -62,10 +62,10 @@ public class TelaEscolha extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoCandidato) {
-			new TelaLoginCandidato();
+			new TelaLoginCandidato(null, false);
 			jFrame.dispose();
 		}else if(e.getSource() == botaoEmpresa) {
-			new TelaLoginEmpresa();
+			new TelaLoginEmpresa(null, false);
 			jFrame.dispose();
 		}
 	}
