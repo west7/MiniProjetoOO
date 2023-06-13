@@ -46,6 +46,10 @@ public class Dados {
 	
 	public static void removerEmpresa(Empresa empresa) {
 		empresas.remove(empresa);
+		for (int i=0; i < empresa.getVagas().size(); i++) {
+			removerVaga(empresa.getVagas().get(i));
+			empresa.excluirVaga(empresa.getVagas().get(i));			
+		}
 	}
 	
 	public static void adicionarCandidato(Candidato candidato) {

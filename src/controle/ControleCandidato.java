@@ -15,7 +15,7 @@ public class ControleCandidato {
 	public Candidato criarCandidato (String nome, String endereco, long id, String email, String habilidades,
 			String formacao, String cargo) {
 		candidato = new Candidato(nome, endereco, id, email, habilidades, formacao, cargo);
-		Dados.preencherDados();
+		//Dados.preencherDados();
 		return candidato;
 	}
 	

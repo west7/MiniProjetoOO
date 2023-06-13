@@ -18,7 +18,6 @@ import javax.swing.event.ListSelectionListener;
 
 import controle.ControleCandidato;
 import controle.ControleDeVaga;
-import modelo.Vaga;
 
 public class TelaCandidato extends JFrame implements ListSelectionListener, ActionListener {
 

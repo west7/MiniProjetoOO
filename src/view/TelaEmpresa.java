@@ -16,7 +16,6 @@ import javax.swing.event.ListSelectionListener;
 
 import controle.ControleDeVaga;
 import controle.ControleEmpresa;
-import modelo.Vaga;
 
 public class TelaEmpresa extends JFrame implements ListSelectionListener, ActionListener {
 	
@@ -26,15 +25,16 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	private JLabel id = new JLabel("ID: ");
 	private JLabel email = new JLabel("Email: ");
 	private JLabel setorAtuacao = new JLabel("Setor de atuacao: ");
-	private JList<Vaga> vagas;
+	private JList<ControleDeVaga> vagas;
 	private JScrollPane scrollPane; 
 	private JPanel vagaPanel = new JPanel();
 	private JButton criar = new JButton("Criar");
 	private JButton atualizar = new JButton("Atualizar");
 	private JButton editarVaga = new JButton("Editar");
 	private JButton editarEmpresa = new JButton("Editar Dados");
-	private JButton excluir = new JButton("Excluir");
+	private JButton excluirVaga = new JButton("Excluir");
 	private JButton pagInicial = new JButton("Pagina Inicial");
+	private JButton excluirConta = new JButton("Excluir conta");
 	private ControleEmpresa controle;
 	private ControleDeVaga controleVaga;
 	//private DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
@@ -84,28 +84,31 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 		criar.setBounds(50,580,80,20);
 		atualizar.setBounds(130,580,100,20);
 		editarVaga.setBounds(100,580,80,20);
-		editarEmpresa.setBounds(300, 50, 120, 20);
-		excluir.setBounds(180,580,80,20);
+		editarEmpresa.setBounds(290, 20, 120, 20);
+		excluirVaga.setBounds(180,580,80,20);
 		pagInicial.setBounds(50, 20, 120, 20);
+		excluirConta.setBounds(170,20,120,20);
 		tela.add(criar);
 		tela.add(atualizar);
 		tela.add(editarEmpresa);
 		tela.add(pagInicial);
+		tela.add(excluirConta);
 		vagaPanel.add(editarVaga);
-		vagaPanel.add(excluir);
+		vagaPanel.add(excluirVaga);
 		criar.addActionListener(this);
 		atualizar.addActionListener(this);
 		editarVaga.addActionListener(this);
 		editarEmpresa.addActionListener(this);
-		excluir.addActionListener(this);
+		excluirVaga.addActionListener(this);
 		pagInicial.addActionListener(this);
+		excluirConta.addActionListener(this);
 		//excluir.setBounds(780,610,80,20);
 		//vagaPanel.add(criar);
 		
 		/*String teste[] = {"Vaga1", "Vaga2", "Vaga3", "Vaga4", "Vaga5", "Vaga6", "Vaga7", "Vaga8", "Vaga9", "Vaga10",
 				"Vaga11",};*/
 		
-		vagas = new JList<Vaga>(controle.puxarVagas());
+		vagas = new JList<ControleDeVaga>(controle.puxarVagas());
 		vagas.setFixedCellHeight(20);
 		
 		//vagas = new JList<Vaga>((ListModel<Vaga>) controle.vagasEmpresa());
@@ -135,15 +138,15 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 		    vagaPanel.repaint();
 		    
 			editarVaga.setBounds(100,580,80,20);
-			excluir.setBounds(180,580,80,20);
+			excluirVaga.setBounds(180,580,80,20);
 			vagaPanel.add(editarVaga);
-			vagaPanel.add(excluir);
+			vagaPanel.add(excluirVaga);
 			
-			String nomeVagaSelecionada = "Funcao: " + vagas.getSelectedValue().getFuncao();
-			String reqVagaSelecionada = "Requisitos: " + vagas.getSelectedValue().getRequisitos();
-			Double salVagaSelecionada = vagas.getSelectedValue().getSalario();
+			String nomeVagaSelecionada = "Funcao: " + vagas.getSelectedValue().funcaoVaga();
+			String reqVagaSelecionada = "Requisitos: " + vagas.getSelectedValue().requisitosVaga();
+			Double salVagaSelecionada = vagas.getSelectedValue().salarioVaga();
 			String salStr = "Salario: " + String.valueOf(salVagaSelecionada);
-			String nomeEmpresaVagaSelecionada = vagas.getSelectedValue().getEmpresa().getNome();
+			String nomeEmpresaVagaSelecionada = vagas.getSelectedValue().empresaVaga().getNome();
 			
 			nomeVaga =  new JLabel(nomeVagaSelecionada);
 			reqVaga = new JLabel(reqVagaSelecionada);
@@ -170,11 +173,11 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 			vagas.updateUI();
 		}
 		if(e.getSource() == editarVaga) {
-			controleVaga.setVaga(vagas.getSelectedValue());
+			controleVaga.setVaga(vagas.getSelectedValue().getVaga());
 			new TelaCadastroVaga(controle, controleVaga);
 		}
-		if(e.getSource() == excluir) {
-			controle.excluirVaga(vagas.getSelectedValue());
+		if(e.getSource() == excluirVaga) {
+			controle.excluirVaga(vagas.getSelectedValue().getVaga());
 			vagas.setListData(controle.puxarVagas());
 			vagas.updateUI();
 			
@@ -195,6 +198,11 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 			new TelaLoginEmpresa(controle, true);
 		}
 		if (e.getSource() == pagInicial) {
+			new TelaEscolha();
+			tela.dispose();
+		}
+		if (e.getSource() == excluirConta) {
+			controle.excluirEmpresa();
 			new TelaEscolha();
 			tela.dispose();
 		}

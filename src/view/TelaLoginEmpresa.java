@@ -8,12 +8,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.JList;
 
 import controle.ControleDeVaga;
 import controle.ControleEmpresa;
 
-public class TelaLoginEmpresa extends JFrame implements ActionListener{
+public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, ActionListener{
 
 	//public JTextField nome, email, endereco, setor, resumo, missao;
 	//public JButton botaoSalvar, botaoVoltar;
@@ -33,6 +38,8 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 	private JLabel setorLabel = new JLabel("Setor: ");
 	private JLabel resumoLabel = new JLabel("Resumo: ");
 	private JLabel missaoLabel = new JLabel("Missão: ");
+	private JList<ControleEmpresa> empresas;
+	private JScrollPane scrollPane;
 	private ControleEmpresa controle;
 	//private ControleDeVaga controleVaga;
 	
@@ -84,6 +91,15 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 			
 			botaoVoltar.setBounds(200, 600, 100, 50);
 			tela.add(botaoVoltar);
+			
+			empresas = new JList<ControleEmpresa>(controle.puxarEmpresas());
+			empresas.setFixedCellHeight(20);
+			empresas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+			scrollPane = new JScrollPane(empresas);
+			scrollPane.setBounds(350,400,300,200);
+			//empresas.addListSelectionListener((ListSelectionListener) this);
+			empresas.addListSelectionListener(this);
+			tela.add(scrollPane);
 			
 			tela.setVisible(true);
 			
@@ -209,6 +225,13 @@ public class TelaLoginEmpresa extends JFrame implements ActionListener{
 				new TelaEmpresa(controle);
 				tela.dispose();
 			}
+		}
+	}
+	public void valueChanged(ListSelectionEvent e) {  
+		if(!e.getValueIsAdjusting() && empresas.getSelectedIndex() != -1) {
+			controle.setEmpresa(empresas.getSelectedValue().getEmpresa());
+			new TelaEmpresa(controle);
+			tela.dispose();
 		}
 	}
 	
