@@ -67,38 +67,47 @@ public class ControleCandidato {
 		}
 		return vagaListModel;
 	}*/
-	public Vaga[] puxarVagas() {
+	public ControleDeVaga[] puxarVagas() {
 		ArrayList<Vaga> vagas = Dados.getVagas();
-		Vaga[] arrayVagas = new Vaga[vagas.size()];
+		ControleDeVaga[] arrayVagas = new ControleDeVaga[vagas.size()];
 		for (int i=0; i < vagas.size(); i++) {
-			arrayVagas[i] = vagas.get(i);
+			//arrayVagas[i] = vagas.get(i);
+			ControleDeVaga c = new ControleDeVaga();
+			c.setVaga(vagas.get(i));
+			arrayVagas[i] = c;
 		}
 		return arrayVagas;
 	}
 	
-	public Vaga[] pesquisarFuncao(String pesquisa) {
+	public ControleDeVaga[] pesquisarFuncao(String pesquisa) {
 		ArrayList<Vaga> busca = candidato.buscarVagaPorFuncao(pesquisa);
-		Vaga[] arrayBusca = new Vaga[busca.size()];
+		ControleDeVaga[] arrayBusca = new ControleDeVaga[busca.size()];
 		for (int i=0; i < busca.size(); i++) {
-			arrayBusca[i] = busca.get(i);
+			ControleDeVaga c = new ControleDeVaga();
+			c.setVaga(busca.get(i));
+			arrayBusca[i] = c;
 		}
 		return arrayBusca;
 	}
 	
-	public Vaga[] pesquisarEmpresa(String pesquisa) {
+	public ControleDeVaga[] pesquisarEmpresa(String pesquisa) {
 		ArrayList<Vaga> busca = candidato.buscarVagaPorEmpresa(pesquisa);
-		Vaga[] arrayBusca = new Vaga[busca.size()];
+		ControleDeVaga[] arrayBusca = new ControleDeVaga[busca.size()];
 		for (int i=0; i < busca.size(); i++) {
-			arrayBusca[i] = busca.get(i);
+			ControleDeVaga c = new ControleDeVaga();
+			c.setVaga(busca.get(i));
+			arrayBusca[i] = c;
 		}
 		return arrayBusca;
 	}
 	
-	public Vaga[] inscricoesCandidato() {
+	public ControleDeVaga[] inscricoesCandidato() {
 		ArrayList<Vaga> inscricoes = candidato.getVagas();
-		Vaga[] inscricoesArray = new Vaga[inscricoes.size()];
+		ControleDeVaga[] inscricoesArray = new ControleDeVaga[inscricoes.size()];
 		for (int i=0; i < inscricoes.size(); i++) {
-			inscricoesArray[i] = inscricoes.get(i);
+			ControleDeVaga c = new ControleDeVaga();
+			c.setVaga(inscricoes.get(i));
+			inscricoesArray[i] = c;
 		}
 		return inscricoesArray;
 	}

@@ -25,4 +25,7 @@ public class ControleDeVaga {
 	public void setVaga(Vaga vaga) {
 		this.vaga = vaga;
 	}
+	public String toString() {
+		return vaga.toString();
+	}
 }

@@ -1,11 +1,9 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +17,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controle.ControleCandidato;
+import controle.ControleDeVaga;
 import modelo.Vaga;
 
 public class TelaCandidato extends JFrame implements ListSelectionListener, ActionListener {
@@ -29,7 +28,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	//private JLabel id = new JLabel("ID: ");
 	private JLabel email = new JLabel("Email: ");
 	private JLabel formacao = new JLabel("Formação: ");
-	private JList<Vaga> vagas;
+	private JList<ControleDeVaga> vagas;
 	private JScrollPane scrollPane; 
 	private JPanel vagaPanel = new JPanel();
 	private JButton todasVagas = new JButton("Vagas Disponiveis");
@@ -41,6 +40,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	private JButton pagInicial = new JButton("Pagina Inicial");
 	private JTextField buscarField = new JTextField();
 	private ControleCandidato controle;
+	private ControleDeVaga controleVaga;
 	//private DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
 	private JLabel nomeVaga;
 	private JLabel reqVaga;
@@ -105,7 +105,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		editarCandidato.addActionListener(this);
 		pagInicial.addActionListener(this);
 		
-		vagas = new JList<Vaga>(controle.puxarVagas());
+		vagas = new JList<ControleDeVaga>(controle.puxarVagas());
 		vagas.setFixedCellHeight(20);
 		//vagas = new JList<Vaga>((ListModel<Vaga>) controle.vagasEmpresa());
 		//vagas.setBounds(50, 200, 100, 100);
@@ -136,11 +136,11 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 			vagaPanel.add(inscrever);
 			vagaPanel.add(desinscrever);
 			
-			String nomeVagaSelecionada = "Funcao: " + vagas.getSelectedValue().getFuncao();
-			String reqVagaSelecionada = "Requisitos: " + vagas.getSelectedValue().getRequisitos();
-			Double salVagaSelecionada = vagas.getSelectedValue().getSalario();
+			String nomeVagaSelecionada = "Funcao: " + vagas.getSelectedValue().funcaoVaga();
+			String reqVagaSelecionada = "Requisitos: " + vagas.getSelectedValue().requisitosVaga();
+			Double salVagaSelecionada = vagas.getSelectedValue().salarioVaga();
 			String salStr = "Salario: " + String.valueOf(salVagaSelecionada);
-			String nomeEmpresaVagaSelecionada = "Empresa: " + vagas.getSelectedValue().getEmpresa().getNome();
+			String nomeEmpresaVagaSelecionada = "Empresa: " + vagas.getSelectedValue().empresaVaga().getNome();
 			
 			nomeVaga =  new JLabel(nomeVagaSelecionada);
 			reqVaga = new JLabel(reqVagaSelecionada);
@@ -181,8 +181,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		    vagaPanel.revalidate();
 		    vagaPanel.repaint();
 			
-			Vaga vaga = vagas.getSelectedValue();
-			controle.inscrever(vaga);
+			controle.inscrever(vagas.getSelectedValue().getVaga());
 			
 			inscricao.setBounds(20, 260, 250, 40);
 			inscricao.setForeground(Color.green);
@@ -196,8 +195,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		    vagaPanel.revalidate();
 		    vagaPanel.repaint();
 			
-			Vaga vaga = vagas.getSelectedValue();
-			controle.desinscrever(vaga);
+			controle.desinscrever(vagas.getSelectedValue().getVaga());
 			
 			desinscricao.setBounds(20, 260, 250, 40);
 			desinscricao.setForeground(Color.red);
