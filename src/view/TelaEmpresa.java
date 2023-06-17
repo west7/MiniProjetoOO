@@ -196,14 +196,15 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 		}
 		if (e.getSource() == editarEmpresa) {
 			new TelaLoginEmpresa(controle, true);
+			tela.dispose();
 		}
 		if (e.getSource() == pagInicial) {
-			new TelaEscolha();
+			new TelaEscolha(false);
 			tela.dispose();
 		}
 		if (e.getSource() == excluirConta) {
 			controle.excluirEmpresa();
-			new TelaEscolha();
+			new TelaEscolha(false);
 			tela.dispose();
 		}
 	}

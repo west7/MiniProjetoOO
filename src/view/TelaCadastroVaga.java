@@ -112,34 +112,31 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		if(e.getSource() == botaoCadastrar) {
 			String fun = funcaoBox.getText();
 			String salStr = salarioBox.getText();
-			double sal = Double.parseDouble(salStr);
+			//double sal = Double.parseDouble(salStr);
 			String req = requisitosBox.getText();
-			controle.abrirVaga(fun, sal, req);
-			tela.dispose();
+			if (controle.abrirVaga(fun, salStr, req)) {
+				tela.dispose();				
+			} else {
+				mensagemDadosInvalidos();
+			}
 		}
 		else if (e.getSource() == botaoVoltar) {
 			tela.dispose();
 		}else if (e.getSource() == botaoEditar) {
-			//String fun = funcaoBox.getText().isEmpty() != true ? funcaoBox.getText() : controleVaga.getVaga().getFuncao();
-			//String salStr = salarioBox.getText().isEmpty() != true ? salarioBox.getText() : String.valueOf(controleVaga.getVaga().getSalario());
-			//double sal = Double.parseDouble(salStr);
-			//String req = requisitosBox.getText().isEmpty() != true ? requisitosBox.getText() : controleVaga.getVaga().getRequisitos();
 			String fun = funcaoBox.getText();
 			String salStr = salarioBox.getText();
-			double sal = Double.parseDouble(salStr);
+			//double sal = Double.parseDouble(salStr);
 			String req = requisitosBox.getText();
-			if (fun.isEmpty() || salStr.isEmpty() || req.isEmpty()) {
-				mensagemDadosInvalidos();
+			if (controle.editarVaga(controleVaga.getVaga(), fun, salStr, req)) {
+				tela.dispose();
 			} else {
-				controle.editarVaga(controleVaga.getVaga(), fun, sal, req);
-				tela.dispose();				
+				mensagemDadosInvalidos();
 			}
 		}
 
 	}
 	public void mensagemDadosInvalidos() {
-		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.INFORMATION_MESSAGE);
-		//janela.dispose();
+		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.ERROR_MESSAGE);
 	}
 
 }

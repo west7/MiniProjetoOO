@@ -12,23 +12,32 @@ public class ControleCandidato {
 
 	private Candidato candidato;
 	
-	public Candidato criarCandidato (String nome, String endereco, long id, String email, String habilidades,
+	public boolean criarCandidato(String nome, String endereco, long id, String email, String habilidades,
 			String formacao, String cargo) {
-		candidato = new Candidato(nome, endereco, id, email, habilidades, formacao, cargo);
-		//Dados.preencherDados();
-		return candidato;
+		if (!nome.isEmpty() && !endereco.isEmpty() && !email.isEmpty()) {
+			candidato = new Candidato(nome, endereco, id, email, habilidades, formacao, cargo);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
-	public Candidato editarCandidato(String nome, String endereco, long id, String email, String habilidades,
+	public boolean editarCandidato(String nome, String endereco, long id, String email, String habilidades,
 			String formacao, String cargo) {
-		candidato.setNome(nome);
-		candidato.setEndereco(endereco);
-		candidato.setId(id);
-		candidato.setEmail(email);
-		candidato.setHabilidades(habilidades);
-		candidato.setFormacao(formacao);
-		candidato.setCargo(cargo);
-		return candidato;
+		if (!nome.isEmpty() && !endereco.isEmpty() && !email.isEmpty()) {
+			candidato.setNome(nome);
+			candidato.setEndereco(endereco);
+			candidato.setId(id);
+			candidato.setEmail(email);
+			candidato.setHabilidades(habilidades);
+			candidato.setFormacao(formacao);
+			candidato.setCargo(cargo);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public String nomeCandidato() {
@@ -49,24 +58,32 @@ public class ControleCandidato {
 	public String cargoCandidato() {
 		return candidato.getCargo();
 	}
-	
+	/*
 	public void inscrever(Vaga vaga){
-		if (!candidato.getVagas().contains(vaga)) {
+		if (!candidato.getVagas().contains(vaga) && vaga != null) {
 			candidato.inscrever(vaga);			
 		}
-	}
-	public void desinscrever(Vaga vaga){
-		candidato.desinscrever(vaga);
-	}
-	/*
-	public DefaultListModel<Vaga> puxarVagas() {
-		ArrayList<Vaga> vagas = Dados.getVagas();
-		DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
-		for(Vaga v : vagas) {
-			vagaListModel.addElement(v);
-		}
-		return vagaListModel;
 	}*/
+	public boolean inscrever(ControleDeVaga cVaga){
+		if (cVaga != null) {
+			if (!candidato.getVagas().contains(cVaga.getVaga())) {
+				candidato.inscrever(cVaga.getVaga());
+				return true;
+			}
+			
+		} 
+		return false;
+	}
+	public boolean desinscrever(ControleDeVaga cVaga){
+		if (cVaga != null) {
+			if (candidato.getVagas().contains(cVaga.getVaga())) {
+				candidato.desinscrever(cVaga.getVaga());
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public ControleDeVaga[] puxarVagas() {
 		ArrayList<Vaga> vagas = Dados.getVagas();
 		ControleDeVaga[] arrayVagas = new ControleDeVaga[vagas.size()];
@@ -100,6 +117,34 @@ public class ControleCandidato {
 		}
 		return arrayBusca;
 	}
+	/*
+	public ControleDeVaga[] pesquisar(String pesquisa) {
+		ArrayList<Vaga> busca;
+		ControleDeVaga[] arrayBusca = puxarVagas();
+		ControleDeVaga c;
+		if (pesquisa.isEmpty()) {
+			arrayBusca = puxarVagas();
+		} else if (!pesquisa.isEmpty()) {
+			if (candidato.buscarVagaPorFuncao(pesquisa).size() > 0) {
+				busca = candidato.buscarVagaPorEmpresa(pesquisa);
+				arrayBusca = new ControleDeVaga[busca.size()];
+				for (int i=0; i < busca.size(); i++) {
+					c = new ControleDeVaga();
+					c.setVaga(busca.get(i));
+					arrayBusca[i] = c;
+				}
+			} else {
+				busca = candidato.buscarVagaPorEmpresa(pesquisa);
+				arrayBusca = new ControleDeVaga[busca.size()];
+				for (int i=0; i < busca.size(); i++) {
+					c = new ControleDeVaga();
+					c.setVaga(busca.get(i));
+					arrayBusca[i] = c;
+				}
+			}
+		}
+		return arrayBusca;
+	}*/
 	
 	public ControleDeVaga[] inscricoesCandidato() {
 		ArrayList<Vaga> inscricoes = candidato.getVagas();

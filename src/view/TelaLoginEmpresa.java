@@ -177,6 +177,7 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new TelaEmpresa(controle);
 				tela.dispose();
 			}
 		});
@@ -193,19 +194,15 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			String setor = setorBox.getText();
 			String resumo = resumoBox.getText();
 			String missao = missaoBox.getText();
-			
-			if (nome.isEmpty() || endereco.isEmpty() || email.isEmpty() || setor.isEmpty() || 
-					resumo.isEmpty() || missao.isEmpty()) {
-				mensagemDadosInvalidos();
-			} else {
-				controle.criarEmpresa(nome, endereco, 0001, email, setor, resumo, missao);
-				//Empresa empresa = new Empresa(nome, endereco, 0001, email, setor, resumo, missao);				
+			if (controle.criarEmpresa(nome, endereco, 0001, email, setor, resumo, missao)) {
 				new TelaEmpresa(controle);
 				tela.dispose();
+			} else {
+				mensagemDadosInvalidos();
 			}
 				
 		}else if(e.getSource() == botaoVoltar) {
-			new TelaEscolha();
+			new TelaEscolha(false);
 			tela.dispose();
 		}
 		else if (e.getSource() == botaoEditar) {
@@ -216,14 +213,11 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			String resumo = resumoBox.getText();
 			String missao = missaoBox.getText();
 			
-			if (nome.isEmpty() || endereco.isEmpty() || email.isEmpty() || setor.isEmpty() || 
-					resumo.isEmpty() || missao.isEmpty()) {
-				mensagemDadosInvalidos();
-			} else {
-				controle.editarEmpresa(nome, endereco, 0001, email, setor, resumo, missao);
-				//Empresa empresa = new Empresa(nome, endereco, 0001, email, setor, resumo, missao);				
+			if(controle.editarEmpresa(nome, endereco, WIDTH, email, setor, resumo, missao)) {
 				new TelaEmpresa(controle);
 				tela.dispose();
+			} else {
+				mensagemDadosInvalidos();
 			}
 		}
 	}
@@ -236,8 +230,7 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 	}
 	
 	public void mensagemDadosInvalidos() {
-		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.INFORMATION_MESSAGE);
-		//janela.dispose();
+		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.ERROR_MESSAGE);
 	}
 
 }

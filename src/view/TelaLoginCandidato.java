@@ -149,6 +149,7 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new TelaCandidato(controle);
 				tela.dispose();
 			}
 		});
@@ -166,17 +167,15 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 			String formacao = formacaoBox.getText();
 			String cargo = cargoBox.getText();
 			
-			if (nome.isEmpty() || endereco.isEmpty() || email.isEmpty() || habilidades.isEmpty() || 
-					formacao.isEmpty() || cargo.isEmpty()) {
-				mensagemDadosInvalidos();
-			} else {
-				controle.criarCandidato(nome, endereco, 0001, email, habilidades, formacao, cargo);
+			if (controle.criarCandidato(nome, endereco, (long) 0001, email, habilidades, formacao, cargo)) {
 				new TelaCandidato(controle);
 				tela.dispose();
+			} else {
+				mensagemDadosInvalidos();
 			}
 				
 		}else if(e.getSource() == botaoVoltar) {
-			new TelaEscolha();
+			new TelaEscolha(false);
 			tela.dispose();
 		} else if (e.getSource() == botaoEditar) {
 			String nome = nomeBox.getText();
@@ -186,20 +185,17 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 			String formacao = formacaoBox.getText();
 			String cargo = cargoBox.getText();
 			
-			if (nome.isEmpty() || endereco.isEmpty() || email.isEmpty() || habilidades.isEmpty() || 
-					formacao.isEmpty() || cargo.isEmpty()) {
-				mensagemDadosInvalidos();
-			} else {
-				controle.editarCandidato(nome, endereco, 0001, email, habilidades, formacao, cargo);
+			if (controle.editarCandidato(nome, endereco, 0001, email, habilidades, formacao, cargo)) {
 				new TelaCandidato(controle);
 				tela.dispose();
+			} else {
+				mensagemDadosInvalidos();
 			}
 		}
 	}
 	
 	public void mensagemDadosInvalidos() {
-		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.INFORMATION_MESSAGE);
-		//janela.dispose();
+		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.ERROR_MESSAGE);
 	}
 
 }

@@ -39,7 +39,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	private JButton pagInicial = new JButton("Pagina Inicial");
 	private JTextField buscarField = new JTextField();
 	private ControleCandidato controle;
-	private ControleDeVaga controleVaga;
+	//private ControleDeVaga controleVaga;
 	//private DefaultListModel<Vaga> vagaListModel = new DefaultListModel<>();
 	private JLabel nomeVaga;
 	private JLabel reqVaga;
@@ -86,7 +86,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		minhasInscricoes.setBounds(200,580,150,20);
 		inscrever.setBounds(40,380,120,20);
 		desinscrever.setBounds(160,380,120,20);
-		editarCandidato.setBounds(300, 50, 120, 20);
+		editarCandidato.setBounds(160, 20, 120, 20);
 		pagInicial.setBounds(50, 20, 120, 20);
 		tela.add(todasVagas);
 		tela.add(minhasInscricoes);
@@ -127,8 +127,8 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	public void valueChanged(ListSelectionEvent e) {  
 		if(!e.getValueIsAdjusting() && vagas.getSelectedIndex() != -1) {
 			vagaPanel.removeAll();
-		    vagaPanel.revalidate();
-		    vagaPanel.repaint();
+		    //vagaPanel.revalidate();
+		    //vagaPanel.repaint();
 		    
 		    inscrever.setBounds(40,380,120,20);
 			desinscrever.setBounds(160,380,120,20);
@@ -161,6 +161,8 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buscar) {
 			String campoBusca = buscarField.getText();
+			//vagas.setListData(controle.pesquisar(campoBusca));
+			//vagas.updateUI();
 			if(campoBusca.isEmpty()) {
 				vagas.setListData(controle.puxarVagas());
 				vagas.updateUI();
@@ -180,13 +182,19 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		    vagaPanel.revalidate();
 		    vagaPanel.repaint();
 			
-			controle.inscrever(vagas.getSelectedValue().getVaga());
-			
-			inscricao.setBounds(20, 260, 250, 40);
-			inscricao.setForeground(Color.green);
-			vagaPanel.add(inscricao);
-			vagaPanel.revalidate();
-			vagaPanel.repaint();
+		    if (controle.inscrever(vagas.getSelectedValue())) {
+		    	
+		    	//controle.inscrever(vagas.getSelectedValue());
+		    	
+		    	inscricao.setBounds(20, 260, 250, 40);
+		    	inscricao.setForeground(Color.green);
+		    	vagaPanel.add(inscricao);
+		    	vagaPanel.revalidate();
+		    	vagaPanel.repaint();
+		    	
+		    } else {
+		    	JOptionPane.showMessageDialog(null, "Selecione uma vaga antes", null, JOptionPane.ERROR_MESSAGE);
+		    }
 			
 		}
 		if (e.getSource() == desinscrever) {
@@ -194,13 +202,17 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		    vagaPanel.revalidate();
 		    vagaPanel.repaint();
 			
-			controle.desinscrever(vagas.getSelectedValue().getVaga());
+			if (controle.desinscrever(vagas.getSelectedValue())) {
+				//controle.desinscrever(vagas.getSelectedValue());
+				desinscricao.setBounds(20, 260, 250, 40);
+				desinscricao.setForeground(Color.red);
+				vagaPanel.add(desinscricao);
+				vagaPanel.revalidate();
+				vagaPanel.repaint();
+			} else {
+				JOptionPane.showMessageDialog(null, "Selecione uma vaga antes", null, JOptionPane.ERROR_MESSAGE);
+			}
 			
-			desinscricao.setBounds(20, 260, 250, 40);
-			desinscricao.setForeground(Color.red);
-			vagaPanel.add(desinscricao);
-			vagaPanel.revalidate();
-			vagaPanel.repaint();
 		}
 		
 		if (e.getSource() == todasVagas) {
@@ -213,9 +225,10 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		}
 		if (e.getSource() == editarCandidato) {
 			new TelaLoginCandidato(controle, true);
+			tela.dispose();
 		}
 		if (e.getSource() == pagInicial) {
-			new TelaEscolha();
+			new TelaEscolha(false);
 			tela.dispose();
 		}
 	}
@@ -223,6 +236,6 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		JOptionPane.showMessageDialog(null, "Inscricao feita com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
 	}
 	public void mensagemInscricaoErro() {
-		JOptionPane.showMessageDialog(null, "Erro ao se inscrever", null, JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Erro ao se inscrever", null, JOptionPane.ERROR_MESSAGE);
 	}
 }

@@ -10,28 +10,33 @@ import modelo.Vaga;
 public class ControleEmpresa {
 	private Empresa empresa;
 	
-	public Empresa criarEmpresa(String nome, String endereco, long id, String email, String setor_atuacao,
+	public boolean criarEmpresa(String nome, String endereco, long id, String email, String setor_atuacao,
 			String resumo_sobre_empresa, String missao) {
-		empresa = new Empresa(nome, endereco, id, email, setor_atuacao, resumo_sobre_empresa, missao);
-		return empresa;
-		
+		if (!nome.isEmpty() && !endereco.isEmpty() && !email.isEmpty() && !setor_atuacao.isEmpty()) {
+			empresa = new Empresa(nome, endereco, id, email, setor_atuacao, resumo_sobre_empresa, missao);
+			return true;
+		} else {
+			return false;
+		}
 	}
-	public Empresa editarEmpresa(String nome, String endereco, long id, String email, String setor_atuacao,
+	public boolean editarEmpresa(String nome, String endereco, long id, String email, String setor_atuacao,
 			String resumo_sobre_empresa, String missao) {
-		empresa.setNome(nome);
-		empresa.setEndereco(endereco);
-		empresa.setId(id);
-		empresa.setEmail(email);
-		empresa.setSetorAtuacao(setor_atuacao);
-		empresa.setResumoSobreEmpresa(resumo_sobre_empresa);
-		empresa.setMissao(missao);
-		return empresa;
+		if (!nome.isEmpty() && !endereco.isEmpty() && !email.isEmpty() && !setor_atuacao.isEmpty()) {
+			empresa.setNome(nome);
+			empresa.setEndereco(endereco);
+			empresa.setId(id);
+			empresa.setEmail(email);
+			empresa.setSetorAtuacao(setor_atuacao);
+			empresa.setResumoSobreEmpresa(resumo_sobre_empresa);
+			empresa.setMissao(missao);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	public void excluirEmpresa() {
 		Dados.removerEmpresa(empresa);
 	}
-	
-	
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
@@ -86,28 +91,18 @@ public class ControleEmpresa {
 		return empresasArray;
 	}
 	
-	/*public DefaultListModel<Vaga> puxarVagas(){
-		ArrayList<Vaga> vagas = empresa.getVagas();
-		DefaultListModel <Vaga> vagaListModel = new DefaultListModel<>();
-		for(Vaga v : vagas) {
-			vagaListModel.addElement(v);
+	public boolean abrirVaga(String funcao, String salario, String requisitos) {
+		if (!funcao.isEmpty() && !salario.isEmpty() && !requisitos.isEmpty()) {
+			try {
+				double sal = Double.parseDouble(salario);
+				empresa.abrirVaga(funcao, sal, requisitos);
+				return true;
+			} catch (NumberFormatException ex) {
+				return false;
+			}
+		} else {
+			return false;
 		}
-		return vagaListModel;
-	}*/
-	
-	public Object[] funcoesVagas() {
-		//ArrayList<String> funcoes = new ArrayList<String>();
-		ArrayList<Vaga> funcoes = new ArrayList<Vaga>();
-		for (Vaga vaga : empresa.getVagas()) {
-			String a = vaga.getFuncao();
-			//funcoes.add(a);
-			funcoes.add(vaga);
-		}
-		return funcoes.toArray();
-	}
-	
-	public void abrirVaga(String funcao, double salario, String requisitos) {
-		empresa.abrirVaga(funcao, salario, requisitos);
 	}
 
 	public void excluirVaga(Vaga vaga) {
@@ -120,11 +115,26 @@ public class ControleEmpresa {
 			return false;
 		}
 	}
-	public void editarVaga(Vaga vaga, String novaFuncao, double novoSalario , String novosRequisitos) {
+	/*public void editarVaga(Vaga vaga, String novaFuncao, double novoSalario , String novosRequisitos) {
 		//empresa.editarVaga(vaga,novaFuncao, novoSalario ,novosRequisitos);
 		vaga.setFuncao(novaFuncao);
 		vaga.setSalario(novoSalario);
 		vaga.setRequisitos(novosRequisitos);
+	}*/
+	public boolean editarVaga(Vaga vaga, String novaFuncao, String novoSalario , String novosRequisitos) {
+		if (!novaFuncao.isEmpty() && !novoSalario.isEmpty() && !novosRequisitos.isEmpty()) {
+			try {
+				double sal = Double.parseDouble(novoSalario);
+				vaga.setSalario(sal);
+				vaga.setFuncao(novaFuncao);
+				vaga.setRequisitos(novosRequisitos);
+				return true;
+			} catch (NumberFormatException ex) {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	
 	public void inserirDados() {
