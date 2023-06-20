@@ -1,4 +1,4 @@
-package teste;
+package main;
 
 import modelo.Candidato;
 import modelo.Dados;

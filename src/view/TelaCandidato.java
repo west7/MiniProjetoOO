@@ -170,7 +170,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 				if(controle.pesquisarFuncao(campoBusca).length > 0){
 					vagas.setListData(controle.pesquisarFuncao(campoBusca));
 					vagas.updateUI();
-				}else /*if(controle.pesquisarEmpresa(campoBusca) != null)*/ {
+				}else{
 					vagas.setListData(controle.pesquisarEmpresa(campoBusca));
 					vagas.updateUI();
 				}

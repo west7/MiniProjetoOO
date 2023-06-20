@@ -1,4 +1,4 @@
-package teste;
+package main;
 
 import modelo.Dados;
 import modelo.Empresa;
