@@ -20,11 +20,10 @@ import controle.ControleEmpresa;
 
 public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, ActionListener{
 
-	//public JTextField nome, email, endereco, setor, resumo, missao;
-	//public JButton botaoSalvar, botaoVoltar;
 	private JFrame tela = new JFrame();
 	private JTextField nomeBox = new JTextField("");
 	private JTextField emailBox = new JTextField("");
+	private JTextField cnpjBox = new JTextField("");
 	private JTextField enderecoBox = new JTextField("");
 	private JTextField setorBox = new JTextField("");
 	private JTextField resumoBox = new JTextField("");
@@ -32,22 +31,21 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 	private JButton botaoSalvar = new JButton("Salvar");
 	private JButton botaoEditar = new JButton("Editar");
 	private JButton botaoVoltar = new JButton("Voltar");
-	private JLabel nomeLabel = new JLabel("Nome: ");
-	private JLabel emailLabel = new JLabel("Email: ");
-	private JLabel enderecoLabel = new JLabel("Endereço: ");
-	private JLabel setorLabel = new JLabel("Setor: ");
-	private JLabel resumoLabel = new JLabel("Resumo: ");
-	private JLabel missaoLabel = new JLabel("Missão: ");
+	private JLabel nomeLabel = new JLabel("<html><font color='red'>*</font> Nome</html>");
+	private JLabel emailLabel = new JLabel("<html><font color='red'>*</font> Email</html>");
+	private JLabel cnpjLabel = new JLabel("<html><font color='red'>*</font> CNPJ</html>");
+	private JLabel enderecoLabel = new JLabel("<html><font color='red'>*</font> Endereco</html>");
+	private JLabel setorLabel = new JLabel("<html><font color='red'>*</font> Setor</html>");
+	private JLabel resumoLabel = new JLabel("Resumo");
+	private JLabel missaoLabel = new JLabel("Missão");
 	private JList<ControleEmpresa> empresas;
 	private JScrollPane scrollPane;
 	private ControleEmpresa controle;
-	//private ControleDeVaga controleVaga;
 	
 	public TelaLoginEmpresa(ControleEmpresa c, boolean editar) {
 		
 		if(editar == false) {
 			controle = new ControleEmpresa();
-			//controleVaga = new ControleDeVaga();
 			
 			tela.getContentPane().setBackground(Color.lightGray);
 			tela.setSize(1000, 1000);
@@ -66,23 +64,28 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			tela.add(emailBox);
 			tela.add(emailLabel);
 			
-			enderecoLabel.setBounds(200, 175, 100, 30);
-			enderecoBox.setBounds(200, 200, 600, 30);
+			cnpjLabel.setBounds(200, 175, 100, 30);
+			cnpjBox.setBounds(200, 200, 600, 30);
+			tela.add(cnpjLabel);
+			tela.add(cnpjBox);
+			
+			enderecoLabel.setBounds(200, 225, 100, 30);
+			enderecoBox.setBounds(200, 250, 600, 30);
 			tela.add(enderecoBox);
 			tela.add(enderecoLabel);
 			
-			setorLabel.setBounds(200, 225, 100, 30);
-			setorBox.setBounds(200, 250, 600, 30);
+			setorLabel.setBounds(200, 275, 100, 30);
+			setorBox.setBounds(200, 300, 600, 30);
 			tela.add(setorBox);
 			tela.add(setorLabel);
 			
-			resumoLabel.setBounds(200, 275, 100, 30);
-			resumoBox.setBounds(200, 300, 600, 30);
+			resumoLabel.setBounds(200, 325, 100, 30);
+			resumoBox.setBounds(200, 350, 600, 30);
 			tela.add(resumoBox);
 			tela.add(resumoLabel);
 			
-			missaoLabel.setBounds(200, 325, 100, 30);
-			missaoBox.setBounds(200, 350, 600, 30);
+			missaoLabel.setBounds(200, 375, 100, 30);
+			missaoBox.setBounds(200, 400, 600, 30);
 			tela.add(missaoBox);
 			tela.add(missaoLabel);
 			
@@ -96,8 +99,7 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			empresas.setFixedCellHeight(20);
 			empresas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
 			scrollPane = new JScrollPane(empresas);
-			scrollPane.setBounds(350,400,300,200);
-			//empresas.addListSelectionListener((ListSelectionListener) this);
+			scrollPane.setBounds(350,450,300,200);
 			empresas.addListSelectionListener(this);
 			tela.add(scrollPane);
 			
@@ -105,15 +107,6 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			
 			botaoSalvar.addActionListener(this);
 			botaoVoltar.addActionListener(this);
-			
-			/*botaoVoltar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new TelaEscolha();
-				tela.dispose();
-			}
-		});*/
 			
 		}
 		if (editar == true) {
@@ -138,26 +131,32 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			tela.add(emailBox);
 			tela.add(emailLabel);
 			
-			enderecoLabel.setBounds(200, 175, 100, 30);
-			enderecoBox.setBounds(200, 200, 600, 30);
+			cnpjLabel.setBounds(200, 175, 100, 30);
+			cnpjBox.setBounds(200, 200, 600, 30);
+			cnpjBox.setText(Long.toString(controle.cnpjEmpresa()));
+			tela.add(cnpjLabel);
+			tela.add(cnpjBox);
+			
+			enderecoLabel.setBounds(200, 225, 100, 30);
+			enderecoBox.setBounds(200, 250, 600, 30);
 			enderecoBox.setText(controle.enderecoEmpresa());
 			tela.add(enderecoBox);
 			tela.add(enderecoLabel);
 			
-			setorLabel.setBounds(200, 225, 100, 30);
-			setorBox.setBounds(200, 250, 600, 30);
+			setorLabel.setBounds(200, 275, 100, 30);
+			setorBox.setBounds(200, 300, 600, 30);
 			setorBox.setText(controle.setorEmpresa());
 			tela.add(setorBox);
 			tela.add(setorLabel);
 			
-			resumoLabel.setBounds(200, 275, 100, 30);
-			resumoBox.setBounds(200, 300, 600, 30);
-			resumoBox.setText(controle.reumoEmpresa());
+			resumoLabel.setBounds(200, 325, 100, 30);
+			resumoBox.setBounds(200, 350, 600, 30);
+			resumoBox.setText(controle.resumoEmpresa());
 			tela.add(resumoBox);
 			tela.add(resumoLabel);
 			
-			missaoLabel.setBounds(200, 325, 100, 30);
-			missaoBox.setBounds(200, 350, 600, 30);
+			missaoLabel.setBounds(200, 375, 100, 30);
+			missaoBox.setBounds(200, 400, 600, 30);
 			missaoBox.setText(controle.missaoEmpresa());
 			tela.add(missaoBox);
 			tela.add(missaoLabel);
@@ -171,7 +170,6 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			tela.setVisible(true);
 			
 			botaoEditar.addActionListener(this);
-			//botaoVoltar.addActionListener(this);
 			
 			botaoVoltar.addActionListener(new ActionListener() {
 			
@@ -190,11 +188,12 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 		if(e.getSource() == botaoSalvar) {
 			String nome = nomeBox.getText();
 			String endereco = enderecoBox.getText();
+			String cnpj = cnpjBox.getText();
 			String email = emailBox.getText();
 			String setor = setorBox.getText();
 			String resumo = resumoBox.getText();
 			String missao = missaoBox.getText();
-			if (controle.criarEmpresa(nome, endereco, 0001, email, setor, resumo, missao)) {
+			if (controle.criarEmpresa(nome, endereco, cnpj, email, setor, resumo, missao)) {
 				new TelaEmpresa(controle);
 				tela.dispose();
 			} else {
@@ -208,12 +207,13 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 		else if (e.getSource() == botaoEditar) {
 			String nome = nomeBox.getText();
 			String endereco = enderecoBox.getText();
+			String cnpj = cnpjBox.getText();
 			String email = emailBox.getText();
 			String setor = setorBox.getText();
 			String resumo = resumoBox.getText();
 			String missao = missaoBox.getText();
 			
-			if(controle.editarEmpresa(nome, endereco, WIDTH, email, setor, resumo, missao)) {
+			if(controle.editarEmpresa(nome, endereco, cnpj, email, setor, resumo, missao)) {
 				new TelaEmpresa(controle);
 				tela.dispose();
 			} else {
@@ -230,7 +230,7 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 	}
 	
 	public void mensagemDadosInvalidos() {
-		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Preencha os campos obrigatorios com informacoes validas", null, JOptionPane.ERROR_MESSAGE);
 	}
 
 }

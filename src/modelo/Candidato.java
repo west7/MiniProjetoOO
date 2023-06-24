@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public class Candidato extends Usuario{
 	
-	private String habilidades;
+	private long cpf;
+	private String competencias;
 	private String formacao;
 	private String cargo;
 	
@@ -14,10 +15,11 @@ public class Candidato extends Usuario{
 		Dados.adicionarCandidato(this);
 	}
 
-	public Candidato(String nome, String endereco, long id, String email, String habilidades, String formacao,
+	public Candidato(String nome, String endereco, long cpf, String email, String competencias, String formacao,
 			String cargo) {
-		super(nome, endereco, id, email);
-		this.habilidades = habilidades;
+		super(nome, endereco, email);
+		this.cpf = cpf;
+		this.competencias = competencias;
 		this.formacao = formacao;
 		this.cargo = cargo;
 		Dados.adicionarCandidato(this);
@@ -25,18 +27,26 @@ public class Candidato extends Usuario{
 	}
 
 	//Sobrecarga
-	public Candidato(String nome, String endereco, long id, String email, String cargo) {
-		super(nome, endereco, id, email);
+	public Candidato(String nome, String endereco, long cpf, String email, String cargo) {
+		super(nome, endereco, email);
+		this.cpf = cpf;
 		this.cargo = cargo;
 		Dados.adicionarCandidato(this);
 	}
 	
-	public String getHabilidades() {
-		return habilidades;
+	public long getCPF() {
+		return cpf;
+	}
+	public void setCPF(long cpf) {
+		this.cpf = cpf;
+	}
+	
+	public String getCompetencias() {
+		return competencias;
 	}
 
-	public void setHabilidades(String habilidades) {
-		this.habilidades = habilidades;
+	public void setCompetencias(String competencias) {
+		this.competencias = competencias;
 	}
 
 	public String getFormacao() {
@@ -56,17 +66,17 @@ public class Candidato extends Usuario{
 	}
 
 	public String toString() {
-		return String.format("Nome: %s, Endereço: %S, ID: %d, Email: %s", getNome(), getEndereco(), getId(), getEmail()); 
+		return String.format("Nome: %s, Endereço: %S, CPF: %d, Email: %s", getNome(), getEndereco(), getCPF(), getEmail()); 
 	}
 	
 	public void inscrever(Vaga vaga) {
 		vagas.add(vaga);
-		vaga.adicionarCandidato(this);
+		//vaga.adicionarCandidato(this);
 	}
 	
 	public void desinscrever(Vaga vaga) {
 		vagas.remove(vaga);
-		vaga.removerCandidato(this);
+		//vaga.removerCandidato(this);
 	}
 	
 	public String verInscricoes() {

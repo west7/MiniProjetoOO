@@ -6,7 +6,6 @@ public abstract class Usuario{
 	
 	protected String nome;
 	protected String endereco;
-	protected long id;
 	private String email;
 	protected ArrayList<Vaga> vagas;
 	
@@ -14,11 +13,10 @@ public abstract class Usuario{
 	public Usuario() {
 	}
 	
-	public Usuario(String nome, String endereco, long id, String email) {
+	public Usuario(String nome, String endereco, String email) {
 		super();
 		this.nome = nome;
 		this.endereco = endereco;
-		this.id = id;
 		this.email = email;
 		this.vagas = new ArrayList<Vaga>();
 	}
@@ -37,14 +35,6 @@ public abstract class Usuario{
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 	
 	public String getEmail() {

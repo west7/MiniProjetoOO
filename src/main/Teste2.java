@@ -11,7 +11,7 @@ public class Teste2 {
 	
 		//Empresa e1 = new Empresa("Amazon", "Brasil", 0001, "Amazon@" );
 		//Vaga v1 = new Vaga("Teste", (double)10000, "Teste", e1);
-		TelaEscolha tela = new TelaEscolha(true);
+		//TelaEscolha tela = new TelaEscolha(true);
 		//TelaLoginCandidato tela = new TelaLoginCandidato();
 		//TelaCadastroVaga tela = new TelaCadastroVaga();
 		//TelaCandidato tela =  new TelaCandidato(new ControleCandidato());

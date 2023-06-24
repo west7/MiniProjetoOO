@@ -12,11 +12,10 @@ import controle.*;
 
 public class TelaEscolha extends JFrame implements ActionListener{
 	
-	//public JButton botaoCandidato, botaoEmpresa;
 	private JFrame jFrame = new JFrame();
-	private JButton botaoCandidato = new JButton("Candidato");
-	private JButton botaoEmpresa = new JButton("Empresa");
-	private JLabel label = new JLabel("ESCOLHA: ");
+	private JButton botaoCandidato = new JButton("Sou Candidato");
+	private JButton botaoEmpresa = new JButton("Sou Empresa");
+	private JLabel label = new JLabel("ESCOLHA:");
 	private ControleEmpresa c;
 
 	public TelaEscolha(boolean primeiraTela) {
@@ -24,23 +23,24 @@ public class TelaEscolha extends JFrame implements ActionListener{
 			c = new ControleEmpresa();
 			c.inserirDados();
 			
+			//jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			jFrame.getContentPane().setBackground(Color.lightGray);
 			jFrame.setTitle("Escolha de Usuário");
 			jFrame.setVisible(true);
-			jFrame.setSize(1000, 500);
+			jFrame.setSize(1000, 1000);
 			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jFrame.setLocationRelativeTo(null);
 			jFrame.setLayout(null);
 			
-			botaoCandidato.setBounds(250, 200, 200, 70);
+			botaoCandidato.setBounds(250, 400, 200, 70);
 			botaoCandidato.setFont(new Font("Arial", Font.BOLD, 20));
 			jFrame.add(botaoCandidato);
 			
-			botaoEmpresa.setBounds(550, 200, 200, 70);
+			botaoEmpresa.setBounds(550, 400, 200, 70);
 			botaoEmpresa.setFont(new Font("Arial", Font.BOLD, 20));
 			jFrame.add(botaoEmpresa);
 			
-			label.setBounds(450, 100, 200, 70);
+			label.setBounds(450, 300, 200, 70);
 			label.setFont(new Font("Arial", Font.BOLD, 20));
 			label.setForeground(Color.black);
 			jFrame.add(label);
@@ -52,20 +52,20 @@ public class TelaEscolha extends JFrame implements ActionListener{
 			jFrame.getContentPane().setBackground(Color.lightGray);
 			jFrame.setTitle("Escolha de Usuário");
 			jFrame.setVisible(true);
-			jFrame.setSize(1000, 500);
+			jFrame.setSize(1000, 1000);
 			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jFrame.setLocationRelativeTo(null);
 			jFrame.setLayout(null);
 		
-			botaoCandidato.setBounds(250, 200, 200, 70);
+			botaoCandidato.setBounds(250, 400, 200, 70);
 			botaoCandidato.setFont(new Font("Arial", Font.BOLD, 20));
 			jFrame.add(botaoCandidato);
 			
-			botaoEmpresa.setBounds(550, 200, 200, 70);
+			botaoEmpresa.setBounds(550, 400, 200, 70);
 			botaoEmpresa.setFont(new Font("Arial", Font.BOLD, 20));
 			jFrame.add(botaoEmpresa);
 			
-			label.setBounds(450, 100, 200, 70);
+			label.setBounds(450, 300, 200, 70);
 			label.setFont(new Font("Arial", Font.BOLD, 20));
 			label.setForeground(Color.black);
 			jFrame.add(label);
@@ -84,5 +84,8 @@ public class TelaEscolha extends JFrame implements ActionListener{
 			new TelaLoginEmpresa(null, false);
 			jFrame.dispose();
 		}
+	}
+	public static void main(String[] args) {
+		new TelaEscolha(true);
 	}
 }

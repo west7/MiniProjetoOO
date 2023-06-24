@@ -14,7 +14,7 @@ public class TesteCriarCandidato {
 	@Test
 	public void checarCriarCandidato() {
 		
-		assertTrue(c.criarCandidato("Guilherme","Brazil", 0, "Guilherme@", "habilidades", "formacao", "cargo"));
-		assertFalse(c.criarCandidato("","", 0, "Guilherme@", "habilidades", "formacao", "cargo"));
+		assertTrue(c.criarCandidato("Guilherme","Brazil", "124124", "Guilherme@", "habilidades", "formacao", "cargo"));
+		assertFalse(c.criarCandidato("","", "124124", "Guilherme@", "habilidades", "formacao", "cargo"));
 	}
 }

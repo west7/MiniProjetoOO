@@ -8,7 +8,7 @@ public class Vaga {
 	private Double salario;
 	private String requisitos;
 	private Empresa empresa;
-	private ArrayList<Candidato> candidatos;
+	//private ArrayList<Candidato> candidatos;
 	
 	
 	public Vaga(String funcao, Double salario, String requisitos, Empresa empresa) {
@@ -17,7 +17,7 @@ public class Vaga {
 		this.salario = salario;
 		this.requisitos = requisitos;
 		this.empresa = empresa;
-		this.candidatos = new ArrayList<>();
+		//this.candidatos = new ArrayList<>();
 		Dados.adicionarVaga(this);
 	}
 	
@@ -28,7 +28,7 @@ public class Vaga {
 		this.funcao = funcao;
 		this.salario = salario;
 		this.requisitos = requisitos;
-		this.candidatos = new ArrayList<>();
+		//this.candidatos = new ArrayList<>();
 		Dados.adicionarVaga(this);
 	}
 
@@ -65,7 +65,7 @@ public class Vaga {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
-	
+	/*
 	public ArrayList<Candidato> getCandidatos() {
 		return candidatos;
 	}
@@ -80,7 +80,7 @@ public class Vaga {
 	
 	public void removerCandidato(Candidato candidato) {
 		this.candidatos.remove(candidato);
-	}
+	}*/
 
 	public String toString() {
 		//return String.format("Função: %s, Requisitos: %s, Empresa: %s, Salario: $%.2f", getFuncao(), getRequisitos(), empresa.getNome(), getSalario());

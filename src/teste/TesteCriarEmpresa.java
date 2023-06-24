@@ -13,7 +13,7 @@ public class TesteCriarEmpresa {
 	@Test 
 	public void checarCriarEmpresaS() {
 		
-		assertTrue(c.criarEmpresa("Amazon", "EUA", 1, "amazon@", "Varejo", "resumo", "missao"));
-		assertFalse(c.criarEmpresa("", "EUA", 1, "amazon@", "Varejo", "resumo", "missao"));
+		assertTrue(c.criarEmpresa("Amazon", "EUA", "123123", "amazon@", "Varejo", "resumo", "missao"));
+		assertFalse(c.criarEmpresa("", "EUA", "123123", "amazon@", "Varejo", "resumo", "missao"));
 	}
 }

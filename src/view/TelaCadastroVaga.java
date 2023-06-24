@@ -16,20 +16,22 @@ import controle.ControleEmpresa;
 public class TelaCadastroVaga extends JFrame implements ActionListener {
 	
 	private JFrame tela = new JFrame();
-	private JLabel funcaoLabel = new JLabel("Função: "); 
+	private JLabel funcaoLabel = new JLabel("<html><font color='red'>*</font> Funcao</html>"); 
 	private JTextField funcaoBox = new JTextField();
-	private JLabel salarioLabel = new JLabel("Salario: ");
+	private JLabel salarioLabel = new JLabel("<html><font color='red'>*</font> Salario</html>");
 	private JTextField salarioBox = new JTextField();
-	private JLabel requisitosLabel = new JLabel("Requisitos: ");
+	private JLabel requisitosLabel = new JLabel("<html><font color='red'>*</font> Requisitos</html>");
 	private JTextField requisitosBox = new JTextField();
 	private JButton botaoCadastrar = new JButton("Cadastrar");
 	private JButton botaoVoltar = new JButton("Voltar");
 	private JButton botaoEditar = new JButton("Editar");
 	private ControleEmpresa controle;
 	private ControleDeVaga controleVaga;
-	
-	public TelaCadastroVaga(ControleEmpresa c) {
+	private TelaEmpresa telaEmpresa;
+	// criar vaga
+	public TelaCadastroVaga(ControleEmpresa c, TelaEmpresa t) {
 		controle = c;
+		telaEmpresa = t;
 		
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(525, 350);
@@ -65,10 +67,11 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		botaoCadastrar.addActionListener(this);
 		botaoVoltar.addActionListener(this);
 	}
-	
-	public TelaCadastroVaga(ControleEmpresa c, ControleDeVaga v) {
+	// editar vaga
+	public TelaCadastroVaga(ControleEmpresa c, ControleDeVaga v, TelaEmpresa t) {
 		controle = c;
 		controleVaga = v;
+		telaEmpresa = t;
 		
 		tela.getContentPane().setBackground(Color.lightGray);
 		tela.setSize(525, 350);
@@ -112,10 +115,10 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		if(e.getSource() == botaoCadastrar) {
 			String fun = funcaoBox.getText();
 			String salStr = salarioBox.getText();
-			//double sal = Double.parseDouble(salStr);
 			String req = requisitosBox.getText();
 			if (controle.abrirVaga(fun, salStr, req)) {
-				tela.dispose();				
+				tela.dispose();
+				telaEmpresa.atualizarJList();
 			} else {
 				mensagemDadosInvalidos();
 			}
@@ -125,10 +128,10 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		}else if (e.getSource() == botaoEditar) {
 			String fun = funcaoBox.getText();
 			String salStr = salarioBox.getText();
-			//double sal = Double.parseDouble(salStr);
 			String req = requisitosBox.getText();
 			if (controle.editarVaga(controleVaga.getVaga(), fun, salStr, req)) {
 				tela.dispose();
+				telaEmpresa.atualizarPanel();
 			} else {
 				mensagemDadosInvalidos();
 			}

@@ -10,26 +10,37 @@ import modelo.Vaga;
 public class ControleEmpresa {
 	private Empresa empresa;
 	
-	public boolean criarEmpresa(String nome, String endereco, long id, String email, String setor_atuacao,
+	public boolean criarEmpresa(String nome, String endereco, String cnpjStr, String email, String setor_atuacao,
 			String resumo_sobre_empresa, String missao) {
-		if (!nome.isEmpty() && !endereco.isEmpty() && !email.isEmpty() && !setor_atuacao.isEmpty()) {
-			empresa = new Empresa(nome, endereco, id, email, setor_atuacao, resumo_sobre_empresa, missao);
-			return true;
+		if (!nome.isEmpty() && !endereco.isEmpty() && !cnpjStr.isEmpty() && !email.isEmpty() && !setor_atuacao.isEmpty()) {
+			try {
+				long cnpj = Long.parseLong(cnpjStr);
+				empresa = new Empresa(nome, endereco, cnpj, email, setor_atuacao, resumo_sobre_empresa, missao);
+				return true;				
+			} catch(NumberFormatException ex) {
+				return false;
+			}
 		} else {
 			return false;
 		}
 	}
-	public boolean editarEmpresa(String nome, String endereco, long id, String email, String setor_atuacao,
+	public boolean editarEmpresa(String nome, String endereco, String cnpjStr, String email, String setor_atuacao,
 			String resumo_sobre_empresa, String missao) {
-		if (!nome.isEmpty() && !endereco.isEmpty() && !email.isEmpty() && !setor_atuacao.isEmpty()) {
-			empresa.setNome(nome);
-			empresa.setEndereco(endereco);
-			empresa.setId(id);
-			empresa.setEmail(email);
-			empresa.setSetorAtuacao(setor_atuacao);
-			empresa.setResumoSobreEmpresa(resumo_sobre_empresa);
-			empresa.setMissao(missao);
-			return true;
+		if (!nome.isEmpty() && !endereco.isEmpty() && !cnpjStr.isEmpty() && !email.isEmpty() && !setor_atuacao.isEmpty()) {
+			try {
+				long cnpj = Long.parseLong(cnpjStr);
+				empresa.setNome(nome);
+				empresa.setEndereco(endereco);
+				empresa.setCNPJ(cnpj);
+				empresa.setEmail(email);
+				empresa.setSetorAtuacao(setor_atuacao);
+				empresa.setResumoSobreEmpresa(resumo_sobre_empresa);
+				empresa.setMissao(missao);
+				return true;				
+			} catch(NumberFormatException ex) {
+				return false;
+			}
+			
 		} else {
 			return false;
 		}
@@ -47,6 +58,9 @@ public class ControleEmpresa {
 	public String nomeEmpresa() {
 		return empresa.getNome();
 	}
+	public long cnpjEmpresa() {
+		return empresa.getCNPJ();
+	}
 	public String enderecoEmpresa() {
 		return empresa.getEndereco();
 	}
@@ -59,11 +73,8 @@ public class ControleEmpresa {
 	public String missaoEmpresa() {
 		return empresa.getMissao();
 	}
-	public String reumoEmpresa() {
+	public String resumoEmpresa() {
 		return empresa.getResumoSobreEmpresa();
-	}
-	public long idEmpresa() {
-		return empresa.getId();
 	}
 	public ArrayList<Vaga> vagasEmpresa() {
 		return empresa.getVagas();

@@ -12,28 +12,38 @@ public class ControleCandidato {
 
 	private Candidato candidato;
 	
-	public boolean criarCandidato(String nome, String endereco, long id, String email, String habilidades,
+	public boolean criarCandidato(String nome, String endereco, String cpfStr, String email, String competencias,
 			String formacao, String cargo) {
-		if (!nome.isEmpty() && !endereco.isEmpty() && !email.isEmpty()) {
-			candidato = new Candidato(nome, endereco, id, email, habilidades, formacao, cargo);
-			return true;
+		if (!nome.isEmpty() && !endereco.isEmpty() && !cpfStr.isEmpty() && !email.isEmpty()) {
+			try {
+				long cpf = Long.parseLong(cpfStr);
+				candidato = new Candidato(nome, endereco, cpf, email, competencias, formacao, cargo);
+				return true;
+			} catch (NumberFormatException ex) {
+				return false;
+			}
 		}
 		else {
 			return false;
 		}
 	}
 	
-	public boolean editarCandidato(String nome, String endereco, long id, String email, String habilidades,
+	public boolean editarCandidato(String nome, String endereco, String cpfStr, String email, String competencias,
 			String formacao, String cargo) {
-		if (!nome.isEmpty() && !endereco.isEmpty() && !email.isEmpty()) {
-			candidato.setNome(nome);
-			candidato.setEndereco(endereco);
-			candidato.setId(id);
-			candidato.setEmail(email);
-			candidato.setHabilidades(habilidades);
-			candidato.setFormacao(formacao);
-			candidato.setCargo(cargo);
-			return true;
+		if (!nome.isEmpty() && !endereco.isEmpty() && !cpfStr.isEmpty() && !email.isEmpty()) {
+			try {
+				long cpf = Long.parseLong(cpfStr);
+				candidato.setNome(nome);
+				candidato.setEndereco(endereco);
+				candidato.setCPF(cpf);
+				candidato.setEmail(email);
+				candidato.setCompetencias(competencias);
+				candidato.setFormacao(formacao);
+				candidato.setCargo(cargo);
+				return true;
+			} catch (NumberFormatException ex) {
+				return false;
+			}
 		}
 		else {
 			return false;
@@ -43,14 +53,17 @@ public class ControleCandidato {
 	public String nomeCandidato() {
 		return candidato.getNome();
 	}
+	public long cpfCandidato() {
+		return candidato.getCPF();
+	}
 	public String enderecoCandidato() {
 		return candidato.getEndereco();
 	}
 	public String emailCandidato() {
 		return candidato.getEmail();
 	}
-	public String habilidadesCandidato() {
-		return candidato.getHabilidades();
+	public String competenciasCandidato() {
+		return candidato.getCompetencias();
 	}
 	public String formacaoCandidato() {
 		return candidato.getFormacao();
