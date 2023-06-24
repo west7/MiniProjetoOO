@@ -6,10 +6,21 @@ import org.junit.Test;
 
 import controle.ControleEmpresa;
 
+/**
+ * Classe TesteCriarEmpresa testa o metodo criarEmpresa() da classe ControleEmpresa
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see ControleEmpresa
+ *
+ */
 public class TesteCriarEmpresa {
 	
 	ControleEmpresa c = new ControleEmpresa();
 
+	/**
+	 * Checa a funcionalidade do metodo
+	 */
 	@Test 
 	public void checarCriarEmpresaS() {
 		

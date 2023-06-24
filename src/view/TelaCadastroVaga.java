@@ -13,6 +13,14 @@ import javax.swing.JTextField;
 import controle.ControleDeVaga;
 import controle.ControleEmpresa;
 
+/**
+ * Classe que gera a visualizacao do cadastro de uma Vaga
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Vaga
+ *
+ */
 public class TelaCadastroVaga extends JFrame implements ActionListener {
 	
 	private JFrame tela = new JFrame();
@@ -28,7 +36,12 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 	private ControleEmpresa controle;
 	private ControleDeVaga controleVaga;
 	private TelaEmpresa telaEmpresa;
-	// criar vaga
+	
+	/**
+	 * Construtor da tela de cadastro
+	 * @param c ControleEmpresa
+	 * @param t TelaEmpresa
+	 */
 	public TelaCadastroVaga(ControleEmpresa c, TelaEmpresa t) {
 		controle = c;
 		telaEmpresa = t;
@@ -67,7 +80,12 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		botaoCadastrar.addActionListener(this);
 		botaoVoltar.addActionListener(this);
 	}
-	// editar vaga
+	/**
+	 * Construtor da tela de edicao
+	 * @param c ControleEmpresa
+	 * @param v ControleDeVaga
+	 * @param t TelaEmpresa
+	 */
 	public TelaCadastroVaga(ControleEmpresa c, ControleDeVaga v, TelaEmpresa t) {
 		controle = c;
 		controleVaga = v;
@@ -110,6 +128,9 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		botaoEditar.addActionListener(this);
 		botaoVoltar.addActionListener(this);
 	}
+	/**
+	 * Sobrescreve o metodo da interface
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoCadastrar) {
@@ -138,6 +159,9 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		}
 
 	}
+	/**
+	 * Gera uma mensagem ao usuario
+	 */
 	public void mensagemDadosInvalidos() {
 		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.ERROR_MESSAGE);
 	}

@@ -7,10 +7,20 @@ import org.junit.Test;
 
 import controle.ControleCandidato;
 
+/**
+ * Classe TesteCriarCandidato testa o metodo criarCandidato() da classe ControleCandidato
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see ControleCandidato
+ *
+ */
 public class TesteCriarCandidato {
 
 	ControleCandidato c = new ControleCandidato();
-	
+	/**
+	 * Checa a funcionalidade do metodo
+	 */
 	@Test
 	public void checarCriarCandidato() {
 		

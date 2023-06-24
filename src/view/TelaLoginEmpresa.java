@@ -15,9 +15,16 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JList;
 
-import controle.ControleDeVaga;
 import controle.ControleEmpresa;
 
+/**
+ * Classe que gera a visualizacao do cadastro de uma Empresa
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Empresa
+ *
+ */
 public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, ActionListener{
 
 	private JFrame tela = new JFrame();
@@ -42,6 +49,11 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 	private JScrollPane scrollPane;
 	private ControleEmpresa controle;
 	
+	/**
+	 * Construtor verifica se a empresa quer cadastrar ou editar os dados
+	 * @param c ControleEmpresa
+	 * @param editar boolean
+	 */
 	public TelaLoginEmpresa(ControleEmpresa c, boolean editar) {
 		
 		if(editar == false) {
@@ -183,6 +195,9 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 		
 	}
 	
+	/**
+	 * Sobrescreve o metodo actionPerformed da interface ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoSalvar) {
@@ -229,6 +244,9 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 		}
 	}
 	
+	/**
+	 * Gera uma mensagem ao usuario
+	 */
 	public void mensagemDadosInvalidos() {
 		JOptionPane.showMessageDialog(null, "Preencha os campos obrigatorios com informacoes validas", null, JOptionPane.ERROR_MESSAGE);
 	}

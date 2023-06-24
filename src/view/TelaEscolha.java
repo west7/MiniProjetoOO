@@ -10,6 +10,15 @@ import javax.swing.JLabel;
 
 import controle.*;
 
+/**
+ * Classe que gera a visualizacao da escolha do usuario entre Candidato ou Empresa
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Candidato
+ * @see Empresa
+ *
+ */
 public class TelaEscolha extends JFrame implements ActionListener{
 	
 	private JFrame jFrame = new JFrame();
@@ -18,6 +27,10 @@ public class TelaEscolha extends JFrame implements ActionListener{
 	private JLabel label = new JLabel("ESCOLHA:");
 	private ControleEmpresa c;
 
+	/**
+	 * Construtor que verifica se é a primeira vez que o usuario abre a tela ou nao
+	 * @param primeiraTela boolean
+	 */
 	public TelaEscolha(boolean primeiraTela) {
 		if (primeiraTela == true) {
 			c = new ControleEmpresa();
@@ -75,6 +88,9 @@ public class TelaEscolha extends JFrame implements ActionListener{
 		}
 
 	}
+	/**
+	 * Sobrescreve o metodo actionPerformed da interface ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoCandidato) {

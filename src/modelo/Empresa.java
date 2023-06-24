@@ -1,5 +1,14 @@
 package modelo;
 
+
+/**
+ * Classe Empresa simula uma empresa que vai ofertar vagas na plataforma e herda da classe Usuario
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Usuario
+ *
+ */
 public class Empresa extends Usuario{
 	
 	private long cnpj;
@@ -7,18 +16,25 @@ public class Empresa extends Usuario{
 	private String resumo_sobre_empresa;
 	private String missao;
 	
-	
+	/**
+	 * Construtor sem argumentos
+	 */
 	public Empresa() {
 		super();
 		Dados.adicionarEmpresa(this);
 	}
 
-	public Empresa(String nome, String endereco, long cnpj, String email) {
-		super(nome, endereco, email);
-		this.cnpj = cnpj;
-		Dados.adicionarEmpresa(this);
-	}
 
+	/**
+	 * Construtor com todos os argumentos
+	 * @param nome String
+	 * @param endereco String
+	 * @param cnpj long
+	 * @param email String
+	 * @param setor_atuacao String
+	 * @param resumo_sobre_empresa String
+	 * @param missao String
+	 */
 	public Empresa(String nome, String endereco, long cnpj, String email, String setor_atuacao,
 			String resumo_sobre_empresa, String missao) {
 		super(nome, endereco, email);
@@ -64,12 +80,22 @@ public class Empresa extends Usuario{
 		return String.format("Nome: %s, Endereço: %s, CNPJ: %d, Setor de Atuacao: %s", getNome(), getEndereco(), getCNPJ(), getSetorAtuacao());
 	}
 
+	/**
+	 * Possibilita a empresa criar novas vagas 
+	 * @param funcao String
+	 * @param salario Double
+	 * @param requisitos String
+	 * @return Vaga
+	 */
 	public Vaga abrirVaga(String funcao, Double salario, String requisitos) {
 		Vaga vaga = new Vaga(funcao, salario, requisitos, this);
 		vagas.add(vaga);
 		return vaga;
 	}
-	
+	/**
+	 * Exclui uma vaga ja existente
+	 * @param vaga Vaga
+	 */
 	public void excluirVaga(Vaga vaga) {
 		vagas.remove(vaga);
 			for(Candidato candidato: Dados.getCandidatos()) {
@@ -77,10 +103,15 @@ public class Empresa extends Usuario{
 					candidato.getVagas().remove(vaga);
 				}
 			}
-		//vaga.getCandidatos().clear();
 		Dados.removerVaga(vaga);
 		}
-	
+	/**
+	 * Possibilita a empresa editar uma vaga ja existente
+	 * @param vaga Vaga
+	 * @param novaFuncao String
+	 * @param novoSalario Double
+	 * @param novosRequisitos String
+	 */
 	public void editarVaga(Vaga vaga, String novaFuncao, Double novoSalario, String novosRequisitos){
 		if (vagas.contains(vaga)) {
 			String funcao = novaFuncao != null ? novaFuncao : vaga.getFuncao();
@@ -94,16 +125,5 @@ public class Empresa extends Usuario{
 		}
 	}
 	
-	public String verVagas() {
-		String verVagas = "";
-		if(vagas.isEmpty()) {
-			verVagas = verVagas + "A Empresa não possui nenhuma vaga aberta.";
-		}else {
-			for(Vaga v: vagas) {
-				verVagas = verVagas + v + "\n";
-			}
-		}
-		return verVagas;
-	}
 
 }

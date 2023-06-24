@@ -2,6 +2,13 @@ package modelo;
 
 import java.util.ArrayList;
 
+/**
+ * Classe Abstrata Usuario simula os usuarios da plataforma que podem ser empresas ou candidatos
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0 
+ *
+ */
 public abstract class Usuario{
 	
 	protected String nome;
@@ -9,10 +16,17 @@ public abstract class Usuario{
 	private String email;
 	protected ArrayList<Vaga> vagas;
 	
-	
+	/**
+	 * Construtor sem argumentos
+	 */
 	public Usuario() {
 	}
-	
+	 /**
+	  * Construtor com todos os argumentos
+	  * @param nome String
+	  * @param endereco String
+	  * @param email String
+	  */
 	public Usuario(String nome, String endereco, String email) {
 		super();
 		this.nome = nome;

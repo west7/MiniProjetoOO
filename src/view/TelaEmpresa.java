@@ -18,6 +18,14 @@ import javax.swing.event.ListSelectionListener;
 import controle.ControleDeVaga;
 import controle.ControleEmpresa;
 
+/**
+ * Classe gera a visualizacao da tela principal de uma Empresa 
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Empresa
+ *
+ */
 public class TelaEmpresa extends JFrame implements ListSelectionListener, ActionListener {
 	
 	private JFrame tela = new JFrame();
@@ -44,6 +52,10 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	private JLabel reqVaga;
 	private JLabel salVaga;
 	
+	/**
+	 * Construtor da tela
+	 * @param c ControleEmpresa
+	 */
 	public TelaEmpresa(ControleEmpresa c) {
 		controle = c;
 		controleVaga = new ControleDeVaga();
@@ -128,6 +140,9 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 		}
 	}
 	
+	/**
+	 * Sobrescreve o metodo da interface
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == criar) {
 			new TelaCadastroVaga(controle, this);
@@ -179,6 +194,9 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 			tela.dispose();
 		}
 	}
+	/**
+	 * Atualiza o JPanel
+	 */
 	public void atualizarPanel() {
 		vagaPanel.removeAll();
 	    vagaPanel.revalidate();
@@ -204,6 +222,9 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 		vagaPanel.revalidate();
 		vagaPanel.repaint();
 	}
+	/**
+	 * Atualiza o JList
+	 */
 	public void atualizarJList() {
 		vagas.setListData(controle.puxarVagas());
 		vagas.updateUI();

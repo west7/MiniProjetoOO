@@ -19,6 +19,15 @@ import javax.swing.event.ListSelectionListener;
 import controle.ControleCandidato;
 import controle.ControleDeVaga;
 
+/**
+ * Classe gera a visualizacao da tela principal do Candidato
+ * 
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Candidato
+ *
+ */
 public class TelaCandidato extends JFrame implements ListSelectionListener, ActionListener {
 
 	private JFrame tela = new JFrame();
@@ -48,6 +57,10 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	private JTextField buscarField = new JTextField();
 	private ControleCandidato controle;
 	
+	/**
+	 * Construtor da tela
+	 * @param c ControleCandidato
+	 */
 	public TelaCandidato(ControleCandidato c) {
 		
 		controle = c;
@@ -152,6 +165,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 										vagas.getSelectedValue().empresaVaga().getSetorAtuacao(),
 										vagas.getSelectedValue().empresaVaga().getResumoSobreEmpresa(),
 										vagas.getSelectedValue().empresaVaga().getMissao());
+			
 			nomeVaga =  new JLabel(nomeVagaSelecionada);
 			reqVaga = new JLabel(reqVagaSelecionada);
 			salVaga = new JLabel(salStr);
@@ -169,6 +183,9 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		}
 	}
 	
+	/**
+	 * Sobrescreve o metodo da interface
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buscar) {
 			String campoBusca = buscarField.getText();
@@ -247,9 +264,15 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 			tela.dispose();
 		}
 	}
+	/**
+	 * Gera uma mensagem ao usuario
+	 */
 	public void mensagemInscricaoSucesso() {
 		JOptionPane.showMessageDialog(null, "Inscricao feita com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
 	}
+	/**
+	 * Gera uma mensagem ao usuario
+	 */
 	public void mensagemInscricaoErro() {
 		JOptionPane.showMessageDialog(null, "Erro ao se inscrever", null, JOptionPane.ERROR_MESSAGE);
 	}

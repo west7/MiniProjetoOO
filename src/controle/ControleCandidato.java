@@ -2,16 +2,36 @@ package controle;
 
 import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
 
 import modelo.Candidato;
 import modelo.Dados;
 import modelo.Vaga;
 
+/**
+ * Classe ControleCandidato faz a conexao entre a classe Candidato e as classes da camada view
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Candidato
+ * @see ControleDeVaga
+ *
+ */
 public class ControleCandidato {
 
 	private Candidato candidato;
 	
+	/**
+	 * Cria um candidato
+	 * @param nome String
+	 * @param endereco String
+	 * @param cpfStr long
+	 * @param email String
+	 * @param competencias String
+	 * @param formacao String
+	 * @param cargo String
+	 * @return boolean
+	 * @throws Excecao no caso de CPF invalido
+	 */
 	public boolean criarCandidato(String nome, String endereco, String cpfStr, String email, String competencias,
 			String formacao, String cargo) {
 		if (!nome.isEmpty() && !endereco.isEmpty() && !cpfStr.isEmpty() && !email.isEmpty()) {
@@ -27,7 +47,18 @@ public class ControleCandidato {
 			return false;
 		}
 	}
-	
+	/**
+	 * Edita um candidato
+	 * @param nome String
+	 * @param endereco String
+	 * @param cpfStr String
+	 * @param email String
+	 * @param competencias String
+	 * @param formacao String
+	 * @param cargo String
+	 * @return boolean
+	 * @throws Excecao no caso de CPF invalido
+	 */
 	public boolean editarCandidato(String nome, String endereco, String cpfStr, String email, String competencias,
 			String formacao, String cargo) {
 		if (!nome.isEmpty() && !endereco.isEmpty() && !cpfStr.isEmpty() && !email.isEmpty()) {
@@ -71,12 +102,12 @@ public class ControleCandidato {
 	public String cargoCandidato() {
 		return candidato.getCargo();
 	}
-	/*
-	public void inscrever(Vaga vaga){
-		if (!candidato.getVagas().contains(vaga) && vaga != null) {
-			candidato.inscrever(vaga);			
-		}
-	}*/
+	
+	/**
+	 * Inscreve o candidato em uma vaga
+	 * @param cVaga ControleDeVaga
+	 * @return boolean
+	 */
 	public boolean inscrever(ControleDeVaga cVaga){
 		if (cVaga != null) {
 			if (!candidato.getVagas().contains(cVaga.getVaga())) {
@@ -87,6 +118,12 @@ public class ControleCandidato {
 		} 
 		return false;
 	}
+	
+	/**
+	 * Cancela a incricao de uma candidato em uma vaga
+	 * @param cVaga ControleDeVaga
+	 * @return boolean
+	 */
 	public boolean desinscrever(ControleDeVaga cVaga){
 		if (cVaga != null) {
 			if (candidato.getVagas().contains(cVaga.getVaga())) {
@@ -97,6 +134,10 @@ public class ControleCandidato {
 		return false;
 	}
 
+	/**
+	 * Encontra todas as vagas criadas
+	 * @return ControleDeVaga[]
+	 */
 	public ControleDeVaga[] puxarVagas() {
 		ArrayList<Vaga> vagas = Dados.getVagas();
 		ControleDeVaga[] arrayVagas = new ControleDeVaga[vagas.size()];
@@ -108,7 +149,11 @@ public class ControleCandidato {
 		}
 		return arrayVagas;
 	}
-	
+	/**
+	 * Pesquisa as vagas dada a funcao pretendida
+	 * @param pesquisa String
+	 * @return ControleDeVaga[]
+	 */
 	public ControleDeVaga[] pesquisarFuncao(String pesquisa) {
 		ArrayList<Vaga> busca = candidato.buscarVagaPorFuncao(pesquisa);
 		ControleDeVaga[] arrayBusca = new ControleDeVaga[busca.size()];
@@ -120,6 +165,11 @@ public class ControleCandidato {
 		return arrayBusca;
 	}
 	
+	/**
+	 * Pesquisa as vagas dado o nome da empresa
+	 * @param pesquisa String
+	 * @return ControleDeVaga[]
+	 */
 	public ControleDeVaga[] pesquisarEmpresa(String pesquisa) {
 		ArrayList<Vaga> busca = candidato.buscarVagaPorEmpresa(pesquisa);
 		ControleDeVaga[] arrayBusca = new ControleDeVaga[busca.size()];
@@ -130,35 +180,11 @@ public class ControleCandidato {
 		}
 		return arrayBusca;
 	}
-	/*
-	public ControleDeVaga[] pesquisar(String pesquisa) {
-		ArrayList<Vaga> busca;
-		ControleDeVaga[] arrayBusca = puxarVagas();
-		ControleDeVaga c;
-		if (pesquisa.isEmpty()) {
-			arrayBusca = puxarVagas();
-		} else if (!pesquisa.isEmpty()) {
-			if (candidato.buscarVagaPorFuncao(pesquisa).size() > 0) {
-				busca = candidato.buscarVagaPorEmpresa(pesquisa);
-				arrayBusca = new ControleDeVaga[busca.size()];
-				for (int i=0; i < busca.size(); i++) {
-					c = new ControleDeVaga();
-					c.setVaga(busca.get(i));
-					arrayBusca[i] = c;
-				}
-			} else {
-				busca = candidato.buscarVagaPorEmpresa(pesquisa);
-				arrayBusca = new ControleDeVaga[busca.size()];
-				for (int i=0; i < busca.size(); i++) {
-					c = new ControleDeVaga();
-					c.setVaga(busca.get(i));
-					arrayBusca[i] = c;
-				}
-			}
-		}
-		return arrayBusca;
-	}*/
 	
+	/**
+	 * Encontra todas as inscricoes do candidato
+	 * @return ControleDeVaga[]
+	 */
 	public ControleDeVaga[] inscricoesCandidato() {
 		ArrayList<Vaga> inscricoes = candidato.getVagas();
 		ControleDeVaga[] inscricoesArray = new ControleDeVaga[inscricoes.size()];

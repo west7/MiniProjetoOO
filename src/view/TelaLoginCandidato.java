@@ -12,6 +12,15 @@ import javax.swing.JTextField;
 
 import controle.ControleCandidato;
 
+/**
+ * Classe que gera a visualizacao do cadastro do Candidato
+ * 
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Candidato
+ *
+ */
 public class TelaLoginCandidato extends JFrame implements ActionListener{
 	
 	private JFrame tela = new JFrame();
@@ -35,8 +44,13 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 	private ControleCandidato controle;
 
 
+	/**
+	 * Construtor verifica se o candidato quer cadastrar ou editar os dados
+	 * @param c ControleCandidato
+	 * @param editar boolean
+	 */
 	public TelaLoginCandidato(ControleCandidato c, boolean editar) {
-		
+
 		if (editar == false) {
 			controle = new ControleCandidato();
 			
@@ -166,7 +180,9 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 		}
 		
 	}
-	
+	/**
+	 * Sobrescreve o metodo actionPerformed da interface ActionListener
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoSalvar) {
@@ -206,6 +222,9 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Gera uma mensagem pro usuario
+	 */
 	public void mensagemDadosInvalidos() {
 		JOptionPane.showMessageDialog(null, "Preencha os campos obrigatorios com informacoes validas", null, JOptionPane.ERROR_MESSAGE);
 	}

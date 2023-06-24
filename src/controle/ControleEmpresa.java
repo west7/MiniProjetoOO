@@ -1,15 +1,35 @@
 package controle;
 import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
 
 import modelo.Dados;
 import modelo.Empresa;
 import modelo.Vaga;
 
+/**
+ * Classe ControleEmpresa realiza a conexao entre a classe Empresa e a camada view
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Empresa
+ * 
+ *
+ */
 public class ControleEmpresa {
 	private Empresa empresa;
 	
+	/**
+	 * Cria uma empresa
+	 * @param nome String
+	 * @param endereco String
+	 * @param cnpjStr String
+	 * @param email String
+	 * @param setor_atuacao String
+	 * @param resumo_sobre_empresa String
+	 * @param missao String
+	 * @return boolean
+	 * @throws Excecao caso CNPJ seja invalido 
+	 */
 	public boolean criarEmpresa(String nome, String endereco, String cnpjStr, String email, String setor_atuacao,
 			String resumo_sobre_empresa, String missao) {
 		if (!nome.isEmpty() && !endereco.isEmpty() && !cnpjStr.isEmpty() && !email.isEmpty() && !setor_atuacao.isEmpty()) {
@@ -24,6 +44,19 @@ public class ControleEmpresa {
 			return false;
 		}
 	}
+	
+	/**
+	 * Edita uma empresa
+	 * @param nome String
+	 * @param endereco String
+	 * @param cnpjStr String
+	 * @param email String
+	 * @param setor_atuacao String
+	 * @param resumo_sobre_empresa String
+	 * @param missao String
+	 * @return boolean
+	 * @throws Excecao caso CNPJ seja invalido
+	 */
 	public boolean editarEmpresa(String nome, String endereco, String cnpjStr, String email, String setor_atuacao,
 			String resumo_sobre_empresa, String missao) {
 		if (!nome.isEmpty() && !endereco.isEmpty() && !cnpjStr.isEmpty() && !email.isEmpty() && !setor_atuacao.isEmpty()) {
@@ -45,6 +78,9 @@ public class ControleEmpresa {
 			return false;
 		}
 	}
+	/**
+	 * Exclui uma empresa
+	 */
 	public void excluirEmpresa() {
 		Dados.removerEmpresa(empresa);
 	}
@@ -79,7 +115,10 @@ public class ControleEmpresa {
 	public ArrayList<Vaga> vagasEmpresa() {
 		return empresa.getVagas();
 	}
-	
+	 /**
+	  * Encontra todas as vagas da empresa
+	  * @return ControleDeVaga[]
+	  */
 	public ControleDeVaga[] puxarVagas() {
 		ArrayList<Vaga> vagas = empresa.getVagas();
 		ControleDeVaga[] arrayVaga = new ControleDeVaga[vagas.size()];
@@ -91,6 +130,10 @@ public class ControleEmpresa {
 		return arrayVaga;
 	}
 	
+	/**
+	 * Encontra todas as empresas
+	 * @return ControleEmpresa[]
+	 */
 	public ControleEmpresa[] puxarEmpresas() {
 		ArrayList<Empresa> empresas = Dados.getEmpresas();
 		ControleEmpresa[] empresasArray = new ControleEmpresa[empresas.size()];
@@ -101,7 +144,14 @@ public class ControleEmpresa {
 		}
 		return empresasArray;
 	}
-	
+	/**
+	 * Abre uma nova vaga
+	 * @param funcao String
+	 * @param salario String
+	 * @param requisitos String
+	 * @return boolean
+	 * @throws Excecao caso salario seja invalido
+	 */
 	public boolean abrirVaga(String funcao, String salario, String requisitos) {
 		if (!funcao.isEmpty() && !salario.isEmpty() && !requisitos.isEmpty()) {
 			try {
@@ -116,22 +166,23 @@ public class ControleEmpresa {
 		}
 	}
 
+	/**
+	 * Exclui uma vaga
+	 * @param vaga Vaga
+	 */
 	public void excluirVaga(Vaga vaga) {
 		empresa.excluirVaga(vaga);
 	}
-	public boolean vagaExiste(Vaga vaga) {
-		if(empresa.getVagas().contains(vaga)) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	/*public void editarVaga(Vaga vaga, String novaFuncao, double novoSalario , String novosRequisitos) {
-		//empresa.editarVaga(vaga,novaFuncao, novoSalario ,novosRequisitos);
-		vaga.setFuncao(novaFuncao);
-		vaga.setSalario(novoSalario);
-		vaga.setRequisitos(novosRequisitos);
-	}*/
+	
+	/**
+	 * Edita uma vaga
+	 * @param vaga Vaga
+	 * @param novaFuncao String
+	 * @param novoSalario String
+	 * @param novosRequisitos String
+	 * @return boolean
+	 * @throws caso salario seja invalido
+	 */
 	public boolean editarVaga(Vaga vaga, String novaFuncao, String novoSalario , String novosRequisitos) {
 		if (!novaFuncao.isEmpty() && !novoSalario.isEmpty() && !novosRequisitos.isEmpty()) {
 			try {
@@ -148,6 +199,9 @@ public class ControleEmpresa {
 		}
 	}
 	
+	/**
+	 * Acessa metodo da classe Dados
+	 */
 	public void inserirDados() {
 		Dados.preencherDados();
 	}

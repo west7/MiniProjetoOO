@@ -3,6 +3,14 @@ package controle;
 import modelo.Empresa;
 import modelo.Vaga;
 
+/**
+ * Classe ControleDeVaga realiza a conexao entre a classe Vaga e a camada view
+ * @author Guilherme Westphall and Lucas Martins
+ * @since 2023
+ * @version 1.0
+ * @see Vaga
+ *
+ */
 public class ControleDeVaga {
 
 	private Vaga vaga;
