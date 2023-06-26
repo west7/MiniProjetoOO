@@ -7,10 +7,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import controle.ControleCandidato;
+import controle.ControleEmpresa;
 
 /**
  * Classe que gera a visualizacao do cadastro do Candidato
@@ -21,7 +27,7 @@ import controle.ControleCandidato;
  * @see Candidato
  *
  */
-public class TelaLoginCandidato extends JFrame implements ActionListener{
+public class TelaLoginCandidato extends JFrame implements ListSelectionListener, ActionListener{
 	
 	private JFrame tela = new JFrame();
 	private JTextField nomeBox = new JTextField("");
@@ -41,6 +47,8 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 	private JLabel competenciasLabel = new JLabel("Habilidades");
 	private JLabel formacaoLabel = new JLabel("Formação");
 	private JLabel cargoLabel = new JLabel("Cargo");
+	private JList<ControleCandidato> candidatos;
+	private JScrollPane scrollPane;
 	private ControleCandidato controle;
 
 
@@ -101,6 +109,14 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 			
 			botaoVoltar.setBounds(200, 600, 100, 50);
 			tela.add(botaoVoltar);
+			
+			candidatos = new JList<ControleCandidato>(controle.puxarCandidatos());
+			candidatos.setFixedCellHeight(20);
+			candidatos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+			scrollPane = new JScrollPane(candidatos);
+			scrollPane.setBounds(350,450,300,200);
+			candidatos.addListSelectionListener(this);
+			tela.add(scrollPane);
 			
 			tela.setVisible(true);
 			
@@ -219,6 +235,13 @@ public class TelaLoginCandidato extends JFrame implements ActionListener{
 			} else {
 				mensagemDadosInvalidos();
 			}
+		}
+	}
+	public void valueChanged(ListSelectionEvent e) {  
+		if(!e.getValueIsAdjusting() && candidatos.getSelectedIndex() != -1) {
+			controle.setCandidato(candidatos.getSelectedValue().getCandidato());
+			new TelaCandidato(controle);
+			tela.dispose();
 		}
 	}
 	

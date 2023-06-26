@@ -80,6 +80,12 @@ public class ControleCandidato {
 			return false;
 		}
 	}
+	public Candidato getCandidato() {
+		return candidato;
+	}
+	public void setCandidato(Candidato candidato) {
+		this.candidato = candidato;
+	}
 	
 	public String nomeCandidato() {
 		return candidato.getNome();
@@ -132,6 +138,20 @@ public class ControleCandidato {
 			}
 		}
 		return false;
+	}
+	/**
+	 * Encontra todas os candidatos
+	 * @return ControleCandidato[]
+	 */
+	public ControleCandidato[] puxarCandidatos() {
+		ArrayList<Candidato> candidatos = Dados.getCandidatos();
+		ControleCandidato[] candidatosArray = new ControleCandidato[candidatos.size()];
+		for (int i=0; i < candidatos.size(); i++) {
+			ControleCandidato c = new ControleCandidato();
+			c.setCandidato(candidatos.get(i));
+			candidatosArray[i] = c;
+		}
+		return candidatosArray;
 	}
 
 	/**
@@ -194,6 +214,9 @@ public class ControleCandidato {
 			inscricoesArray[i] = c;
 		}
 		return inscricoesArray;
+	}
+	public String toString() {
+		return candidato.getNome();
 	}
 
 	
