@@ -63,11 +63,8 @@ public class Dados {
 	 */
 	public static void removerEmpresa(Empresa empresa) {
 		empresas.remove(empresa);
-		for (int i=0; i < empresa.getVagas().size(); i++) {
+		for (int i=empresa.getVagas().size() - 1; i >= 0; i--) {
 			empresa.excluirVaga(empresa.getVagas().get(i));
-		}
-		for(int j=0; j < empresa.getVagas().size(); j++) {
-			removerVaga(empresa.getVagas().get(j));
 		}
 	}
 	/**
