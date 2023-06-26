@@ -13,7 +13,7 @@ public abstract class Usuario{
 	
 	protected String nome;
 	protected String endereco;
-	private String email;
+	protected String email;
 	protected ArrayList<Vaga> vagas;
 	
 	/**

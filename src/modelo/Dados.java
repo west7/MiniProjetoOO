@@ -31,6 +31,7 @@ public class Dados {
 		e1.abrirVaga("Web designer", 5000.0, "Experiência com Figma");
 		e1.abrirVaga("Desenvolvedor Frontend", 3000.0, "Angular e node.js");
 		e2.abrirVaga("Desenvolvedor Senior Java", 5000.0, "20 anos de experiância");
+		//e2.abrirVaga("teste", 1000.0, "g");
 		e5.abrirVaga("Redator", 2000.0, "");
 		e5.abrirVaga("Repórter", 8000.0, "5 anos de experiência");
 		
@@ -63,8 +64,10 @@ public class Dados {
 	public static void removerEmpresa(Empresa empresa) {
 		empresas.remove(empresa);
 		for (int i=0; i < empresa.getVagas().size(); i++) {
-			empresa.excluirVaga(empresa.getVagas().get(i));			
-			removerVaga(empresa.getVagas().get(i));
+			empresa.excluirVaga(empresa.getVagas().get(i));
+		}
+		for(int j=0; j < empresa.getVagas().size(); j++) {
+			removerVaga(empresa.getVagas().get(j));
 		}
 	}
 	/**
