@@ -196,7 +196,7 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 	}
 	
 	/**
-	 * Sobrescreve o metodo actionPerformed da interface ActionListener
+	 * Implementa o metodo actionPerformed da interface ActionListener
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -211,7 +211,7 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 			if (controle.criarEmpresa(nome, endereco, cnpj, email, setor, resumo, missao)) {
 				new TelaEmpresa(controle);
 				tela.dispose();
-			} else {
+			}  else {
 				mensagemDadosInvalidos();
 			}
 				
@@ -245,7 +245,7 @@ public class TelaLoginEmpresa extends JFrame implements ListSelectionListener, A
 	}
 	
 	/**
-	 * Gera uma mensagem ao usuario
+	 * Gera uma mensagem de erro ao usuario
 	 */
 	public void mensagemDadosInvalidos() {
 		JOptionPane.showMessageDialog(null, "Preencha os campos obrigatorios com informacoes validas", null, JOptionPane.ERROR_MESSAGE);

@@ -129,7 +129,7 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 		botaoVoltar.addActionListener(this);
 	}
 	/**
-	 * Sobrescreve o metodo da interface
+	 * Implementa o metodo da interface
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -160,7 +160,7 @@ public class TelaCadastroVaga extends JFrame implements ActionListener {
 
 	}
 	/**
-	 * Gera uma mensagem ao usuario
+	 * Gera uma mensagem de erro ao usuario
 	 */
 	public void mensagemDadosInvalidos() {
 		JOptionPane.showMessageDialog(null, "Insira dados válidos", null, JOptionPane.ERROR_MESSAGE);

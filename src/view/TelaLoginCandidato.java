@@ -16,7 +16,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controle.ControleCandidato;
-import controle.ControleEmpresa;
 
 /**
  * Classe que gera a visualizacao do cadastro do Candidato
@@ -197,7 +196,7 @@ public class TelaLoginCandidato extends JFrame implements ListSelectionListener,
 		
 	}
 	/**
-	 * Sobrescreve o metodo actionPerformed da interface ActionListener
+	 * Implementa o metodo actionPerformed da interface ActionListener
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -246,7 +245,7 @@ public class TelaLoginCandidato extends JFrame implements ListSelectionListener,
 	}
 	
 	/**
-	 * Gera uma mensagem pro usuario
+	 * Gera uma mensagem de erro para usuario
 	 */
 	public void mensagemDadosInvalidos() {
 		JOptionPane.showMessageDialog(null, "Preencha os campos obrigatorios com informacoes validas", null, JOptionPane.ERROR_MESSAGE);

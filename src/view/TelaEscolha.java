@@ -28,7 +28,7 @@ public class TelaEscolha extends JFrame implements ActionListener{
 	private ControleEmpresa c;
 
 	/**
-	 * Construtor que verifica se é a primeira vez que o usuario abre a tela ou nao
+	 * Construtor que verifica se e a primeira vez que o usuario abre a tela ou nao
 	 * @param primeiraTela boolean
 	 */
 	public TelaEscolha(boolean primeiraTela) {
@@ -36,7 +36,6 @@ public class TelaEscolha extends JFrame implements ActionListener{
 			c = new ControleEmpresa();
 			c.inserirDados();
 			
-			//jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			jFrame.getContentPane().setBackground(Color.lightGray);
 			jFrame.setTitle("Escolha de Usuário");
 			jFrame.setVisible(true);
@@ -89,7 +88,7 @@ public class TelaEscolha extends JFrame implements ActionListener{
 
 	}
 	/**
-	 * Sobrescreve o metodo actionPerformed da interface ActionListener
+	 * Implementa o metodo actionPerformed da interface ActionListener
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -36,7 +36,7 @@ public class ControleEmpresa {
 			try {
 				long cnpj = Long.parseLong(cnpjStr);
 				empresa = new Empresa(nome, endereco, cnpj, email, setor_atuacao, resumo_sobre_empresa, missao);
-				return true;				
+				return true;	
 			} catch(NumberFormatException ex) {
 				return false;
 			}

@@ -141,7 +141,7 @@ public class TelaEmpresa extends JFrame implements ListSelectionListener, Action
 	}
 	
 	/**
-	 * Sobrescreve o metodo da interface
+	 * Implementa o metodo da interface
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == criar) {

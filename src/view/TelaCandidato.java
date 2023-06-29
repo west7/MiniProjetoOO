@@ -184,7 +184,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 	}
 	
 	/**
-	 * Sobrescreve o metodo da interface
+	 * Implementa o metodo da interface
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buscar) {
@@ -265,13 +265,7 @@ public class TelaCandidato extends JFrame implements ListSelectionListener, Acti
 		}
 	}
 	/**
-	 * Gera uma mensagem ao usuario
-	 */
-	public void mensagemInscricaoSucesso() {
-		JOptionPane.showMessageDialog(null, "Inscricao feita com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
-	}
-	/**
-	 * Gera uma mensagem ao usuario
+	 * Gera uma mensagem de erro ao usuario
 	 */
 	public void mensagemInscricaoErro() {
 		JOptionPane.showMessageDialog(null, "Erro ao se inscrever", null, JOptionPane.ERROR_MESSAGE);
