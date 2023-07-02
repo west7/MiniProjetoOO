@@ -31,7 +31,8 @@ public class TesteEditarVaga {
 		String salarioCorreto = "5000.0";
 		String salarioErrado = "5000,0";
 
-		assertTrue(c.editarVaga(v1, "funcao", salarioCorreto, "req"));
-		assertFalse(c.editarVaga(v1, "funcao", salarioErrado, "req"));
+		assertTrue(c.editarVaga(v1, "funcao", salarioCorreto, "requisitos"));
+		assertFalse(c.editarVaga(v1, "funcao", salarioCorreto, ""));
+		assertFalse(c.editarVaga(v1, "funcao", salarioErrado, "requisitos"));
 	}
 }

@@ -26,5 +26,6 @@ public class TesteCriarEmpresa {
 		
 		assertTrue(c.criarEmpresa("Amazon", "EUA", "123123", "amazon@", "Varejo", "resumo", "missao"));
 		assertFalse(c.criarEmpresa("", "EUA", "123123", "amazon@", "Varejo", "resumo", "missao"));
+		assertFalse(c.criarEmpresa("Amazon", "EUA", "123-59-5", "amazon@", "Varejo", "resumo", "missao"));
 	}
 }

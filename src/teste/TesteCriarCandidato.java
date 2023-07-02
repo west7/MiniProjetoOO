@@ -26,5 +26,6 @@ public class TesteCriarCandidato {
 		
 		assertTrue(c.criarCandidato("Guilherme","Brazil", "124124", "Guilherme@", "habilidades", "formacao", "cargo"));
 		assertFalse(c.criarCandidato("","", "124124", "Guilherme@", "habilidades", "formacao", "cargo"));
+		assertFalse(c.criarCandidato("Guilherme","Brazil", "115-655", "Guilherme@", "habilidades", "formacao", "cargo"));
 	}
 }
