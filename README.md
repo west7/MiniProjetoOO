@@ -13,11 +13,11 @@
 
 ### Contatos
 Guilherme Westphall 
-* [![Gmail][Gmail]](guilhermewestphall@gmail.com)
+* [![Gmail][Gmail]](mailto:guilhermewestphall@gmail.com)
 
 Lucas Martins
 * [![Linkedin][linkedin-shield]](https://www.linkedin.com/in/lucas-martins-gabriel/)
-* [![Gmail][Gmail]](lucasmartinsgabriel@gmail.com)
+* [![Gmail][Gmail]](mailto:lucasmartinsgabriel@gmail.com)
 
 [Java.com]: https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white
 [Java-url]: https://www.java.com
